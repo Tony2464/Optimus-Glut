@@ -83,7 +83,7 @@
 1578947565 c:\mingw\include\msvcrtver.h
 	<_mingw.h>
 
-1579865006 c:\mingw\include\features.h
+1581774952 c:\mingw\include\features.h
 
 1578947565 c:\mingw\include\strings.h
 	<_mingw.h>
@@ -342,9 +342,9 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
-1562433062 c:\mingw\include\gl\gl.h
+1578947578 c:\mingw\include\gl\gl.h
 
-1562433062 c:\mingw\include\gl\glu.h
+1578947578 c:\mingw\include\gl\glu.h
 	<stddef.h>
 	<GL/gl.h>
 
@@ -358,4 +358,12 @@
 
 1578947565 c:\mingw\include\math.h
 	<_mingw.h>
+
+1582656090 source:c:\users\anthony\desktop\optimus-glut\main.cpp
+	<windows.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
 

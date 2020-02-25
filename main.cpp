@@ -1,13 +1,13 @@
 
 /*********************************************************/
-/*        TP1: primitives 2D et transformations          */
+/*        Projet Infgraphie : Optimus-Glut               */
 /*********************************************************/
 /*													     */
-/*       ESGI: Algorithmiques pour l'infographies		 */
+/* Groupe : Nicolas Fouchard, Steven Ye, Anthony Fargette*/
 /*													     */
 /*********************************************************/
 /*													     */
-/*  Objectif: afficher des formes 2D et les transformer  */
+/*                                                       */
 /*													     */
 /*********************************************************/
 
@@ -29,10 +29,14 @@ float angle = 0.0;
 float angleL2 = 0.0;
 float cameraAngle = 10.0;
 int way = 0;
-float r = 3;
-float phi = 0;
-float alpha = 15;
-float xCam = 0, yCam = 0, zCam = 0;
+float r = 3;//Rayon, Distance entre la camera et l'objet
+float phi = 0;//Angle de rotation veritcale de la camera
+float alpha = 0;//Amgle de rotation horizontale de la camera
+float xCam = 0, yCam = 0, zCam = 0;//Coordonnees de la camera
+float rotateValue = 0.25;
+float zoomValue = 0.25;
+float limitZoom = 2;
+float limitRotate = 0.005;
 
 /* prototypes de fonctions */
 void initRendering();                           // Initialisation du rendu
@@ -232,6 +236,7 @@ void keyboard(unsigned char key, int x, int y) {
 		}
 }
 
+/* Fonction de gestion du clavier pour les fleches */
 void SpecialInput(int key, int x, int y) {
     switch(key) {
     case GLUT_KEY_UP:
@@ -256,26 +261,34 @@ void SpecialInput(int key, int x, int y) {
     }
 }
 
+
+/*Fonctions de rotation et de zoom de la camera*/
 void rotateRight() {
-    alpha++;
+    alpha += rotateValue;
 }
 
 void rotateLeft() {
-    alpha--;
+    alpha -= rotateValue;
 }
 
 void rotateUp() {
-    phi -= 0.25;
+    phi += rotateValue;
+        if(phi > M_PI/2 - limitRotate)
+            phi = M_PI/2 - 0.005;
 }
 
 void rotateDown() {
-    phi += 0.25;
+    phi -= rotateValue;
+        if(phi < - M_PI/2 + limitRotate)
+                phi = - M_PI/2 + 0.005;
 }
 
 void zoom() {
-    r--;
+    r -= zoomValue;
+        if(r < limitZoom)
+            r = limitZoom;
 }
 
 void dezoom() {
-    r++;
+    r += zoomValue;
 }
