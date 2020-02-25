@@ -164,14 +164,14 @@ void display(){
     //Front left
     glVertex3f(-0.75f, 0.5f, 0.5f);
     glVertex3f(-0.75f, -0.5f, 0.5f);
-    glVertex3f(0.0f, -0.5f, 0.6f);
-    glVertex3f(0.0f, 0.5f, 0.6f);
+    glVertex3f(0.0f, -0.5f, 0.7f);
+    glVertex3f(0.0f, 0.5f, 0.7f);
 
     //Front right
     glVertex3f(0.75f, 0.5f, 0.5f);
     glVertex3f(0.75f, -0.5f, 0.5f);
-    glVertex3f(0.0f, -0.5f, 0.6f);
-    glVertex3f(0.0f, 0.5f, 0.6f);
+    glVertex3f(0.0f, -0.5f, 0.7f);
+    glVertex3f(0.0f, 0.5f, 0.7f);
 
     glEnd();
     glPopMatrix();
