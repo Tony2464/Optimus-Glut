@@ -121,34 +121,28 @@ void display(){
 
     glBegin(GL_QUADS);
 
-    glNormal3f(0, 0, 1);
-    //Front
-    glVertex3f(-0.5f, 0.5f, 0.5f);
-    glVertex3f(-0.5f, -0.5f, 0.5f);
-        glVertex3f(0.5f, -0.5f, 0.5f);
-        glVertex3f(0.5f, 0.5f, 0.5f);
-
     glNormal3f(1, 0, 0);
     //Right
-    glVertex3f(0.5f, 0.5f, 0.5f);
-    glVertex3f(0.5f, -0.5f, 0.5f);
-        glVertex3f(0.5f, -0.5f, -0.5f);
-        glVertex3f(0.5f, 0.5f, -0.5f);
+    glVertex3f(0.75f, 0.5f, 0.5f);
+    glVertex3f(0.75f, -0.5f, 0.5f);
+    glVertex3f(0.75f, -0.5f, -0.5f);
+    glVertex3f(0.75f, 0.5f, -0.5f);
 
     glNormal3f(0, 0, -1);
     //Back
-    glVertex3f(-0.5f, 0.5f, -0.5f);
-    glVertex3f(-0.5f, -0.5f, -0.5f);
-        glVertex3f(0.5f, -0.5f, -0.5f);
-        glVertex3f(0.5f, 0.5f, -0.5f);
+    glVertex3f(-0.75f, 0.5f, -0.5f);
+    glVertex3f(-0.75f, -0.5f, -0.5f);
+    glVertex3f(0.75f, -0.5f, -0.5f);
+    glVertex3f(0.75f, 0.5f, -0.5f);
 
     glNormal3f(-1, 0, 0);
     //Left
-    glVertex3f(-0.5f, 0.5f, 0.5f);
-    glVertex3f(-0.5f, -0.5f, 0.5f);
-        glVertex3f(-0.5f, -0.5f, -0.5f);
-        glVertex3f(-0.5f, 0.5f, -0.5f);
-     glEnd();
+    glVertex3f(-0.75f, 0.5f, 0.5f);
+    glVertex3f(-0.75f, -0.5f, 0.5f);
+    glVertex3f(-0.75f, -0.5f, -0.5f);
+    glVertex3f(-0.75f, 0.5f, -0.5f);
+
+    glEnd();
     glPopMatrix();
 
 
