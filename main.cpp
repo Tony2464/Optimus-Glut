@@ -1,13 +1,13 @@
 
 /*********************************************************/
-/*        TP1: primitives 2D et transformations          */
+/*        Projet Infgraphie : Optimus-Glut               */
 /*********************************************************/
 /*													     */
-/*       ESGI: Algorithmiques pour l'infographies		 */
+/* Groupe : Nicolas Fouchard, Steven Ye, Anthony Fargette*/
 /*													     */
 /*********************************************************/
 /*													     */
-/*  Objectif: afficher des formes 2D et les transformer  */
+/*                                                       */
 /*													     */
 /*********************************************************/
 
@@ -21,20 +21,36 @@
 #include <GL/glut.h>
 #endif
 
-#include<stdlib.h>
-#include<stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
 
 float angle = 0.0;
 float angleL2 = 0.0;
 float cameraAngle = 10.0;
 int way = 0;
+float r = 3;//Rayon, Distance entre la camera et l'objet
+float phi = 0;//Angle de rotation veritcale de la camera
+float alpha = 0;//Amgle de rotation horizontale de la camera
+float xCam = 0, yCam = 0, zCam = 0;//Coordonnees de la camera
+float rotateValue = 0.25;
+float zoomValue = 0.25;
+float limitZoom = 2;
+float limitRotate = 0.005;
 
 /* prototypes de fonctions */
 void initRendering();                           // Initialisation du rendu
 void display();                             // mod�lisation
 void reshape(int w,int h);                      // visualisation
 void update(int value);                         // mise � jour: appelle Timer pour l'animation de la sc�ne
+void rotateRight();
+void rotateLeft();
+void rotateUp();
+void rotateDown();
+void zoom();
+void dezoom();
 void keyboard(unsigned char key, int x, int y); // fonction clavier
+void SpecialInput(int key, int x, int y);
 
 
 /* Programme principal */
@@ -57,6 +73,7 @@ int main(int argc,       // argc: nombre d'arguments, argc vaut au moins 1
     glutDisplayFunc(display);
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyboard);
+	glutSpecialFunc(SpecialInput);
 
 	/* rq: le callback de fonction (fonction de rappel) est une fonction qui est pass�e en argument � une
 	autre fonction. Ici, le main fait usage des deux fonctions de rappel (qui fonctionnent en m�me temps)
@@ -102,7 +119,10 @@ void display(){
 
 	/* Permet de cr�er un point de vue. D�finit une matrice de mod�lisation-visualisation et la multiplie
 	� droite de lma matrice active, ici l'identit�*/
-	gluLookAt(0.0, 0.0, 5.0,      // position cam�ra
+	xCam = r * cos(phi) * sin(alpha);
+	yCam = r * sin(phi);
+	zCam = r * cos(phi) * cos(alpha);
+	gluLookAt(xCam, yCam, zCam,      // position cam�ra
 		      0.0, 0.0, 0.0,      // point de mire
 			  0.0, 1.0, 0.0);     // vecteur d'orientation cam�ra
     //glTranslatef(a,b,c);
@@ -117,7 +137,6 @@ void display(){
 
 
     glPushMatrix();
-
 
     glBegin(GL_QUADS);
 
@@ -141,6 +160,18 @@ void display(){
     glVertex3f(-0.75f, -0.5f, 0.5f);
     glVertex3f(-0.75f, -0.5f, -0.5f);
     glVertex3f(-0.75f, 0.5f, -0.5f);
+
+    //Front left
+    glVertex3f(-0.75f, 0.5f, 0.5f);
+    glVertex3f(-0.75f, -0.5f, 0.5f);
+    glVertex3f(0.0f, -0.5f, 0.6f);
+    glVertex3f(0.0f, 0.5f, 0.6f);
+
+    //Front right
+    glVertex3f(0.75f, 0.5f, 0.5f);
+    glVertex3f(0.75f, -0.5f, 0.5f);
+    glVertex3f(0.0f, -0.5f, 0.6f);
+    glVertex3f(0.0f, 0.5f, 0.6f);
 
     glEnd();
     glPopMatrix();
@@ -187,17 +218,78 @@ void update(int value){
 }
 
 /* Fonction de gestion du clavier */
-void keyboard(unsigned char key,       // Touche qui a �t� press�e
-                    int x, int y) {    // Coordonn�es courante de la souris
+void keyboard(unsigned char key, int x, int y) {
 
-		switch (key){
+		switch (key) {
 
-			case 'r':   /* rotation */
-				glutPostRedisplay();
-                glutTimerFunc(10,update, 0);
-				break;
+			case 'z':   /* rotation */
+			    zoom();
+                glutPostRedisplay();
+            break;
+
+            case 'd':   /* rotation */
+			    dezoom();
+                glutPostRedisplay();
+            break;
 
 			case 'q':   /* Quitter le programme */
 				exit(0);
 		}
+}
+
+/* Fonction de gestion du clavier pour les fleches */
+void SpecialInput(int key, int x, int y) {
+    switch(key) {
+    case GLUT_KEY_UP:
+        rotateUp();
+        glutPostRedisplay();
+    break;
+
+    case GLUT_KEY_DOWN:
+        rotateDown();
+        glutPostRedisplay();
+    break;
+
+    case GLUT_KEY_LEFT:
+        rotateLeft();
+        glutPostRedisplay();
+    break;
+
+    case GLUT_KEY_RIGHT:
+        rotateRight();
+        glutPostRedisplay();
+    break;
+    }
+}
+
+
+/*Fonctions de rotation et de zoom de la camera*/
+void rotateRight() {
+    alpha += rotateValue;
+}
+
+void rotateLeft() {
+    alpha -= rotateValue;
+}
+
+void rotateUp() {
+    phi += rotateValue;
+        if(phi > M_PI/2 - limitRotate)
+            phi = M_PI/2 - 0.005;
+}
+
+void rotateDown() {
+    phi -= rotateValue;
+        if(phi < - M_PI/2 + limitRotate)
+                phi = - M_PI/2 + 0.005;
+}
+
+void zoom() {
+    r -= zoomValue;
+        if(r < limitZoom)
+            r = limitZoom;
+}
+
+void dezoom() {
+    r += zoomValue;
 }

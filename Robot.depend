@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1582650488 source:d:\mes documents\projets git\projet optimus glut\main.cpp
+1582657443 source:d:\mes documents\projets git\projet optimus glut\main.cpp
 	<windows.h>
 	<GLUT/glut.h>
 	<GL/glut.h>
 	<stdlib.h>
 	<stdio.h>
+	<math.h>
 
 1562433062 c:\mingw\include\windows.h
 	<winresrc.h>
@@ -347,4 +348,23 @@
 1562433062 c:\mingw\include\gl\glu.h
 	<stddef.h>
 	<GL/gl.h>
+
+1582651518 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\main.cpp
+	<windows.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+
+1562433050 c:\mingw\include\math.h
+	<_mingw.h>
+
+1582656090 source:c:\users\anthony\desktop\optimus-glut\main.cpp
+	<windows.h>
+	<GLUT/glut.h>
+	<GL/glut.h>
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
 
