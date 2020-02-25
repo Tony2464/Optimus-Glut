@@ -1,19 +1,5 @@
 # depslib dependency file v1.0
-1361143254 source:c:\users\bah.marc_pc\desktop\marc\marc\cours-td-ecoles\projets c pr l'ece et l'esgi\esgi\tp étudiants\primitives 2d et transformations\main.cpp
-	<windows.h>
-	<GLUT/glut.h>
-	<GL/glut.h>
-	<stdlib.h>
-	<stdio.h>
-
-1361143256 source:c:\users\marc\desktop\marc\cours-td-ecoles\esgi\infographie\2i\enoncés tp\esgi\tp étudiants\tp étudiants\primitives 2d et transformations\main.cpp
-	<windows.h>
-	<GLUT/glut.h>
-	<GL/glut.h>
-	<stdlib.h>
-	<stdio.h>
-
-1581420513 source:d:\google drive\esgi\2ème année\opengl\tp étudiants\tp3\main.cpp
+1582650488 source:d:\mes documents\projets git\projet optimus glut\main.cpp
 	<windows.h>
 	<GLUT/glut.h>
 	<GL/glut.h>
@@ -361,11 +347,4 @@
 1562433062 c:\mingw\include\gl\glu.h
 	<stddef.h>
 	<GL/gl.h>
-
-1581427015 source:d:\mes documents\projets git\projet optimus glut\main.cpp
-	<windows.h>
-	<GLUT/glut.h>
-	<GL/glut.h>
-	<stdlib.h>
-	<stdio.h>
 

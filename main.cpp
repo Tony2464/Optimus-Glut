@@ -47,7 +47,7 @@ int main(int argc,       // argc: nombre d'arguments, argc vaut au moins 1
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH); // mode d'affichage RGB, et test prafondeur
     glutInitWindowSize(500, 500);                // dimension fen�tre
 	glutInitWindowPosition (100, 100);           // position coin haut gauche
-	glutCreateWindow("TP1: formes 2D et transformation");  // nom
+	glutCreateWindow("Robot");  // nom
 
 	/* Initialisation d'OpenGL */
 	initRendering();
@@ -106,9 +106,9 @@ void display(){
 		      0.0, 0.0, 0.0,      // point de mire
 			  0.0, 1.0, 0.0);     // vecteur d'orientation cam�ra
     //glTranslatef(a,b,c);
-    glRotatef(5,1,0,0);
-    glRotatef(5,0,1,0);
-    glRotatef(5,0,0,1);
+    //glRotatef(5,1,0,0);
+    //glRotatef(5,0,1,0);
+    //glRotatef(5,0,0,1);
 
 
 	/* A vous de jouer */
@@ -116,9 +116,40 @@ void display(){
 
 
 
+    glPushMatrix();
 
 
+    glBegin(GL_QUADS);
 
+    glNormal3f(0, 0, 1);
+    //Front
+    glVertex3f(-0.5f, 0.5f, 0.5f);
+    glVertex3f(-0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, 0.5f, 0.5f);
+
+    glNormal3f(1, 0, 0);
+    //Right
+    glVertex3f(0.5f, 0.5f, 0.5f);
+    glVertex3f(0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, -0.5f, -0.5f);
+        glVertex3f(0.5f, 0.5f, -0.5f);
+
+    glNormal3f(0, 0, -1);
+    //Back
+    glVertex3f(-0.5f, 0.5f, -0.5f);
+    glVertex3f(-0.5f, -0.5f, -0.5f);
+        glVertex3f(0.5f, -0.5f, -0.5f);
+        glVertex3f(0.5f, 0.5f, -0.5f);
+
+    glNormal3f(-1, 0, 0);
+    //Left
+    glVertex3f(-0.5f, 0.5f, 0.5f);
+    glVertex3f(-0.5f, -0.5f, 0.5f);
+        glVertex3f(-0.5f, -0.5f, -0.5f);
+        glVertex3f(-0.5f, 0.5f, -0.5f);
+     glEnd();
+    glPopMatrix();
 
 
 	/* On swap (�change) les buffers, c�d, on fait passer l'image calcul�e et dessin�e
@@ -169,7 +200,7 @@ void keyboard(unsigned char key,       // Touche qui a �t� press�e
 
 			case 'r':   /* rotation */
 				glutPostRedisplay();
-        glutTimerFunc(10,update, 0);
+                glutTimerFunc(10,update, 0);
 				break;
 
 			case 'q':   /* Quitter le programme */
