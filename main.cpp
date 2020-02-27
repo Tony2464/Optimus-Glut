@@ -147,15 +147,15 @@ void display(){
     glVertex3f(0.75f, -0.5f, -0.5f);
     glVertex3f(0.75f, 0.5f, -0.5f);
 
-    glNormal3f(0, 0, -1);
     //Back
+    glNormal3f(0, 0, -1);
     glVertex3f(-0.75f, 0.5f, -0.5f);
     glVertex3f(-0.75f, -0.5f, -0.5f);
     glVertex3f(0.75f, -0.5f, -0.5f);
     glVertex3f(0.75f, 0.5f, -0.5f);
 
-    glNormal3f(-1, 0, 0);
     //Left
+    glNormal3f(-1, 0, 0);
     glVertex3f(-0.75f, 0.5f, 0.5f);
     glVertex3f(-0.75f, -0.5f, 0.5f);
     glVertex3f(-0.75f, -0.5f, -0.5f);
@@ -172,6 +172,40 @@ void display(){
     glVertex3f(0.75f, -0.5f, 0.5f);
     glVertex3f(0.0f, -0.5f, 0.7f);
     glVertex3f(0.0f, 0.5f, 0.7f);
+
+    //Top
+    glNormal3f(0, 1, 0);
+    glVertex3f(0.75f, 0.5f, 0.5f);
+    glVertex3f(0.75f, 0.5f, -0.5f);
+    glVertex3f(-0.75f, 0.5f, -0.5f);
+    glVertex3f(-0.75f, 0.5f, 0.5f);
+
+    //Bottom
+    glNormal3f(0, -1, 0);
+    glVertex3f(0.75f, -0.5f, 0.5f);
+    glVertex3f(0.75f, -0.5f, -0.5f);
+    glVertex3f(-0.75f, -0.5f, -0.5f);
+    glVertex3f(-0.75f, -0.5f, 0.5f);
+
+
+    glEnd();
+    glPopMatrix();
+
+
+    glPushMatrix();
+    glBegin(GL_TRIANGLES);
+
+    //Top triangle
+    glNormal3f(0, 1, 0);
+    glVertex3f(0.0f, 0.5f, 0.7f);
+    glVertex3f(0.75f, 0.5f, 0.5f);
+    glVertex3f(-0.75f, 0.5f, 0.5f);
+
+    //Top triangle
+    glNormal3f(0, -1, 0);
+    glVertex3f(0.0f, -0.5f, 0.7f);
+    glVertex3f(0.75f, -0.5f, 0.5f);
+    glVertex3f(-0.75f, -0.5f, 0.5f);
 
     glEnd();
     glPopMatrix();
