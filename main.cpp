@@ -37,6 +37,8 @@ float rotateValue = 0.25;
 float zoomValue = 0.25;
 float limitZoom = 2;
 float limitRotate = 0.005;
+float coord[9];
+float* normal = (float*) malloc(sizeof(float) * 3);
 
 /* prototypes de fonctions */
 void initRendering();                           // Initialisation du rendu
@@ -51,6 +53,7 @@ void zoom();
 void dezoom();
 void keyboard(unsigned char key, int x, int y); // fonction clavier
 void SpecialInput(int key, int x, int y);
+float* vectorProduct(float tab[9]);
 
 
 /* Programme principal */
@@ -140,13 +143,26 @@ void display(){
 
         glBegin(GL_QUADS);
 
-            glNormal3f(0, 0, 1);
+            coord[0] = -0.5;
+            coord[1] = -0.5;
+            coord[2] = 0.5;
+            coord[3] = 0.5;
+            coord[4] = -0.5;
+            coord[5] = 0.5;
+            coord[6] = -0.5;
+            coord[7] = 0.5;
+            coord[8] = 0.5;
+            normal = vectorProduct(coord);
+            printf("%.1f\n", normal[0]);
+            printf("%.1f\n", normal[1]);
+            printf("%.1f\n", normal[2]);
+            glNormal3f(normal[0], normal[1], normal[2]);
             //Front
             glColor3f(1, 0, 0);
-            glVertex3f(-0.5f, 0.5f, 0.5f);
             glVertex3f(-0.5f, -0.5f, 0.5f);
             glVertex3f(0.5f, -0.5f, 0.5f);
             glVertex3f(0.5f, 0.5f, 0.5f);
+            glVertex3f(-0.5f, 0.5f, 0.5f);
 
             glNormal3f(1, 0, 0);
             //Right
@@ -291,4 +307,24 @@ void zoom() {
 
 void dezoom() {
     r += zoomValue;
+}
+
+float* vectorProduct(float tab[9]) {
+    float vector1[3];
+    float vector2[3];
+    float* normalVector = (float*) malloc(sizeof(float) * 3);
+
+    vector1[0] = tab[3] - tab[0];
+    vector1[1] = tab[4] - tab[1];
+    vector1[2] = tab[5] - tab[2];
+
+    vector2[0] = tab[6] - tab[0];
+    vector2[1] = tab[7] - tab[1];
+    vector2[2] = tab[8] - tab[2];
+
+    *normalVector = vector1[1] * vector2[2] - vector1[2] * vector2[1];
+    *(normalVector + 1) = vector1[2] * vector2[0] - vector1[0] * vector2[2];
+    *(normalVector + 2) = vector1[0] * vector2[1] - vector1[1] * vector2[0];
+
+    return normalVector;
 }
