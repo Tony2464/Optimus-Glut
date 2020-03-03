@@ -460,12 +460,8 @@ void sound(){
       fprintf(stderr, "Impossible de lire le fichier mp3\n");
   }
 
-  /* On active la répétition de la musique à l'infini */
-  //FMOD_Sound_SetLoopCount(sound, -1);
-
   /* On joue la musique */
   FMOD_System_PlaySound(sys, FMOD_CHANNEL_FREE, sound, 0, NULL);
-  //FMOD_System_PlaySound(sys, sound,NULL,0,&channel);
 
   Sleep(4000);
   FMOD_Sound_Release(sound);
