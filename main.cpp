@@ -39,6 +39,8 @@ float rotateValue = 0.25;
 float zoomValue = 0.25;
 float limitZoom = 2;
 float limitRotate = 0.005;
+float tab[9];
+float *normal;
 
 /* prototypes de fonctions */
 void initRendering();                           // Initialisation du rendu
@@ -54,6 +56,7 @@ void dezoom();
 void sound();
 void keyboard(unsigned char key, int x, int y); // fonction clavier
 void SpecialInput(int key, int x, int y);
+float* vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9);
 
 
 /* Programme principal */
@@ -153,10 +156,10 @@ void display(){
 
     //Back
     glNormal3f(0, 0, -1);
-    glVertex3f(-0.75f, 0.5f, -0.5f);
     glVertex3f(-0.75f, -0.5f, -0.5f);
     glVertex3f(0.75f, -0.5f, -0.5f);
     glVertex3f(0.75f, 0.5f, -0.5f);
+    glVertex3f(-0.75f, 0.5f, -0.5f);
 
     //Left
     glNormal3f(-1, 0, 0);
@@ -228,50 +231,32 @@ void display(){
     glVertex3f(0.5f, -0.5f, -0.7f);
     glVertex3f(0.5f, -0.5f, -0.5f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
-
     //Top
-    glBegin(GL_QUADS);
     glNormal3f(0, -1, 0);
     glVertex3f(0.3f, 0.5f, -0.5f);
     glVertex3f(0.3f, 0.5f, -0.7f);
     glVertex3f(0.5f, 0.5f, -0.7f);
     glVertex3f(0.5f, 0.5f, -0.5f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
-
     //Back
-    glBegin(GL_QUADS);
+    normal = vectorProduct(0.3, -0.5, -0.7, 0.5, -0.5, -0.7, 0.3, 0.5, -0.7);
+    glNormal3f(normal[0], normal[1], normal[2]);
     glVertex3f(0.3f, -0.5f, -0.7f);
     glVertex3f(0.5f, -0.5f, -0.7f);
     glVertex3f(0.5f, 0.5f, -0.7f);
     glVertex3f(0.3f, 0.5f, -0.7f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
-
     //Right
-    glBegin(GL_QUADS);
+    normal = vectorProduct(0.5, -0.5, -0.5, 0.5, -0.5, -0.7, 0.5, 0.5, -0.5);
+    glNormal3f(normal[0], normal[1], normal[2]);
     glVertex3f(0.5f, -0.5f, -0.5f);
     glVertex3f(0.5f, -0.5f, -0.7f);
     glVertex3f(0.5f, 0.5f, -0.7f);
     glVertex3f(0.5f, 0.5f, -0.5f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
-
     //Right
-    glBegin(GL_QUADS);
+    normal = vectorProduct(0.3, -0.5f, -0.5f, 0.3f, -0.5f, -0.7f, 0.3f, 0.5f, -0.5f);
+    glNormal3f(normal[0], normal[1], normal[2]);
     glVertex3f(0.3f, -0.5f, -0.5f);
     glVertex3f(0.3f, -0.5f, -0.7f);
     glVertex3f(0.3f, 0.5f, -0.7f);
@@ -291,50 +276,29 @@ void display(){
     glVertex3f(-0.5f, -0.5f, -0.7f);
     glVertex3f(-0.5f, -0.5f, -0.5f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
-
     //Top
-    glBegin(GL_QUADS);
     glNormal3f(0, 1, 0);
     glVertex3f(-0.3f, 0.5f, -0.5f);
     glVertex3f(-0.3f, 0.5f, -0.7f);
     glVertex3f(-0.5f, 0.5f, -0.7f);
     glVertex3f(-0.5f, 0.5f, -0.5f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
-
     //Back
-    glBegin(GL_QUADS);
+    glNormal3f(0, 0, -1);
     glVertex3f(-0.3f, -0.5f, -0.7f);
     glVertex3f(-0.5f, -0.5f, -0.7f);
     glVertex3f(-0.5f, 0.5f, -0.7f);
     glVertex3f(-0.3f, 0.5f, -0.7f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
-
     //Right
-    glBegin(GL_QUADS);
+    glNormal3f(1, 0, 0);
     glVertex3f(-0.5f, -0.5f, -0.5f);
     glVertex3f(-0.5f, -0.5f, -0.7f);
     glVertex3f(-0.5f, 0.5f, -0.7f);
     glVertex3f(-0.5f, 0.5f, -0.5f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
-
     //Left
-    glBegin(GL_QUADS);
+    glNormal3f(-1, 0, 0);
     glVertex3f(-0.3f, -0.5f, -0.5f);
     glVertex3f(-0.3f, -0.5f, -0.7f);
     glVertex3f(-0.3f, 0.5f, -0.7f);
@@ -343,7 +307,6 @@ void display(){
     glEnd();
     glPopMatrix();
 
-    glEnd();
     glPopMatrix();
 
     //Hexagone
@@ -380,63 +343,51 @@ void display(){
     glPopMatrix();
 
     glPushMatrix();
-    //Front
     glBegin(GL_QUADS);
+
+    //Front
+    normal = vectorProduct(-0.5f, -0.9f, 0.5f, 0.5f, -0.9f, 0.5f, -0.5f, -0.5f, 0.5f);
+    glNormal3f(normal[0], normal[1], normal[2]);
     glVertex3f(-0.5f, -0.9f, 0.5f);
     glVertex3f(0.5f, -0.9f, 0.5f);
     glVertex3f(0.5f, -0.5f, 0.5f);
     glVertex3f(-0.5f, -0.5f, 0.5f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
     //Back
-    glBegin(GL_QUADS);
+    normal = vectorProduct(-0.5f, -0.9f, -0.4f, 0.5f, -0.9f, -0.4f, -0.5f, -0.5f, -0.4f);
+    glNormal3f(normal[0], normal[1], -normal[2]);
     glVertex3f(-0.5f, -0.9f, -0.4f);
     glVertex3f(0.5f, -0.9f, -0.4f);
     glVertex3f(0.5f, -0.5f, -0.4f);
     glVertex3f(-0.5f, -0.5f, -0.4f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
     //Front right
-    glBegin(GL_QUADS);
+    normal = vectorProduct(0.5f, -0.9f, 0.5f, 0.7f, -0.9f, 0.0f, 0.5f, -0.5f, 0.5f);
+    glNormal3f(normal[0], normal[1], normal[2]);
     glVertex3f(0.5f, -0.9f, 0.5f);
     glVertex3f(0.7f, -0.9f, 0.0f);
     glVertex3f(0.7f, -0.5f, 0.0f);
     glVertex3f(0.5f, -0.5f, 0.5f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
     //Back right
-    glBegin(GL_QUADS);
+    normal = vectorProduct(0.5f, -0.9f, -0.4f, 0.7f, -0.9f, 0.0f, 0.5f, -0.5f, -0.4f);
+    glNormal3f(-normal[0], normal[1], -normal[2]);
     glVertex3f(0.5f, -0.9f, -0.4f);
     glVertex3f(0.7f, -0.9f, 0.0f);
     glVertex3f(0.7f, -0.5f, 0.0f);
     glVertex3f(0.5f, -0.5f, -0.4f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
     //Back left
-    glBegin(GL_QUADS);
+    normal = vectorProduct(-0.5f, -0.9f, -0.4f, -0.7f, -0.9f, 0.0f, -0.5f, -0.5f, -0.4f);
+    glNormal3f(normal[0], normal[1], normal[2]);
     glVertex3f(-0.5f, -0.9f, -0.4f);
     glVertex3f(-0.7f, -0.9f, 0.0f);
     glVertex3f(-0.7f, -0.5f, 0.0f);
     glVertex3f(-0.5f, -0.5f, -0.4f);
 
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
     //Front left
-    glBegin(GL_QUADS);
+    normal = vectorProduct(-0.5f, -0.9f, 0.5f, -0.7f, -0.9f, 0.0f, -0.5f, -0.5f, 0.5f);
+    glNormal3f(normal[0], normal[1], normal[2]);
     glVertex3f(-0.5f, -0.9f, 0.5f);
     glVertex3f(-0.7f, -0.9f, 0.0f);
     glVertex3f(-0.7f, -0.5f, 0.0f);
@@ -596,4 +547,24 @@ void sound(){
   FMOD_Sound_Release(sound);
   FMOD_System_Close(sys);
 
+}
+
+float* vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9) {
+    float vector1[3];
+    float vector2[3];
+    float* normalVector = (float*) malloc(sizeof(float) * 3);
+
+    vector1[0] = point4 - point1;
+    vector1[1] = point5 - point2;
+    vector1[2] = point6 - point3;
+
+    vector2[0] = point7 - point1;
+    vector2[1] = point8 - point2;
+    vector2[2] = point9 - point3;
+
+    *normalVector = vector1[1] * vector2[2] - vector1[2] * vector2[1];
+    *(normalVector + 1) = vector1[2] * vector2[0] - vector1[0] * vector2[2];
+    *(normalVector + 2) = vector1[0] * vector2[1] - vector1[1] * vector2[0];
+
+    return normalVector;
 }
