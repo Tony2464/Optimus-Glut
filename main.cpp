@@ -25,6 +25,8 @@
 #include <stdio.h>
 #include <math.h>
 
+#include "fmod/fmod.h"
+
 float angle = 0.0;
 float angleL2 = 0.0;
 float cameraAngle = 10.0;
@@ -49,6 +51,7 @@ void rotateUp();
 void rotateDown();
 void zoom();
 void dezoom();
+void sound();
 void keyboard(unsigned char key, int x, int y); // fonction clavier
 void SpecialInput(int key, int x, int y);
 
@@ -142,6 +145,7 @@ void display(){
 
     glNormal3f(1, 0, 0);
     //Right
+    glColor3f(0.6f,0.0,0.0f);
     glVertex3f(0.75f, 0.5f, 0.5f);
     glVertex3f(0.75f, -0.5f, 0.5f);
     glVertex3f(0.75f, -0.5f, -0.5f);
@@ -214,6 +218,8 @@ void display(){
 
     //Hexagone
     glPushMatrix();
+
+    glColor3f(0.4f,0.4f,0.4f);
 
     glPushMatrix();
     //Top
@@ -368,8 +374,13 @@ void keyboard(unsigned char key, int x, int y) {
                 glutPostRedisplay();
             break;
 
+            case 'j':   /* son */
+			    sound();
+            break;
+
 			case 'q':   /* Quitter le programme */
 				exit(0);
+            break;
 		}
 }
 
@@ -428,4 +439,36 @@ void zoom() {
 
 void dezoom() {
     r += zoomValue;
+}
+
+void sound(){
+
+  FMOD_SYSTEM * sys;
+  FMOD_SOUND * sound;
+  FMOD_RESULT resultat;
+  FMOD_CHANNEL * channel;
+
+  FMOD_System_Create(&sys);
+  FMOD_System_Init(sys, 1, FMOD_INIT_NORMAL, NULL);
+
+  /* On ouvre la musique */
+  resultat = FMOD_System_CreateSound(sys, "../../sounds/jesuisoptimus.mp3", FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM, 0, &sound);
+  // (FMOD_SYSTEM *system, const char *name_or_data, FMOD_MODE mode, FMOD_CREATESOUNDEXINFO *exinfo, FMOD_SOUND **sound);
+
+    if (resultat != FMOD_OK)
+  {
+      fprintf(stderr, "Impossible de lire le fichier mp3\n");
+  }
+
+  /* On active la répétition de la musique à l'infini */
+  //FMOD_Sound_SetLoopCount(sound, -1);
+
+  /* On joue la musique */
+  FMOD_System_PlaySound(sys, FMOD_CHANNEL_FREE, sound, 0, NULL);
+  //FMOD_System_PlaySound(sys, sound,NULL,0,&channel);
+
+  Sleep(4000);
+  FMOD_Sound_Release(sound);
+  FMOD_System_Close(sys);
+
 }

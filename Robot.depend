@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1583016043 source:d:\mes documents\projets git\projet optimus glut\main.cpp
+1583228477 source:d:\mes documents\projets git\projet optimus glut\main.cpp
 	<windows.h>
 	<GLUT/glut.h>
 	<GL/glut.h>
 	<stdlib.h>
 	<stdio.h>
 	<math.h>
+	"fmod/fmod.h"
 
 1562433062 c:\mingw\include\windows.h
 	<winresrc.h>
@@ -367,4 +368,15 @@
 	<stdlib.h>
 	<stdio.h>
 	<math.h>
+
+1577535561 d:\mes documents\projets git\projet optimus glut\fmod\fmod.h
+	"fmod_codec.h"
+	"fmod_dsp.h"
+	"fmod_memoryinfo.h"
+
+1577535561 d:\mes documents\projets git\projet optimus glut\fmod\fmod_codec.h
+
+1577535561 d:\mes documents\projets git\projet optimus glut\fmod\fmod_dsp.h
+
+1577535561 d:\mes documents\projets git\projet optimus glut\fmod\fmod_memoryinfo.h
 
