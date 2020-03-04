@@ -41,6 +41,9 @@ float limitZoom = 2;
 float limitRotate = 0.005;
 float tab[9];
 float *normal;
+float radius = 0.25;
+float lx = 0.0;
+float ly = 0.0;
 
 /* prototypes de fonctions */
 void initRendering();                           // Initialisation du rendu
@@ -56,7 +59,9 @@ void dezoom();
 void sound();
 void keyboard(unsigned char key, int x, int y); // fonction clavier
 void SpecialInput(int key, int x, int y);
+void createCube();
 float* vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9);
+void mouseMove(int x, int y);
 
 
 /* Programme principal */
@@ -80,6 +85,8 @@ int main(int argc,       // argc: nombre d'arguments, argc vaut au moins 1
 	glutReshapeFunc(reshape);
 	glutKeyboardFunc(keyboard);
 	glutSpecialFunc(SpecialInput);
+
+	glutPassiveMotionFunc(mouseMove);
 
 	/* rq: le callback de fonction (fonction de rappel) est une fonction qui est pass�e en argument � une
 	autre fonction. Ici, le main fait usage des deux fonctions de rappel (qui fonctionnent en m�me temps)
@@ -129,7 +136,7 @@ void display(){
 	yCam = r * sin(phi);
 	zCam = r * cos(phi) * cos(alpha);
 	gluLookAt(xCam, yCam, zCam,      // position cam�ra
-		      0.0, 0.0, 0.0,      // point de mire
+		      lx, ly, 0.0,      // point de mire
 			  0.0, 1.0, 0.0);     // vecteur d'orientation cam�ra
     //glTranslatef(a,b,c);
     //glRotatef(5,1,0,0);
@@ -148,7 +155,7 @@ void display(){
 
     glNormal3f(1, 0, 0);
     //Right
-    glColor3f(0.6f,0.0,0.0f);
+    glColor3f(0.6f, 0.0, 0.0f);
     glVertex3f(0.75f, 0.5f, 0.5f);
     glVertex3f(0.75f, -0.5f, 0.5f);
     glVertex3f(0.75f, -0.5f, -0.5f);
@@ -399,6 +406,26 @@ void display(){
     glEnd();
     glPopMatrix();
 
+    //Right arm
+    glPushMatrix();
+        glPushMatrix();
+            glTranslatef(1.125, 0.25, 0);
+            glScalef(0.75, 0.5, 0.5);
+            createCube();
+        glPopMatrix();
+
+        glPushMatrix();
+            glColor3f(1, 1, 1);
+            glTranslatef(1.5, 0.25, 0);
+            glutSolidSphere(radius, 255, 255);
+        glPopMatrix();
+
+        glPushMatrix();
+            glTranslatef(1.875, 0.25, 0);
+            glScalef(0.75, 0.5, 0.5);
+            createCube();
+        glPopMatrix();
+    glPopMatrix();
 
 	/* On swap (�change) les buffers, c�d, on fait passer l'image calcul�e et dessin�e
 	dans le back buffer au buffer qui va l'afficher: le front buffer (en g�n�ral), c'est le bouble buffering
@@ -567,4 +594,75 @@ float* vectorProduct(float point1, float point2, float point3, float point4, flo
     *(normalVector + 2) = vector1[0] * vector2[1] - vector1[1] * vector2[0];
 
     return normalVector;
+}
+
+void createCube() {
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glNormal3f(0, 0, 1);
+        //Front
+        glVertex3f(-0.5f, 0.5f, 0.5f);
+        glVertex3f(-0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, 0.5f, 0.5f);
+
+        glNormal3f(1, 0, 0);
+        //Right
+        glVertex3f(0.5f, 0.5f, 0.5f);
+        glVertex3f(0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, -0.5f, -0.5f);
+        glVertex3f(0.5f, 0.5f, -0.5f);
+
+        glNormal3f(0, 0, -1);
+        //Back
+        glVertex3f(-0.5f, 0.5f, -0.5f);
+        glVertex3f(-0.5f, -0.5f, -0.5f);
+        glVertex3f(0.5f, -0.5f, -0.5f);
+        glVertex3f(0.5f, 0.5f, -0.5f);
+
+        glNormal3f(-1, 0, 0);
+        //Left
+        glVertex3f(-0.5f, 0.5f, 0.5f);
+        glVertex3f(-0.5f, -0.5f, 0.5f);
+        glVertex3f(-0.5f, -0.5f, -0.5f);
+        glVertex3f(-0.5f, 0.5f, -0.5f);
+
+        glNormal3f(0, 1, 0);
+        //Up
+        glVertex3f(-0.5f, 0.5f, 0.5f);
+        glVertex3f(0.5f, 0.5f, 0.5f);
+        glVertex3f(0.5f, 0.5f, -0.5f);
+        glVertex3f(-0.5f, 0.5f, -0.5f);
+
+        glNormal3f(0, -1, 0);
+        //Down
+        glVertex3f(-0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, -0.5f, -0.5f);
+        glVertex3f(-0.5f, -0.5f, -0.5f);
+
+        glEnd();
+    glPopMatrix();
+}
+
+void mouseMove(int x, int y) {
+    if (x > 250) {
+        lx += 0.1;
+    }
+
+    if (x < 250) {
+        lx -= 0.1;
+    }
+
+    if (y > 250) {
+        ly -= 0.1;
+    }
+
+    if (y < 250) {
+        ly += 0.1;
+    }
+
+    glutWarpPointer(250, 250);
+    glutPostRedisplay();
 }
