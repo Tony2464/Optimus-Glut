@@ -427,6 +427,107 @@ void display(){
         glPopMatrix();
     glPopMatrix();
 
+    //Head
+    glPushMatrix();
+        glBegin(GL_POLYGON);
+        glColor3f(0.2f, 0.2f, 0.8f);
+        glVertex3f(0.0f, 0.5f, 0.4f);
+        glVertex3f(0.3f, 0.5f, 0.3f);
+        glVertex3f(0.3f, 0.5f, 0.0f);
+        glVertex3f(0.15f, 0.5f, -0.3f);
+        glVertex3f(-0.15f, 0.5f, -0.3f);
+        glVertex3f(-0.3f, 0.5f, 0.0f);
+        glVertex3f(-0.3f, 0.5f, 0.3f);
+
+    glEnd();
+    glPopMatrix();
+
+    glPushMatrix();
+        glBegin(GL_POLYGON);
+
+        glVertex3f(0.0f, 0.95f, 0.4f);
+        glVertex3f(0.3f, 0.95f, 0.3f);
+        glVertex3f(0.3f, 0.95f, 0.0f);
+        glVertex3f(0.15f, 0.95f, -0.3f);
+        glVertex3f(-0.15f, 0.95f, -0.3f);
+        glVertex3f(-0.3f, 0.95f, 0.0f);
+        glVertex3f(-0.3f, 0.95f, 0.3f);
+
+    glEnd();
+    glPopMatrix();
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glVertex3f(0.0f, 0.95f, 0.4f);
+        glVertex3f(0.0f, 0.5f, 0.4f);
+        glVertex3f(0.3f, 0.5f, 0.3f);
+        glVertex3f(0.3f, 0.95f, 0.3f);
+
+    glEnd();
+    glPopMatrix();
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glVertex3f(0.0f, 0.95f, 0.4f);
+        glVertex3f(0.0f, 0.5f, 0.4f);
+        glVertex3f(-0.3f, 0.5f, 0.3f);
+        glVertex3f(-0.3f, 0.95f, 0.3f);
+
+    glEnd();
+    glPopMatrix();
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glVertex3f(-0.3f, 0.95f, 0.0f);
+        glVertex3f(-0.3f, 0.5f, 0.0f);
+        glVertex3f(-0.3f, 0.5f, 0.3f);
+        glVertex3f(-0.3f, 0.95f, 0.3f);
+
+    glEnd();
+    glPopMatrix();
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glVertex3f(0.3f, 0.95f, 0.0f);
+        glVertex3f(0.3f, 0.5f, 0.0f);
+        glVertex3f(0.3f, 0.5f, 0.3f);
+        glVertex3f(0.3f, 0.95f, 0.3f);
+
+    glEnd();
+    glPopMatrix();
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glVertex3f(-0.15f, 0.5f, -0.3f);
+        glVertex3f(-0.15f, 0.95f, -0.3f);
+        glVertex3f(-0.3f, 0.95f, 0.0f);
+        glVertex3f(-0.3f, 0.5f, 0.0f);
+
+    glEnd();
+    glPopMatrix();
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glVertex3f(0.15f, 0.5f, -0.3f);
+        glVertex3f(0.15f, 0.95f, -0.3f);
+        glVertex3f(0.3f, 0.95f, 0.0f);
+        glVertex3f(0.3f, 0.5f, 0.0f);
+
+    glEnd();
+    glPopMatrix();
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glVertex3f(0.15f, 0.5f, -0.3f);
+        glVertex3f(0.15f, 0.95f, -0.3f);
+        glVertex3f(-0.15f, 0.95f, -0.3f);
+        glVertex3f(-0.15f, 0.5f, -0.3f);
+
+    glEnd();
+    glPopMatrix();
+
+
+
 	/* On swap (�change) les buffers, c�d, on fait passer l'image calcul�e et dessin�e
 	dans le back buffer au buffer qui va l'afficher: le front buffer (en g�n�ral), c'est le bouble buffering
 	Cela �vite une image anim�e sacad�e, si elle �tait directement trac�e dans le front buffer*/
