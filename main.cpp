@@ -31,7 +31,7 @@ float angle = 0.0;
 float angleL2 = 0.0;
 float cameraAngle = 10.0;
 int way = 0;
-float r = 3;//Rayon, Distance entre la camera et l'objet
+float r = 5;//Rayon, Distance entre la camera et l'objet
 float phi = 0;//Angle de rotation verticale de la camera
 float alpha = 0;//Angle de rotation horizontale de la camera
 float xCam = 0, yCam = 0, zCam = 0;//Coordonnees de la camera
@@ -61,6 +61,10 @@ void sound();
 void keyboard(unsigned char key, int x, int y); // fonction clavier
 void SpecialInput(int key, int x, int y);
 void createCube();
+void createJetpack();
+void createChest();
+void createHexagone();
+void createRightArm();
 float* vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9);
 void mouseMove(int x, int y);
 
@@ -148,286 +152,25 @@ void display(){
 
 	/* A vous de jouer */
 
-
-
-    //Top of the chest
     glPushMatrix();
-
-    glBegin(GL_QUADS);
-
-    glNormal3f(1, 0, 0);
-    //Right
-    glColor3f(0.6f, 0.0, 0.0f);
-    glVertex3f(0.75f, 0.5f, 0.5f);
-    glVertex3f(0.75f, -0.5f, 0.5f);
-    glVertex3f(0.75f, -0.5f, -0.5f);
-    glVertex3f(0.75f, 0.5f, -0.5f);
-
-    //Back
-    glNormal3f(0, 0, -1);
-    glVertex3f(-0.75f, -0.5f, -0.5f);
-    glVertex3f(0.75f, -0.5f, -0.5f);
-    glVertex3f(0.75f, 0.5f, -0.5f);
-    glVertex3f(-0.75f, 0.5f, -0.5f);
-
-    //Left
-    glNormal3f(-1, 0, 0);
-    glVertex3f(-0.75f, 0.5f, 0.5f);
-    glVertex3f(-0.75f, -0.5f, 0.5f);
-    glVertex3f(-0.75f, -0.5f, -0.5f);
-    glVertex3f(-0.75f, 0.5f, -0.5f);
-
-    //Front left
-    glVertex3f(-0.75f, 0.5f, 0.5f);
-    glVertex3f(-0.75f, -0.5f, 0.5f);
-    glVertex3f(0.0f, -0.5f, 0.7f);
-    glVertex3f(0.0f, 0.5f, 0.7f);
-
-    //Front right
-    glVertex3f(0.75f, 0.5f, 0.5f);
-    glVertex3f(0.75f, -0.5f, 0.5f);
-    glVertex3f(0.0f, -0.5f, 0.7f);
-    glVertex3f(0.0f, 0.5f, 0.7f);
-
-    //Top
-    glNormal3f(0, 1, 0);
-    glVertex3f(0.75f, 0.5f, 0.5f);
-    glVertex3f(0.75f, 0.5f, -0.5f);
-    glVertex3f(-0.75f, 0.5f, -0.5f);
-    glVertex3f(-0.75f, 0.5f, 0.5f);
-
-    //Bottom
-    glNormal3f(0, -1, 0);
-    glVertex3f(0.75f, -0.5f, 0.5f);
-    glVertex3f(0.75f, -0.5f, -0.5f);
-    glVertex3f(-0.75f, -0.5f, -0.5f);
-    glVertex3f(-0.75f, -0.5f, 0.5f);
-
-
-    glEnd();
-    glPopMatrix();
-
-
-    glPushMatrix();
-    glBegin(GL_TRIANGLES);
-
-    //Top triangle
-    glNormal3f(0, 1, 0);
-    glVertex3f(0.0f, 0.5f, 0.7f);
-    glVertex3f(0.75f, 0.5f, 0.5f);
-    glVertex3f(-0.75f, 0.5f, 0.5f);
-
-    //Top triangle
-    glNormal3f(0, -1, 0);
-    glVertex3f(0.0f, -0.5f, 0.7f);
-    glVertex3f(0.75f, -0.5f, 0.5f);
-    glVertex3f(-0.75f, -0.5f, 0.5f);
-
-    glEnd();
+        createChest();
     glPopMatrix();
 
     //Back (jetpack)
     glPushMatrix();
-
-    //Right
-    glPushMatrix();
-
-    //Bottom
-    glBegin(GL_QUADS);
-    glNormal3f(0, -1, 0);
-    glVertex3f(0.3f, -0.5f, -0.5f);
-    glVertex3f(0.3f, -0.5f, -0.7f);
-    glVertex3f(0.5f, -0.5f, -0.7f);
-    glVertex3f(0.5f, -0.5f, -0.5f);
-
-    //Top
-    glNormal3f(0, -1, 0);
-    glVertex3f(0.3f, 0.5f, -0.5f);
-    glVertex3f(0.3f, 0.5f, -0.7f);
-    glVertex3f(0.5f, 0.5f, -0.7f);
-    glVertex3f(0.5f, 0.5f, -0.5f);
-
-    //Back
-    normal = vectorProduct(0.3, -0.5, -0.7, 0.5, -0.5, -0.7, 0.3, 0.5, -0.7);
-    glNormal3f(normal[0], normal[1], normal[2]);
-    glVertex3f(0.3f, -0.5f, -0.7f);
-    glVertex3f(0.5f, -0.5f, -0.7f);
-    glVertex3f(0.5f, 0.5f, -0.7f);
-    glVertex3f(0.3f, 0.5f, -0.7f);
-
-    //Right
-    normal = vectorProduct(0.5, -0.5, -0.5, 0.5, -0.5, -0.7, 0.5, 0.5, -0.5);
-    glNormal3f(normal[0], normal[1], normal[2]);
-    glVertex3f(0.5f, -0.5f, -0.5f);
-    glVertex3f(0.5f, -0.5f, -0.7f);
-    glVertex3f(0.5f, 0.5f, -0.7f);
-    glVertex3f(0.5f, 0.5f, -0.5f);
-
-    //Right
-    normal = vectorProduct(0.3, -0.5f, -0.5f, 0.3f, -0.5f, -0.7f, 0.3f, 0.5f, -0.5f);
-    glNormal3f(normal[0], normal[1], normal[2]);
-    glVertex3f(0.3f, -0.5f, -0.5f);
-    glVertex3f(0.3f, -0.5f, -0.7f);
-    glVertex3f(0.3f, 0.5f, -0.7f);
-    glVertex3f(0.3f, 0.5f, -0.5f);
-
-    glEnd();
-    glPopMatrix();
-
-    //Left
-    glPushMatrix();
-
-    //Bottom
-    glBegin(GL_QUADS);
-    glNormal3f(0, -1, 0);
-    glVertex3f(-0.3f, -0.5f, -0.5f);
-    glVertex3f(-0.3f, -0.5f, -0.7f);
-    glVertex3f(-0.5f, -0.5f, -0.7f);
-    glVertex3f(-0.5f, -0.5f, -0.5f);
-
-    //Top
-    glNormal3f(0, 1, 0);
-    glVertex3f(-0.3f, 0.5f, -0.5f);
-    glVertex3f(-0.3f, 0.5f, -0.7f);
-    glVertex3f(-0.5f, 0.5f, -0.7f);
-    glVertex3f(-0.5f, 0.5f, -0.5f);
-
-    //Back
-    glNormal3f(0, 0, -1);
-    glVertex3f(-0.3f, -0.5f, -0.7f);
-    glVertex3f(-0.5f, -0.5f, -0.7f);
-    glVertex3f(-0.5f, 0.5f, -0.7f);
-    glVertex3f(-0.3f, 0.5f, -0.7f);
-
-    //Right
-    glNormal3f(1, 0, 0);
-    glVertex3f(-0.5f, -0.5f, -0.5f);
-    glVertex3f(-0.5f, -0.5f, -0.7f);
-    glVertex3f(-0.5f, 0.5f, -0.7f);
-    glVertex3f(-0.5f, 0.5f, -0.5f);
-
-    //Left
-    glNormal3f(-1, 0, 0);
-    glVertex3f(-0.3f, -0.5f, -0.5f);
-    glVertex3f(-0.3f, -0.5f, -0.7f);
-    glVertex3f(-0.3f, 0.5f, -0.7f);
-    glVertex3f(-0.3f, 0.5f, -0.5f);
-
-    glEnd();
-    glPopMatrix();
-
-    glPopMatrix();
-
-    //Hexagone
-    glPushMatrix();
-
-    glColor3f(0.4f,0.4f,0.4f);
-
-    glPushMatrix();
-    //Top
-    glBegin(GL_POLYGON);
-    glNormal3f(0, 1, 0);
-    glVertex3f(-0.5f, -0.5f, -0.4f);
-    glVertex3f(0.5f, -0.5f, -0.4f);
-    glVertex3f(0.7f, -0.5f, 0.0f);
-    glVertex3f(0.5f, -0.5f, 0.5f);
-    glVertex3f(-0.5f, -0.5f, 0.5f);
-    glVertex3f(-0.7f, -0.5f, 0.0f);
-
-    glEnd();
+        createJetpack();
     glPopMatrix();
 
     glPushMatrix();
-    //Bottom
-    glBegin(GL_POLYGON);
-    glNormal3f(0, -1, 0);
-    glVertex3f(-0.5f, -0.9f, -0.4f);
-    glVertex3f(0.5f, -0.9f, -0.4f);
-    glVertex3f(0.7f, -0.9f, 0.0f);
-    glVertex3f(0.5f, -0.9f, 0.5f);
-    glVertex3f(-0.5f, -0.9f, 0.5f);
-    glVertex3f(-0.7f, -0.9f, 0.0f);
-
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
-    glBegin(GL_QUADS);
-
-    //Front
-    normal = vectorProduct(-0.5f, -0.9f, 0.5f, 0.5f, -0.9f, 0.5f, -0.5f, -0.5f, 0.5f);
-    glNormal3f(normal[0], normal[1], normal[2]);
-    glVertex3f(-0.5f, -0.9f, 0.5f);
-    glVertex3f(0.5f, -0.9f, 0.5f);
-    glVertex3f(0.5f, -0.5f, 0.5f);
-    glVertex3f(-0.5f, -0.5f, 0.5f);
-
-    //Back
-    normal = vectorProduct(-0.5f, -0.9f, -0.4f, 0.5f, -0.9f, -0.4f, -0.5f, -0.5f, -0.4f);
-    glNormal3f(normal[0], normal[1], -normal[2]);
-    glVertex3f(-0.5f, -0.9f, -0.4f);
-    glVertex3f(0.5f, -0.9f, -0.4f);
-    glVertex3f(0.5f, -0.5f, -0.4f);
-    glVertex3f(-0.5f, -0.5f, -0.4f);
-
-    //Front right
-    normal = vectorProduct(0.5f, -0.9f, 0.5f, 0.7f, -0.9f, 0.0f, 0.5f, -0.5f, 0.5f);
-    glNormal3f(normal[0], normal[1], normal[2]);
-    glVertex3f(0.5f, -0.9f, 0.5f);
-    glVertex3f(0.7f, -0.9f, 0.0f);
-    glVertex3f(0.7f, -0.5f, 0.0f);
-    glVertex3f(0.5f, -0.5f, 0.5f);
-
-    //Back right
-    normal = vectorProduct(0.5f, -0.9f, -0.4f, 0.7f, -0.9f, 0.0f, 0.5f, -0.5f, -0.4f);
-    glNormal3f(-normal[0], normal[1], -normal[2]);
-    glVertex3f(0.5f, -0.9f, -0.4f);
-    glVertex3f(0.7f, -0.9f, 0.0f);
-    glVertex3f(0.7f, -0.5f, 0.0f);
-    glVertex3f(0.5f, -0.5f, -0.4f);
-
-    //Back left
-    normal = vectorProduct(-0.5f, -0.9f, -0.4f, -0.7f, -0.9f, 0.0f, -0.5f, -0.5f, -0.4f);
-    glNormal3f(normal[0], normal[1], normal[2]);
-    glVertex3f(-0.5f, -0.9f, -0.4f);
-    glVertex3f(-0.7f, -0.9f, 0.0f);
-    glVertex3f(-0.7f, -0.5f, 0.0f);
-    glVertex3f(-0.5f, -0.5f, -0.4f);
-
-    //Front left
-    normal = vectorProduct(-0.5f, -0.9f, 0.5f, -0.7f, -0.9f, 0.0f, -0.5f, -0.5f, 0.5f);
-    glNormal3f(normal[0], normal[1], normal[2]);
-    glVertex3f(-0.5f, -0.9f, 0.5f);
-    glVertex3f(-0.7f, -0.9f, 0.0f);
-    glVertex3f(-0.7f, -0.5f, 0.0f);
-    glVertex3f(-0.5f, -0.5f, 0.5f);
-
-    glEnd();
-    glPopMatrix();
-
-    glEnd();
+        createHexagone();
     glPopMatrix();
 
     //Right arm
     glPushMatrix();
-        glPushMatrix();
-            glTranslatef(1.125, 0.25, 0);
-            glScalef(0.75, 0.5, 0.5);
-            createCube();
-        glPopMatrix();
-
-        glPushMatrix();
-            glColor3f(1, 1, 1);
-            glTranslatef(1.5, 0.25, 0);
-            glutSolidSphere(radius, 255, 255);
-        glPopMatrix();
-
-        glPushMatrix();
-            glTranslatef(1.875, 0.25, 0);
-            glScalef(0.75, 0.5, 0.5);
-            createCube();
-        glPopMatrix();
+        createRightArm();
     glPopMatrix();
+
+
 
 	/* On swap (�change) les buffers, c�d, on fait passer l'image calcul�e et dessin�e
 	dans le back buffer au buffer qui va l'afficher: le front buffer (en g�n�ral), c'est le bouble buffering
@@ -689,4 +432,288 @@ void mouseMove(int x, int y) {
 
     glutWarpPointer(250, 250);
     glutPostRedisplay();
+}
+
+void createChest() {
+    //Top of the chest
+    glPushMatrix();
+
+        glBegin(GL_QUADS);
+
+            glNormal3f(1, 0, 0);
+            //Right
+            glColor3f(0.6f, 0.0, 0.0f);
+            glVertex3f(0.75f, 0.5f, 0.5f);
+            glVertex3f(0.75f, -0.5f, 0.5f);
+            glVertex3f(0.75f, -0.5f, -0.5f);
+            glVertex3f(0.75f, 0.5f, -0.5f);
+
+            //Back
+            glNormal3f(0, 0, -1);
+            glVertex3f(-0.75f, -0.5f, -0.5f);
+            glVertex3f(0.75f, -0.5f, -0.5f);
+            glVertex3f(0.75f, 0.5f, -0.5f);
+            glVertex3f(-0.75f, 0.5f, -0.5f);
+
+            //Left
+            glNormal3f(-1, 0, 0);
+            glVertex3f(-0.75f, 0.5f, 0.5f);
+            glVertex3f(-0.75f, -0.5f, 0.5f);
+            glVertex3f(-0.75f, -0.5f, -0.5f);
+            glVertex3f(-0.75f, 0.5f, -0.5f);
+
+            //Front left
+            glVertex3f(-0.75f, 0.5f, 0.5f);
+            glVertex3f(-0.75f, -0.5f, 0.5f);
+            glVertex3f(0.0f, -0.5f, 0.7f);
+            glVertex3f(0.0f, 0.5f, 0.7f);
+
+            //Front right
+            glVertex3f(0.75f, 0.5f, 0.5f);
+            glVertex3f(0.75f, -0.5f, 0.5f);
+            glVertex3f(0.0f, -0.5f, 0.7f);
+            glVertex3f(0.0f, 0.5f, 0.7f);
+
+            //Top
+            glNormal3f(0, 1, 0);
+            glVertex3f(0.75f, 0.5f, 0.5f);
+            glVertex3f(0.75f, 0.5f, -0.5f);
+            glVertex3f(-0.75f, 0.5f, -0.5f);
+            glVertex3f(-0.75f, 0.5f, 0.5f);
+
+            //Bottom
+            glNormal3f(0, -1, 0);
+            glVertex3f(0.75f, -0.5f, 0.5f);
+            glVertex3f(0.75f, -0.5f, -0.5f);
+            glVertex3f(-0.75f, -0.5f, -0.5f);
+            glVertex3f(-0.75f, -0.5f, 0.5f);
+
+        glEnd();
+    glPopMatrix();
+
+    glPushMatrix();
+        glBegin(GL_TRIANGLES);
+
+            //Top triangle
+            glNormal3f(0, 1, 0);
+            glVertex3f(0.0f, 0.5f, 0.7f);
+            glVertex3f(0.75f, 0.5f, 0.5f);
+            glVertex3f(-0.75f, 0.5f, 0.5f);
+
+            //Top triangle
+            glNormal3f(0, -1, 0);
+            glVertex3f(0.0f, -0.5f, 0.7f);
+            glVertex3f(0.75f, -0.5f, 0.5f);
+            glVertex3f(-0.75f, -0.5f, 0.5f);
+
+        glEnd();
+    glPopMatrix();
+}
+
+void createJetpack() {
+    //Right
+    glPushMatrix();
+
+        //Bottom
+        glBegin(GL_QUADS);
+        glNormal3f(0, -1, 0);
+        glVertex3f(0.3f, -0.5f, -0.5f);
+        glVertex3f(0.3f, -0.5f, -0.7f);
+        glVertex3f(0.5f, -0.5f, -0.7f);
+        glVertex3f(0.5f, -0.5f, -0.5f);
+
+        //Top
+        glNormal3f(0, -1, 0);
+        glVertex3f(0.3f, 0.5f, -0.5f);
+        glVertex3f(0.3f, 0.5f, -0.7f);
+        glVertex3f(0.5f, 0.5f, -0.7f);
+        glVertex3f(0.5f, 0.5f, -0.5f);
+
+        //Back
+        normal = vectorProduct(0.3, -0.5, -0.7, 0.5, -0.5, -0.7, 0.3, 0.5, -0.7);
+        glNormal3f(normal[0], normal[1], normal[2]);
+        glVertex3f(0.3f, -0.5f, -0.7f);
+        glVertex3f(0.5f, -0.5f, -0.7f);
+        glVertex3f(0.5f, 0.5f, -0.7f);
+        glVertex3f(0.3f, 0.5f, -0.7f);
+
+        //Right
+        normal = vectorProduct(0.5, -0.5, -0.5, 0.5, -0.5, -0.7, 0.5, 0.5, -0.5);
+        glNormal3f(normal[0], normal[1], normal[2]);
+        glVertex3f(0.5f, -0.5f, -0.5f);
+        glVertex3f(0.5f, -0.5f, -0.7f);
+        glVertex3f(0.5f, 0.5f, -0.7f);
+        glVertex3f(0.5f, 0.5f, -0.5f);
+
+        //Right
+        normal = vectorProduct(0.3, -0.5f, -0.5f, 0.3f, -0.5f, -0.7f, 0.3f, 0.5f, -0.5f);
+        glNormal3f(normal[0], normal[1], normal[2]);
+        glVertex3f(0.3f, -0.5f, -0.5f);
+        glVertex3f(0.3f, -0.5f, -0.7f);
+        glVertex3f(0.3f, 0.5f, -0.7f);
+        glVertex3f(0.3f, 0.5f, -0.5f);
+
+        glEnd();
+    glPopMatrix();
+
+        //Left
+    glPushMatrix();
+
+        //Bottom
+        glBegin(GL_QUADS);
+            glNormal3f(0, -1, 0);
+            glVertex3f(-0.3f, -0.5f, -0.5f);
+            glVertex3f(-0.3f, -0.5f, -0.7f);
+            glVertex3f(-0.5f, -0.5f, -0.7f);
+            glVertex3f(-0.5f, -0.5f, -0.5f);
+
+            //Top
+            glNormal3f(0, 1, 0);
+            glVertex3f(-0.3f, 0.5f, -0.5f);
+            glVertex3f(-0.3f, 0.5f, -0.7f);
+            glVertex3f(-0.5f, 0.5f, -0.7f);
+            glVertex3f(-0.5f, 0.5f, -0.5f);
+
+            //Back
+            glNormal3f(0, 0, -1);
+            glVertex3f(-0.3f, -0.5f, -0.7f);
+            glVertex3f(-0.5f, -0.5f, -0.7f);
+            glVertex3f(-0.5f, 0.5f, -0.7f);
+            glVertex3f(-0.3f, 0.5f, -0.7f);
+
+            //Right
+            glNormal3f(1, 0, 0);
+            glVertex3f(-0.5f, -0.5f, -0.5f);
+            glVertex3f(-0.5f, -0.5f, -0.7f);
+            glVertex3f(-0.5f, 0.5f, -0.7f);
+            glVertex3f(-0.5f, 0.5f, -0.5f);
+
+            //Left
+            glNormal3f(-1, 0, 0);
+            glVertex3f(-0.3f, -0.5f, -0.5f);
+            glVertex3f(-0.3f, -0.5f, -0.7f);
+            glVertex3f(-0.3f, 0.5f, -0.7f);
+            glVertex3f(-0.3f, 0.5f, -0.5f);
+
+        glEnd();
+    glPopMatrix();
+}
+
+void createHexagone() {
+    //Hexagone
+    glColor3f(0.4f, 0.4f, 0.4f);
+
+    glPushMatrix();
+            //Top
+        glBegin(GL_POLYGON);
+            glNormal3f(0, 1, 0);
+            glVertex3f(-0.5f, -0.5f, -0.4f);
+            glVertex3f(0.5f, -0.5f, -0.4f);
+            glVertex3f(0.7f, -0.5f, 0.0f);
+            glVertex3f(0.5f, -0.5f, 0.5f);
+            glVertex3f(-0.5f, -0.5f, 0.5f);
+            glVertex3f(-0.7f, -0.5f, 0.0f);
+
+        glEnd();
+    glPopMatrix();
+
+    glPushMatrix();
+            //Bottom
+        glBegin(GL_POLYGON);
+
+            glNormal3f(0, -1, 0);
+            glVertex3f(-0.5f, -0.9f, -0.4f);
+            glVertex3f(0.5f, -0.9f, -0.4f);
+            glVertex3f(0.7f, -0.9f, 0.0f);
+            glVertex3f(0.5f, -0.9f, 0.5f);
+            glVertex3f(-0.5f, -0.9f, 0.5f);
+            glVertex3f(-0.7f, -0.9f, 0.0f);
+
+        glEnd();
+    glPopMatrix();
+
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+            //Front
+            normal = vectorProduct(-0.5f, -0.9f, 0.5f, 0.5f, -0.9f, 0.5f, -0.5f, -0.5f, 0.5f);
+            glNormal3f(normal[0], normal[1], normal[2]);
+            glVertex3f(-0.5f, -0.9f, 0.5f);
+            glVertex3f(0.5f, -0.9f, 0.5f);
+            glVertex3f(0.5f, -0.5f, 0.5f);
+            glVertex3f(-0.5f, -0.5f, 0.5f);
+
+            //Back
+            normal = vectorProduct(-0.5f, -0.9f, -0.4f, 0.5f, -0.9f, -0.4f, -0.5f, -0.5f, -0.4f);
+            glNormal3f(normal[0], normal[1], -normal[2]);
+            glVertex3f(-0.5f, -0.9f, -0.4f);
+            glVertex3f(0.5f, -0.9f, -0.4f);
+            glVertex3f(0.5f, -0.5f, -0.4f);
+            glVertex3f(-0.5f, -0.5f, -0.4f);
+
+            //Front right
+            normal = vectorProduct(0.5f, -0.9f, 0.5f, 0.7f, -0.9f, 0.0f, 0.5f, -0.5f, 0.5f);
+            glNormal3f(normal[0], normal[1], normal[2]);
+            glVertex3f(0.5f, -0.9f, 0.5f);
+            glVertex3f(0.7f, -0.9f, 0.0f);
+            glVertex3f(0.7f, -0.5f, 0.0f);
+            glVertex3f(0.5f, -0.5f, 0.5f);
+
+            //Back right
+            normal = vectorProduct(0.5f, -0.9f, -0.4f, 0.7f, -0.9f, 0.0f, 0.5f, -0.5f, -0.4f);
+            glNormal3f(-normal[0], normal[1], -normal[2]);
+            glVertex3f(0.5f, -0.9f, -0.4f);
+            glVertex3f(0.7f, -0.9f, 0.0f);
+            glVertex3f(0.7f, -0.5f, 0.0f);
+            glVertex3f(0.5f, -0.5f, -0.4f);
+
+            //Back left
+            normal = vectorProduct(-0.5f, -0.9f, -0.4f, -0.7f, -0.9f, 0.0f, -0.5f, -0.5f, -0.4f);
+            glNormal3f(normal[0], normal[1], normal[2]);
+            glVertex3f(-0.5f, -0.9f, -0.4f);
+            glVertex3f(-0.7f, -0.9f, 0.0f);
+            glVertex3f(-0.7f, -0.5f, 0.0f);
+            glVertex3f(-0.5f, -0.5f, -0.4f);
+
+            //Front left
+            normal = vectorProduct(-0.5f, -0.9f, 0.5f, -0.7f, -0.9f, 0.0f, -0.5f, -0.5f, 0.5f);
+            glNormal3f(normal[0], normal[1], normal[2]);
+            glVertex3f(-0.5f, -0.9f, 0.5f);
+            glVertex3f(-0.7f, -0.9f, 0.0f);
+            glVertex3f(-0.7f, -0.5f, 0.0f);
+            glVertex3f(-0.5f, -0.5f, 0.5f);
+
+        glEnd();
+    glPopMatrix();
+}
+
+void createRightArm() {
+    glPushMatrix();
+        glTranslatef(1.125, 0.25, 0);
+        glScalef(0.75, 0.5, 0.5);
+        createCube();
+    glPopMatrix();
+
+    glPushMatrix();
+        glColor3f(1, 1, 1);
+        glTranslatef(1.5, 0.25, 0);
+        glutSolidSphere(radius, 255, 255);
+    glPopMatrix();
+
+    glPushMatrix();
+        glTranslatef(1.875, 0.25, 0);
+        glScalef(0.75, 0.5, 0.5);
+        createCube();
+    glPopMatrix();
+
+    glPushMatrix();
+        glColor3f(1, 0, 0);
+        glBegin(GL_QUADS);
+            glVertex3f(0, 0, 0);
+            glVertex3f(0, 0, 0);
+            glVertex3f(0, 0, 0);
+            glVertex3f(0, 0, 0);
+
+        glEnd();
+    glPopMatrix();
 }
