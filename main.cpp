@@ -32,8 +32,8 @@ float angleL2 = 0.0;
 float cameraAngle = 10.0;
 int way = 0;
 float r = 3;//Rayon, Distance entre la camera et l'objet
-float phi = 0;//Angle de rotation veritcale de la camera
-float alpha = 0;//Amgle de rotation horizontale de la camera
+float phi = 0;//Angle de rotation verticale de la camera
+float alpha = 0;//Angle de rotation horizontale de la camera
 float xCam = 0, yCam = 0, zCam = 0;//Coordonnees de la camera
 float rotateValue = 0.25;
 float zoomValue = 0.25;
@@ -44,6 +44,7 @@ float *normal;
 float radius = 0.25;
 float lx = 0.0;
 float ly = 0.0;
+float lz = 0.0;
 
 /* prototypes de fonctions */
 void initRendering();                           // Initialisation du rendu
@@ -87,6 +88,7 @@ int main(int argc,       // argc: nombre d'arguments, argc vaut au moins 1
 	glutSpecialFunc(SpecialInput);
 
 	glutPassiveMotionFunc(mouseMove);
+	glutSetCursor(GLUT_CURSOR_NONE);
 
 	/* rq: le callback de fonction (fonction de rappel) est une fonction qui est pass�e en argument � une
 	autre fonction. Ici, le main fait usage des deux fonctions de rappel (qui fonctionnent en m�me temps)
@@ -136,7 +138,7 @@ void display(){
 	yCam = r * sin(phi);
 	zCam = r * cos(phi) * cos(alpha);
 	gluLookAt(xCam, yCam, zCam,      // position cam�ra
-		      lx, ly, 0.0,      // point de mire
+		      lx, ly, lz,      // point de mire
 			  0.0, 1.0, 0.0);     // vecteur d'orientation cam�ra
     //glTranslatef(a,b,c);
     //glRotatef(5,1,0,0);
@@ -648,19 +650,41 @@ void createCube() {
 
 void mouseMove(int x, int y) {
     if (x > 250) {
-        lx += 0.1;
+        if (xCam >= 1.5 && lz > -1) {
+            lz -= 0.01;
+        }
+        if (xCam < 1.5 && lz < 1) {
+            lz += 0.01;
+        }
+        if (zCam >= 1.5 && lx < 1) {
+            lx += 0.01;
+        }
+        if (zCam <= 1.5 && lx > -1) {
+            lx -= 0.01;
+        }
     }
 
     if (x < 250) {
-        lx -= 0.1;
+        if (xCam >= 1.5 && lz < 1) {
+            lz += 0.01;
+        }
+        if (xCam < 1.5 && lz > -1) {
+            lz -= 0.01;
+        }
+        if (zCam >= 1.5 && lx > -1) {
+            lx -= 0.01;
+        }
+        if (zCam <= 1.5 && lx < 1) {
+            lx += 0.01;
+        }
     }
 
-    if (y > 250) {
-        ly -= 0.1;
+    if (y > 250 && ly > -0.7) {
+        ly -= 0.01;
     }
 
-    if (y < 250) {
-        ly += 0.1;
+    if (y < 250 && ly < 0.7) {
+        ly += 0.01;
     }
 
     glutWarpPointer(250, 250);
