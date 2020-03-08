@@ -434,17 +434,20 @@ void display(){
 
     /******************PELVIS*************/
     glPushMatrix();
-        glTranslatef(0, -1.05, 0.04);
+        glTranslatef(0, -1.09, 0.04);
         glColor3f(0.3f,0.3f,0.3f);
+        glScalef(1.2, 1.2, 1.2);
 
         //CENTER BLOCK
         glPushMatrix();
+            //glColor3f(1.0f,1.0f,1.0f);
             glScalef(0.25, 0.3, 0.8);
             createCube();
         glPopMatrix();
 
         //RIGHT TRIANGLE
         glPushMatrix();
+            //glColor3f(0.4f,0.4f,0.4f);
             //Front triangle
             glPushMatrix();
                 glTranslatef(0.1, 0.15, -0.4);
@@ -492,9 +495,9 @@ void display(){
                 glVertex3f(0.45f, 0.0f, 0.8f);
                 glEnd();
             glPopMatrix();
+        glPopMatrix();
 
-
-            //LEFT TRIANGLE
+        //LEFT TRIANGLE
         glPushMatrix();
             glRotated(180,0,1,0);
             //Front triangle
@@ -544,12 +547,156 @@ void display(){
                 glVertex3f(0.45f, 0.0f, 0.8f);
                 glEnd();
             glPopMatrix();
+        glPopMatrix();
+    glPopMatrix();
+     /******************PELVIS*************/
 
+
+     /***************LEGS****************/
+
+    //RIGHT LEG
+    glPushMatrix();
+        glTranslatef(0.1, -0.1, 0);
+        //Thigh
+        glPushMatrix();
+            glColor3f(0.45f,0.4f,0.4f);
+            glTranslatef(0.3, -1.5, 0);
+            glScalef(0.4, 1.10, 0.6);
+            createCube();
+        glPopMatrix();
+
+        //Calf
+        glPushMatrix();
+            glColor3f(0.0f,0.0f,1.0f);
+            glTranslatef(0.3, -2.7, 0);
+            glScalef(0.6, 1.5, 0.8);
+            createCube();
+        glPopMatrix();
+
+        //Foot
+        glPushMatrix();
+                //Left triangle
+            glPushMatrix();
+                glTranslatef(0.0, -3.45, 0.75);
+                    glBegin(GL_QUADS);
+                    glNormal3f(0,0,1);
+                    glVertex3f(0.0f, 0.0f, -0.4f);
+                    glVertex3f(0.0f, 0.0f, 0.2f);
+                    glVertex3f(0.0f, 0.4f, 0.2f);
+                    glVertex3f(0.0f, 0.70f, -0.4f);
+                    glEnd();
+            glPopMatrix();
+                //Right triangle
+            glPushMatrix();
+                glTranslatef(0.6, -3.45, 0.75);
+                    glBegin(GL_QUADS);
+                    glNormal3f(0,0,1);
+                    glVertex3f(0.0f, 0.0f, -0.4f);
+                    glVertex3f(0.0f, 0.0f, 0.2f);
+                    glVertex3f(0.0f, 0.4f, 0.2f);
+                    glVertex3f(0.0f, 0.70f, -0.4f);
+                    glEnd();
+            glPopMatrix();
+
+            //Front
+            glPushMatrix();
+                glTranslatef(0.0, -3.45, 0.75);
+                    glBegin(GL_QUADS);
+                    glNormal3f(0,0,1);
+                    glVertex3f(0.0f, 0.0f, 0.2f);
+                    glVertex3f(0.6f, 0.0f, 0.2f);
+                    glVertex3f(0.6f, 0.4f, 0.2f);
+                    glVertex3f(0.0f, 0.4f, 0.2f);
+                    glEnd();
+            glPopMatrix();
+
+            //Top
+            glPushMatrix();
+                glTranslatef(0.0, -3.45, 0.75);
+                    glBegin(GL_QUADS);
+                    glNormal3f(0,0,1);
+                    glVertex3f(0.0f, 0.70f, -0.4f);
+                    glVertex3f(0.6f, 0.70f, -0.4f);
+                    glVertex3f(0.6f, 0.4f, 0.2f);
+                    glVertex3f(0.0f, 0.4f, 0.2f);
+                    glEnd();
             glPopMatrix();
 
         glPopMatrix();
-     glPopMatrix();
-     /******************PELVIS*************/
+    glPopMatrix();
+
+    //LEFT LEG
+    glPushMatrix();
+        glTranslatef(-0.7, -0.1, 0);
+        //Thigh
+        glPushMatrix();
+            glColor3f(0.45f,0.4f,0.4f);
+            glTranslatef(0.3, -1.5, 0);
+            glScalef(0.4, 1.10, 0.6);
+            createCube();
+        glPopMatrix();
+
+        //Calf
+        glPushMatrix();
+            glColor3f(0.0f,0.0f,1.0f);
+            glTranslatef(0.3, -2.7, 0);
+            glScalef(0.6, 1.5, 0.8);
+            createCube();
+        glPopMatrix();
+
+        //Foot
+        glPushMatrix();
+                //Left triangle
+            glPushMatrix();
+                glTranslatef(0.0, -3.45, 0.75);
+                    glBegin(GL_QUADS);
+                    glNormal3f(0,0,1);
+                    glVertex3f(0.0f, 0.0f, -0.4f);
+                    glVertex3f(0.0f, 0.0f, 0.2f);
+                    glVertex3f(0.0f, 0.4f, 0.2f);
+                    glVertex3f(0.0f, 0.70f, -0.4f);
+                    glEnd();
+            glPopMatrix();
+                //Right triangle
+            glPushMatrix();
+                glTranslatef(0.6, -3.45, 0.75);
+                    glBegin(GL_QUADS);
+                    glNormal3f(0,0,1);
+                    glVertex3f(0.0f, 0.0f, -0.4f);
+                    glVertex3f(0.0f, 0.0f, 0.2f);
+                    glVertex3f(0.0f, 0.4f, 0.2f);
+                    glVertex3f(0.0f, 0.70f, -0.4f);
+                    glEnd();
+            glPopMatrix();
+
+            //Front
+            glPushMatrix();
+                glTranslatef(0.0, -3.45, 0.75);
+                    glBegin(GL_QUADS);
+                    glNormal3f(0,0,1);
+                    glVertex3f(0.0f, 0.0f, 0.2f);
+                    glVertex3f(0.6f, 0.0f, 0.2f);
+                    glVertex3f(0.6f, 0.4f, 0.2f);
+                    glVertex3f(0.0f, 0.4f, 0.2f);
+                    glEnd();
+            glPopMatrix();
+
+            //Top
+            glPushMatrix();
+                glTranslatef(0.0, -3.45, 0.75);
+                    glBegin(GL_QUADS);
+                    glNormal3f(0,0,1);
+                    glVertex3f(0.0f, 0.70f, -0.4f);
+                    glVertex3f(0.6f, 0.70f, -0.4f);
+                    glVertex3f(0.6f, 0.4f, 0.2f);
+                    glVertex3f(0.0f, 0.4f, 0.2f);
+                    glEnd();
+            glPopMatrix();
+
+        glPopMatrix();
+    glPopMatrix();
+
+     /***************LEGS****************/
 
 
 	/* On swap (�change) les buffers, c�d, on fait passer l'image calcul�e et dessin�e
