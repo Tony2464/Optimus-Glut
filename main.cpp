@@ -432,20 +432,6 @@ void display(){
         glBegin(GL_POLYGON);
         glColor3f(0.2f, 0.2f, 0.8f);
 
-        glVertex3f(0.0f, 0.5f, 0.4f);
-        glVertex3f(0.3f, 0.5f, 0.3f);
-        glVertex3f(0.3f, 0.5f, 0.0f);
-        glVertex3f(0.15f, 0.5f, -0.3f);
-        glVertex3f(-0.15f, 0.5f, -0.3f);
-        glVertex3f(-0.3f, 0.5f, 0.0f);
-        glVertex3f(-0.3f, 0.5f, 0.3f);
-
-    glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
-        glBegin(GL_POLYGON);
-
         glVertex3f(0.0f, 0.95f, 0.4f);
         glVertex3f(0.3f, 0.95f, 0.3f);
         glVertex3f(0.3f, 0.95f, 0.0f);
@@ -523,26 +509,6 @@ void display(){
         glVertex3f(0.15f, 0.95f, -0.3f);
         glVertex3f(-0.15f, 0.95f, -0.3f);
         glVertex3f(-0.15f, 0.5f, -0.3f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-
-        glVertex3f(0.3f, 0.5f, 0.1f);
-        glVertex3f(0.3f, 0.5f, 0.2f);
-        glVertex3f(0.4f, 0.5f, 0.2f);
-        glVertex3f(0.4f, 0.5f, 0.1f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-
-        glVertex3f(0.3f, 0.75f, 0.1f);
-        glVertex3f(0.3f, 0.75f, 0.2f);
-        glVertex3f(0.4f, 0.75f, 0.2f);
-        glVertex3f(0.4f, 0.75f, 0.1f);
 
     glEnd();
     glPopMatrix();
@@ -573,26 +539,6 @@ void display(){
         glVertex3f(0.4f, 0.5f, 0.2f);
         glVertex3f(0.4f, 0.75f, 0.2f);
         glVertex3f(0.4f, 0.75f, 0.1f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-
-        glVertex3f(-0.3f, 0.5f, 0.1f);
-        glVertex3f(-0.3f, 0.5f, 0.2f);
-        glVertex3f(-0.4f, 0.5f, 0.2f);
-        glVertex3f(-0.4f, 0.5f, 0.1f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-
-        glVertex3f(-0.3f, 0.75f, 0.1f);
-        glVertex3f(-0.3f, 0.75f, 0.2f);
-        glVertex3f(-0.4f, 0.75f, 0.2f);
-        glVertex3f(-0.4f, 0.75f, 0.1f);
 
     glEnd();
     glPopMatrix();
@@ -699,7 +645,56 @@ void display(){
 
     glEnd();
     glPopMatrix();
+    glPushMatrix();
+        glBegin(GL_QUADS);
 
+        glVertex3f(-0.1f, 0.95f, -0.2f);
+        glVertex3f(-0.05f, 1.0f, -0.2f);
+        glVertex3f(0.05f, 1.0f, -0.2f);
+        glVertex3f(0.1f, 0.95f, -0.2f);
+
+    glEnd();
+    glPopMatrix();
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glVertex3f(-0.1f, 0.95f, 0.3f);
+        glVertex3f(-0.05f, 1.0f, 0.3f);
+        glVertex3f(0.05f, 1.0f, 0.3f);
+        glVertex3f(0.1f, 0.95f, 0.3f);
+
+    glEnd();
+    glPopMatrix();
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glVertex3f(-0.1f, 0.95f, -0.2f);
+        glVertex3f(-0.05f, 1.0f, -0.2f);
+        glVertex3f(-0.05f, 1.0f, 0.3f);
+        glVertex3f(-0.1f, 0.95f, 0.3f);
+
+    glEnd();
+    glPopMatrix();
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glVertex3f(0.1f, 0.95f, -0.2f);
+        glVertex3f(0.05f, 1.0f, -0.2f);
+        glVertex3f(0.05f, 1.0f, 0.3f);
+        glVertex3f(0.1f, 0.95f, 0.3f);
+
+    glEnd();
+    glPopMatrix();
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glVertex3f(-0.05f, 1.0f, -0.2f);
+        glVertex3f(0.05f, 1.0f, -0.2f);
+        glVertex3f(-0.05f, 1.0f, 0.3f);
+        glVertex3f(0.05f, 1.0f, 0.3f);
+
+    glEnd();
+    glPopMatrix();
 
 
 
