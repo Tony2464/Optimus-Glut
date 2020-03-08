@@ -44,6 +44,7 @@ float *normal;
 float radius = 0.25;
 float lx = 0.0;
 float ly = 0.0;
+float rotateRightLeg = 0;
 
 /* prototypes de fonctions */
 void initRendering();                           // Initialisation du rendu
@@ -62,14 +63,14 @@ void SpecialInput(int key, int x, int y);
 void createCube();
 float* vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9);
 void mouseMove(int x, int y);
+void walk();
 
+    /* Programme principal */
+    int main(int argc, // argc: nombre d'arguments, argc vaut au moins 1
+             char **argv)
+{ // argv: tableau de chaines de caract�res, argv[0] contient le nom du programme lanc� (plus un �ventuel chemin)
 
-/* Programme principal */
-int main(int argc,       // argc: nombre d'arguments, argc vaut au moins 1
-		  char **argv){  // argv: tableau de chaines de caract�res, argv[0] contient le nom du programme lanc� (plus un �ventuel chemin)
-
-
-	/* Initialisation de glut et creation de la fenetre */
+    /* Initialisation de glut et creation de la fenetre */
     glutInit(&argc, argv);                       // Initialisation
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB | GLUT_DEPTH); // mode d'affichage RGB, et test prafondeur
     glutInitWindowSize(500, 500);                // dimension fen�tre
@@ -557,6 +558,10 @@ void display(){
     /**************right leg**************/
     glPushMatrix();
         glTranslatef(0.1, -0.1, 0);
+
+            //glTranslatef(1, -0.1, 0);
+            glRotated(rotateRightLeg, 1, 0, 0);
+          //glTranslatef(0.1, -0.1, 0);
         //Thigh
         glPushMatrix();
             glColor3f(0.45f,0.4f,0.4f);
@@ -630,6 +635,40 @@ void display(){
                     glEnd();
             glPopMatrix();
 
+        glPopMatrix();
+
+        //Wheel up
+        glPushMatrix();
+            glTranslated(0.6,-2.4,0);
+            glRotated(90,0,1,0);
+            glColor3f(0.1f,0.1f,0.1f);
+            GLUquadricObj *quadratic;
+            quadratic = gluNewQuadric();
+            gluCylinder(quadratic, 0.3f, 0.3f, 0.3, 80, 80);
+
+            //Draw Circle
+            glColor3f(0.2f,0.2f,0.2f);
+			glBegin(GL_POLYGON);
+				for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
+ 					glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
+			glEnd();
+        glPopMatrix();
+
+        //Wheel bottom
+        glPushMatrix();
+            glTranslated(0.6,-3.1,0);
+            glRotated(90,0,1,0);
+            glColor3f(0.1f,0.1f,0.1f);
+            GLUquadricObj *quadratic2;
+            quadratic2 = gluNewQuadric();
+            gluCylinder(quadratic2, 0.3f, 0.3f, 0.3, 80, 80);
+
+            //Draw Circle
+            glColor3f(0.2f,0.2f,0.2f);
+			glBegin(GL_POLYGON);
+				for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
+ 					glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
+			glEnd();
         glPopMatrix();
     glPopMatrix();
 
@@ -710,6 +749,45 @@ void display(){
             glPopMatrix();
 
         glPopMatrix();
+
+
+        glPushMatrix();
+            glRotated(180,0,1,0);
+            glTranslated(-0.6,0,0);
+            //Wheel up
+            glPushMatrix();
+                glTranslated(0.6,-2.4,0);
+                glRotated(90,0,1,0);
+                glColor3f(0.1f,0.1f,0.1f);
+                GLUquadricObj *quadratic3;
+                quadratic3 = gluNewQuadric();
+                gluCylinder(quadratic3, 0.3f, 0.3f, 0.3, 80, 80);
+
+                //Draw Circle
+                glColor3f(0.2f,0.2f,0.2f);
+                glBegin(GL_POLYGON);
+                    for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
+                        glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
+                glEnd();
+            glPopMatrix();
+
+            //Wheel bottom
+            glPushMatrix();
+                glTranslated(0.6,-3.1,0);
+                glRotated(90,0,1,0);
+                glColor3f(0.1f,0.1f,0.1f);
+                GLUquadricObj *quadratic4;
+                quadratic4 = gluNewQuadric();
+                gluCylinder(quadratic4, 0.3f, 0.3f, 0.3, 80, 80);
+
+                //Draw Circle
+                glColor3f(0.2f,0.2f,0.2f);
+                glBegin(GL_POLYGON);
+                    for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
+                        glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
+                glEnd();
+            glPopMatrix();
+        glPopMatrix();
     glPopMatrix();
 
      /***************LEGS****************/
@@ -772,6 +850,11 @@ void keyboard(unsigned char key, int x, int y) {
 
             case 'j':   /* son */
 			    sound();
+            break;
+
+            case 'a':   /* marcher */
+			    walk();
+                glutPostRedisplay();
             break;
 
 			case 'q':   /* Quitter le programme */
@@ -953,4 +1036,18 @@ void mouseMove(int x, int y) {
 
     glutWarpPointer(250, 250);
     glutPostRedisplay();
+}
+
+void walk(){
+
+    if(rotateRightLeg >= -45)
+        rotateRightLeg--;
+        else
+
+            rotateRightLeg++;
+
+
+     //rotateRightLeg--;
+    glutPostRedisplay();
+    glutTimerFunc(10,update, 0);
 }
