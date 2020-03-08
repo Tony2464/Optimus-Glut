@@ -150,6 +150,7 @@ void display(){
 
     //Top of the chest
     glPushMatrix();
+   // glTranslatef(0, 0, 0);
 
     glBegin(GL_QUADS);
 
@@ -406,6 +407,8 @@ void display(){
     glEnd();
     glPopMatrix();
 
+
+
     //Right arm
     glPushMatrix();
         glPushMatrix();
@@ -426,6 +429,128 @@ void display(){
             createCube();
         glPopMatrix();
     glPopMatrix();
+
+
+
+    /******************PELVIS*************/
+    glPushMatrix();
+        glTranslatef(0, -1.05, 0.04);
+        glColor3f(0.3f,0.3f,0.3f);
+
+        //CENTER BLOCK
+        glPushMatrix();
+            glScalef(0.25, 0.3, 0.8);
+            createCube();
+        glPopMatrix();
+
+        //RIGHT TRIANGLE
+        glPushMatrix();
+            //Front triangle
+            glPushMatrix();
+                glTranslatef(0.1, 0.15, -0.4);
+                glBegin(GL_QUADS);
+                glNormal3f(0,0,1);
+                glVertex3f(0.0f, 0.0f, 0.8f);
+                glVertex3f(0.0f, -0.3f, 0.8f);
+                glVertex3f(0.45f, -0.1f, 0.8f);
+                glVertex3f(0.45f, 0.0f, 0.8f);
+                glEnd();
+            glPopMatrix();
+
+            //Back triangle
+            glPushMatrix();
+                glTranslatef(0.1, 0.15, -1.2);
+                glBegin(GL_QUADS);
+                glNormal3f(0,0,1);
+                glVertex3f(0.0f, 0.0f, 0.8f);
+                glVertex3f(0.0f, -0.3f, 0.8f);
+                glVertex3f(0.45f, -0.1f, 0.8f);
+                glVertex3f(0.45f, 0.0f, 0.8f);
+                glEnd();
+            glPopMatrix();
+
+            //Bottom
+            glPushMatrix();
+                glTranslatef(0.1, 0.15, -0.4);
+                glBegin(GL_QUADS);
+                glNormal3f(0,0,1);
+                glVertex3f(0.0f, -0.3f, 0.8f);
+                glVertex3f(0.45f, -0.1f, 0.8f);
+                glVertex3f(0.45f, -0.1f, -0.01f);
+                glVertex3f(0.0f, -0.3f, -0.01f);
+                glEnd();
+            glPopMatrix();
+
+            //Side right
+            glPushMatrix();
+                glTranslatef(0.1, 0.15, -0.4);
+                glBegin(GL_QUADS);
+                glNormal3f(0,0,1);
+                glVertex3f(0.45f, -0.1f, 0.8f);
+                glVertex3f(0.45f, -0.1f, -0.01f);
+                glVertex3f(0.45f, 0.0f, -0.01f);
+                glVertex3f(0.45f, 0.0f, 0.8f);
+                glEnd();
+            glPopMatrix();
+
+
+            //LEFT TRIANGLE
+        glPushMatrix();
+            glRotated(180,0,1,0);
+            //Front triangle
+            glPushMatrix();
+                glTranslatef(0.1, 0.15, -0.4);
+                glBegin(GL_QUADS);
+                glNormal3f(0,0,1);
+                glVertex3f(0.0f, 0.0f, 0.8f);
+                glVertex3f(0.0f, -0.3f, 0.8f);
+                glVertex3f(0.45f, -0.1f, 0.8f);
+                glVertex3f(0.45f, 0.0f, 0.8f);
+                glEnd();
+            glPopMatrix();
+
+            //Back triangle
+            glPushMatrix();
+                glTranslatef(0.1, 0.15, -1.2);
+                glBegin(GL_QUADS);
+                glNormal3f(0,0,1);
+                glVertex3f(0.0f, 0.0f, 0.8f);
+                glVertex3f(0.0f, -0.3f, 0.8f);
+                glVertex3f(0.45f, -0.1f, 0.8f);
+                glVertex3f(0.45f, 0.0f, 0.8f);
+                glEnd();
+            glPopMatrix();
+
+            //Bottom
+            glPushMatrix();
+                glTranslatef(0.1, 0.15, -0.4);
+                glBegin(GL_QUADS);
+                glNormal3f(0,0,1);
+                glVertex3f(0.0f, -0.3f, 0.8f);
+                glVertex3f(0.45f, -0.1f, 0.8f);
+                glVertex3f(0.45f, -0.1f, -0.01f);
+                glVertex3f(0.0f, -0.3f, -0.01f);
+                glEnd();
+            glPopMatrix();
+
+            //Side right
+            glPushMatrix();
+                glTranslatef(0.1, 0.15, -0.4);
+                glBegin(GL_QUADS);
+                glNormal3f(0,0,1);
+                glVertex3f(0.45f, -0.1f, 0.8f);
+                glVertex3f(0.45f, -0.1f, -0.01f);
+                glVertex3f(0.45f, 0.0f, -0.01f);
+                glVertex3f(0.45f, 0.0f, 0.8f);
+                glEnd();
+            glPopMatrix();
+
+            glPopMatrix();
+
+        glPopMatrix();
+     glPopMatrix();
+     /******************PELVIS*************/
+
 
 	/* On swap (�change) les buffers, c�d, on fait passer l'image calcul�e et dessin�e
 	dans le back buffer au buffer qui va l'afficher: le front buffer (en g�n�ral), c'est le bouble buffering

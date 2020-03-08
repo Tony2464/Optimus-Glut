@@ -85,7 +85,7 @@
 1578947565 c:\mingw\include\msvcrtver.h
 	<_mingw.h>
 
-1579865006 c:\mingw\include\features.h
+1581774952 c:\mingw\include\features.h
 
 1578947565 c:\mingw\include\strings.h
 	<_mingw.h>
@@ -344,9 +344,9 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
-1562433062 c:\mingw\include\gl\gl.h
+1578947578 c:\mingw\include\gl\gl.h
 
-1562433062 c:\mingw\include\gl\glu.h
+1578947578 c:\mingw\include\gl\glu.h
 	<stddef.h>
 	<GL/gl.h>
 
@@ -362,13 +362,14 @@
 1578947565 c:\mingw\include\math.h
 	<_mingw.h>
 
-1582656090 source:c:\users\anthony\desktop\optimus-glut\main.cpp
+1583628497 source:c:\users\anthony\desktop\optimus-glut\main.cpp
 	<windows.h>
 	<GLUT/glut.h>
 	<GL/glut.h>
 	<stdlib.h>
 	<stdio.h>
 	<math.h>
+	"fmod/fmod.h"
 
 1577535561 d:\mes documents\projets git\projet optimus glut\fmod\fmod.h
 	"fmod_codec.h"
@@ -391,4 +392,15 @@
 1583243683 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\fmod\fmod_dsp.h
 
 1583243683 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\fmod\fmod_memoryinfo.h
+
+1583255022 c:\users\anthony\desktop\optimus-glut\fmod\fmod.h
+	"fmod_codec.h"
+	"fmod_dsp.h"
+	"fmod_memoryinfo.h"
+
+1583255022 c:\users\anthony\desktop\optimus-glut\fmod\fmod_codec.h
+
+1583255022 c:\users\anthony\desktop\optimus-glut\fmod\fmod_dsp.h
+
+1583255022 c:\users\anthony\desktop\optimus-glut\fmod\fmod_memoryinfo.h
 
