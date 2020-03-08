@@ -549,12 +549,12 @@ void display(){
             glPopMatrix();
         glPopMatrix();
     glPopMatrix();
-     /******************PELVIS*************/
+    /******************PELVIS*************/
 
 
      /***************LEGS****************/
 
-    //RIGHT LEG
+    /**************right leg**************/
     glPushMatrix();
         glTranslatef(0.1, -0.1, 0);
         //Thigh
@@ -563,6 +563,14 @@ void display(){
             glTranslatef(0.3, -1.5, 0);
             glScalef(0.4, 1.10, 0.6);
             createCube();
+        glPopMatrix();
+
+        //Knee
+        glPushMatrix();
+            glColor3f(1, 1, 1);
+            glTranslatef(0.3, -1.95, 0);
+            glScaled(0.75,0.75,0.75);
+            glutSolidSphere(radius, 255, 255);
         glPopMatrix();
 
         //Calf
@@ -625,7 +633,7 @@ void display(){
         glPopMatrix();
     glPopMatrix();
 
-    //LEFT LEG
+    /*********************left leg**************/
     glPushMatrix();
         glTranslatef(-0.7, -0.1, 0);
         //Thigh
@@ -634,6 +642,14 @@ void display(){
             glTranslatef(0.3, -1.5, 0);
             glScalef(0.4, 1.10, 0.6);
             createCube();
+        glPopMatrix();
+
+        //Knee
+        glPushMatrix();
+            glColor3f(1, 1, 1);
+            glTranslatef(0.3, -1.95, 0);
+            glScaled(0.75,0.75,0.75);
+            glutSolidSphere(radius, 255, 255);
         glPopMatrix();
 
         //Calf
