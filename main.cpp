@@ -80,7 +80,7 @@ void getNormalArms();
 float* vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9);
 void mouseMove(int x, int y);
 void setlight();
-void setmaterial();
+void setmaterial(int mode);
 void createHead();
 void walk();
 void createPelvis();
@@ -175,16 +175,22 @@ void display(){
 
     //Top of the chest
     glPushMatrix();
+        setmaterial(1);
         createChest();
+        glutPostRedisplay();
     glPopMatrix();
 
     //Back (jetpack)
     glPushMatrix();
+        setmaterial(2);
         createJetpack();
+        glutPostRedisplay();
     glPopMatrix();
 
     glPushMatrix();
+        setmaterial(3);
         createHexagone();
+        glutPostRedisplay();
     glPopMatrix();
 
     //Right arm
@@ -199,15 +205,20 @@ void display(){
     glPopMatrix();
 
     glPushMatrix();
+        setmaterial(2);
         createHead();
+        glutPostRedisplay();
     glPopMatrix();
 
     glPushMatrix();
+        setmaterial(3);
         createPelvis();
+        glutPostRedisplay();
     glPopMatrix();
 
     glPushMatrix();
         createLegs();
+        glutPostRedisplay();
     glPopMatrix();
 
     /* On swap (�change) les buffers, c�d, on fait passer l'image calcul�e et dessin�e
@@ -244,12 +255,6 @@ void reshape(int w,  // w: largeur fen�tre
 
 }
 
-void update(int value){
-
-
-
-}
-
 void setlight(){
     //here you set the lights and parameters, example with one light
     float LightAmbient[] = { 0.1f, 0.1f, 0.05f, 1.0f };
@@ -273,18 +278,57 @@ void setlight(){
     glEnable(GL_LIGHT0);
 }
 
-void setmaterial(){
+void setmaterial(int mode){
     //here you set materials, you must declare each one of the colors global or locally like this:
     float MatAmbient[] = { 0.1f, 0.1f, 0.1f, 1.0f };
     float MatDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float MatSpecular[] = { 0.1f, 0.1f, 0.0f, 0.1f };
     float MatShininess = 60;
-    float color[] = {0.0f,0.0f,0.0f,1.0f};
+    float color[] = {1.0f,0.0f,0.0f,1.0f};
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
     glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, MatShininess);
     glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, color);
+    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+    glEnable(GL_COLOR_MATERIAL);
+
+
+    switch(mode){
+
+    case 1 :
+         glColor3f(0.6f,0.0f,0.0f);
+         break;
+
+    case 2 :
+         glColor3f(0.0f,0.0f,0.7f);
+         break;
+
+    case 3 :
+         glColor3f(0.5f,0.5f,0.5f);
+         break;
+
+    case 4 :
+         glColor3f(0.1f, 0.1f, 0.1f);
+         break;
+
+    case 5 :
+        glColor3f(0.2f, 0.2f, 0.2f);
+        break;
+
+    case 6 :
+        glColor3f(0.2f, 0.2f, 0.2f);
+        break;
+
+    case 7 :
+        glColor3f(0.2f, 0.2f, 0.2f);
+        break;
+
+    case 8 :
+        glColor3f(0.2f, 0.2f, 0.2f);
+        break;
+    }
+
 }
 
 /* Fonction de gestion du clavier */
@@ -486,7 +530,6 @@ void createHead(){
     //Head
     glPushMatrix();
         glBegin(GL_POLYGON);
-        glColor3f(0.2f, 0.2f, 0.8f);
         glNormal3f(0.0f,1.0f,0.0f);
 
         glVertex3f(0.0f, 0.95f, 0.4f);
@@ -852,7 +895,6 @@ void createChest() {
 
             glNormal3f(1, 0, 0);
             //Right
-            glColor3f(0.6f, 0.0, 0.0f);
             glVertex3f(0.75f, 0.5f, 0.5f);
             glVertex3f(0.75f, -0.5f, 0.5f);
             glVertex3f(0.75f, -0.5f, -0.5f);
@@ -1011,7 +1053,6 @@ void createJetpack() {
 
 void createHexagone() {
     //Hexagone
-    glColor3f(0.4f, 0.4f, 0.4f);
 
     glPushMatrix();
             //Top
@@ -1123,7 +1164,6 @@ void createRightArm() {
     // Right Elbow
         glTranslatef(0.125, 0, 0);
         glPushMatrix();
-            glColor3f(1, 1, 1);
             glTranslatef(0.75, 0, 0);
             glutSolidSphere(radius, 255, 255);
         glPopMatrix();
@@ -1226,7 +1266,6 @@ void createLeftArm() {
     //Left Elbow
         glTranslatef(0.125, 0, 0);
         glPushMatrix();
-            glColor3f(1, 1, 1);
             glTranslatef(0.75, 0, 0);
             glutSolidSphere(radius, 255, 255);
         glPopMatrix();
@@ -1370,19 +1409,16 @@ void walk(){
 void createPelvis(){
     glPushMatrix();
         glTranslatef(0, -1.08, 0.04);
-        glColor3f(0.3f,0.3f,0.3f);
         glScalef(1.2, 1.2, 1.2);
 
         //CENTER BLOCK
         glPushMatrix();
-            //glColor3f(1.0f,1.0f,1.0f);
             glScalef(0.25, 0.3, 0.8);
             createCube();
         glPopMatrix();
 
         //RIGHT TRIANGLE
         glPushMatrix();
-            //glColor3f(0.4f,0.4f,0.4f);
             //Front triangle
             glPushMatrix();
                 glTranslatef(0.1, 0.15, -0.4);
@@ -1512,7 +1548,6 @@ void createLegs(){
             glTranslatef(0, 1.0, 0);
         //Thigh
         glPushMatrix();
-            glColor3f(0.45f,0.4f,0.4f);
             glTranslatef(0.3, -1.5, 0);
             glScalef(0.4, 1.10, 0.6);
             createCube();
@@ -1520,7 +1555,6 @@ void createLegs(){
 
         //Knee
         glPushMatrix();
-            glColor3f(1, 1, 1);
             glTranslatef(0.3, -1.95, 0);
             glScaled(0.75,0.75,0.75);
             glutSolidSphere(radius, 255, 255);
@@ -1533,7 +1567,6 @@ void createLegs(){
             glTranslatef(0, 2.0, 0);
 
             glPushMatrix();
-                glColor3f(0.0f,0.0f,1.0f);
                 glTranslatef(0.3, -2.7, 0);
                 glScalef(0.6, 1.5, 0.8);
                 createCube();
@@ -1595,13 +1628,13 @@ void createLegs(){
             glPushMatrix();
                 glTranslated(0.6,-2.4,0);
                 glRotated(90,0,1,0);
-                glColor3f(0.1f,0.1f,0.1f);
+                setmaterial(4);
                 GLUquadricObj *quadratic;
                 quadratic = gluNewQuadric();
                 gluCylinder(quadratic, 0.3f, 0.3f, 0.3, 80, 80);
 
                 //Draw Circle
-                glColor3f(0.2f,0.2f,0.2f);
+                setmaterial(5);
                 glBegin(GL_POLYGON);
                     for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
                         glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
@@ -1612,13 +1645,13 @@ void createLegs(){
             glPushMatrix();
                 glTranslated(0.6,-3.1,0);
                 glRotated(90,0,1,0);
-                glColor3f(0.1f,0.1f,0.1f);
+                setmaterial(4);
                 GLUquadricObj *quadratic2;
                 quadratic2 = gluNewQuadric();
                 gluCylinder(quadratic2, 0.3f, 0.3f, 0.3, 80, 80);
 
                 //Draw Circle
-                glColor3f(0.2f,0.2f,0.2f);
+                setmaterial(5);
                 glBegin(GL_POLYGON);
                     for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
                         glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
@@ -1636,7 +1669,6 @@ void createLegs(){
             glTranslatef(0, 1.0, 0);
         //Thigh
         glPushMatrix();
-            glColor3f(0.45f,0.4f,0.4f);
             glTranslatef(0.3, -1.5, 0);
             glScalef(0.4, 1.10, 0.6);
             createCube();
@@ -1644,7 +1676,6 @@ void createLegs(){
 
         //Knee
         glPushMatrix();
-            glColor3f(1, 1, 1);
             glTranslatef(0.3, -1.95, 0);
             glScaled(0.75,0.75,0.75);
             glutSolidSphere(radius, 255, 255);
@@ -1657,7 +1688,6 @@ void createLegs(){
             glTranslatef(0, 2.0, 0);
 
             glPushMatrix();
-                glColor3f(0.0f,0.0f,1.0f);
                 glTranslatef(0.3, -2.7, 0);
                 glScalef(0.6, 1.5, 0.8);
                 createCube();
@@ -1723,13 +1753,13 @@ void createLegs(){
                 glPushMatrix();
                     glTranslated(0.6,-2.4,0);
                     glRotated(90,0,1,0);
-                    glColor3f(0.1f,0.1f,0.1f);
+                    setmaterial(4);
                     GLUquadricObj *quadratic3;
                     quadratic3 = gluNewQuadric();
                     gluCylinder(quadratic3, 0.3f, 0.3f, 0.3, 80, 80);
 
                     //Draw Circle
-                    glColor3f(0.2f,0.2f,0.2f);
+                    setmaterial(5);
                     glBegin(GL_POLYGON);
                         for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
                             glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
@@ -1740,13 +1770,13 @@ void createLegs(){
                 glPushMatrix();
                     glTranslated(0.6,-3.1,0);
                     glRotated(90,0,1,0);
-                    glColor3f(0.1f,0.1f,0.1f);
+                    setmaterial(4);
                     GLUquadricObj *quadratic4;
                     quadratic4 = gluNewQuadric();
                     gluCylinder(quadratic4, 0.3f, 0.3f, 0.3, 80, 80);
 
                     //Draw Circle
-                    glColor3f(0.2f,0.2f,0.2f);
+                    setmaterial(5);
                     glBegin(GL_POLYGON);
                         for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
                             glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
