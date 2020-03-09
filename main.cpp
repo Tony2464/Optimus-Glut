@@ -65,6 +65,7 @@ void createJetpack();
 void createChest();
 void createHexagone();
 void createRightArm();
+void createLeftArm();
 float* vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9);
 void mouseMove(int x, int y);
 
@@ -167,7 +168,13 @@ void display(){
 
     //Right arm
     glPushMatrix();
+        glScalef(1, 0.99, 1);
         createRightArm();
+    glPopMatrix();
+
+    glPushMatrix();
+        glScalef(1, 0.99, 1);
+        createLeftArm();
     glPopMatrix();
 
 
@@ -688,32 +695,171 @@ void createHexagone() {
 }
 
 void createRightArm() {
-    glPushMatrix();
-        glTranslatef(1.125, 0.25, 0);
-        glScalef(0.75, 0.5, 0.5);
-        createCube();
-    glPopMatrix();
 
+    //Right Shoulder
     glPushMatrix();
-        glColor3f(1, 1, 1);
-        glTranslatef(1.5, 0.25, 0);
+        glTranslatef(0.75, 0.25, 0);
         glutSolidSphere(radius, 255, 255);
     glPopMatrix();
 
+    // Right Arm
     glPushMatrix();
-        glTranslatef(1.875, 0.25, 0);
-        glScalef(0.75, 0.5, 0.5);
-        createCube();
+        glTranslatef(0.75, 0.25, 0);
+        glRotatef(20, 0, 0, 1);
+        glPushMatrix();
+            glTranslatef(0.375, 0, 0);
+            glScalef(0.75, 0.5, 0.5);
+            createCube();
+        glPopMatrix();
+
+    // Right Elbow
+        glPushMatrix();
+            glColor3f(1, 1, 1);
+            glTranslatef(0.75, 0, 0);
+            glutSolidSphere(radius, 255, 255);
+        glPopMatrix();
+
+    //Right Forearm
+        glPushMatrix();
+            glTranslatef(1.125, 0, 0);
+            glScalef(0.75, 0.5, 0.5);
+            createCube();
+        glPopMatrix();
+
+    //Right Sword
+        glPushMatrix();
+            glTranslatef(1.25, -0.05, 0);
+            glPushMatrix();
+                glBegin(GL_QUADS);
+                    glVertex3f(0, 0, -0.15);
+                    glVertex3f(1.5, 0, -0.15);
+                    glVertex3f(1.5, 0.1, 0);
+                    glVertex3f(0, 0.1, 0);
+
+                    glVertex3f(0, 0, -0.15);
+                    glVertex3f(1.5, 0, -0.15);
+                    glVertex3f(1.5, -0.1, 0);
+                    glVertex3f(0, -0.1, 0);
+
+                    glVertex3f(0, 0, 0.15);
+                    glVertex3f(1.5, 0, 0.15);
+                    glVertex3f(1.5, 0.1, 0);
+                    glVertex3f(0, 0.1, 0);
+
+                    glVertex3f(0, 0, 0.15);
+                    glVertex3f(1.5, 0, 0.15);
+                    glVertex3f(1.5, -0.1, 0);
+                    glVertex3f(0, -0.1, 0);
+                glEnd();
+            glPopMatrix();
+
+        //Right Sword Tip
+            glPushMatrix();
+            glTranslatef(1.5, 0, 0);
+                glBegin(GL_TRIANGLES);
+                    glVertex3f(0, 0, 0.15);
+                    glVertex3f(0.5, 0, 0);
+                    glVertex3f(0, 0.1, 0);
+
+                    glVertex3f(0, 0, 0.15);
+                    glVertex3f(0.5, 0, 0);
+                    glVertex3f(0, -0.1, 0);
+
+                    glVertex3f(0, 0, -0.15);
+                    glVertex3f(0.5, 0, 0);
+                    glVertex3f(0, 0.1, 0);
+
+                    glVertex3f(0, 0, -0.15);
+                    glVertex3f(0.5, 0, 0);
+                    glVertex3f(0, -0.1, 0);
+                glEnd();
+            glPopMatrix();
+        glPopMatrix();
+    glPopMatrix();
+}
+
+void createLeftArm() {
+
+    //Left Shoulder
+    glPushMatrix();
+        glTranslatef(-0.75, 0.25, 0);
+        glutSolidSphere(radius, 255, 255);
     glPopMatrix();
 
+    //Left Arm
     glPushMatrix();
-        glColor3f(1, 0, 0);
-        glBegin(GL_QUADS);
-            glVertex3f(0, 0, 0);
-            glVertex3f(0, 0, 0);
-            glVertex3f(0, 0, 0);
-            glVertex3f(0, 0, 0);
+        glTranslatef(-0.75, 0.25, 0);
+        glRotatef(90, 0, -1, 0);
+        glPushMatrix();
+            glTranslatef(0.375, 0, 0);
+            glScalef(0.75, 0.5, 0.5);
+            createCube();
+        glPopMatrix();
 
-        glEnd();
+    //Left Elbow
+        glPushMatrix();
+            glColor3f(1, 1, 1);
+            glTranslatef(0.75, 0, 0);
+            glutSolidSphere(radius, 255, 255);
+        glPopMatrix();
+
+    //Left Forearm
+        glPushMatrix();
+            glTranslatef(0.75, 0, 0);
+            //glRotatef(90, 0, 2.5, 1);
+            glPushMatrix();
+                glTranslatef(0.375, 0, 0);
+                glScalef(0.75, 0.5, 0.5);
+                createCube();
+            glPopMatrix();
+
+    //Left Sword
+            glPushMatrix();
+                glTranslatef(0.75, 0, 0);
+                glBegin(GL_QUADS);
+                    glVertex3f(0, 0, -0.15);
+                    glVertex3f(1.5, 0, -0.15);
+                    glVertex3f(1.5, 0.1, 0);
+                    glVertex3f(0, 0.1, 0);
+
+                    glVertex3f(0, 0, -0.15);
+                    glVertex3f(1.5, 0, -0.15);
+                    glVertex3f(1.5, -0.1, 0);
+                    glVertex3f(0, -0.1, 0);
+
+                    glVertex3f(0, 0, 0.15);
+                    glVertex3f(1.5, 0, 0.15);
+                    glVertex3f(1.5, 0.1, 0);
+                    glVertex3f(0, 0.1, 0);
+
+                    glVertex3f(0, 0, 0.15);
+                    glVertex3f(1.5, 0, 0.15);
+                    glVertex3f(1.5, -0.1, 0);
+                    glVertex3f(0, -0.1, 0);
+                glEnd();
+
+        //Left Sword Tip
+                glPushMatrix();
+                    glTranslatef(1.5, 0, 0);
+                    glBegin(GL_TRIANGLES);
+                        glVertex3f(0, 0, 0.15);
+                        glVertex3f(0.5, 0, 0);
+                        glVertex3f(0, 0.1, 0);
+
+                        glVertex3f(0, 0, 0.15);
+                        glVertex3f(0.5, 0, 0);
+                        glVertex3f(0, -0.1, 0);
+
+                        glVertex3f(0, 0, -0.15);
+                        glVertex3f(0.5, 0, 0);
+                        glVertex3f(0, 0.1, 0);
+
+                        glVertex3f(0, 0, -0.15);
+                        glVertex3f(0.5, 0, 0);
+                        glVertex3f(0, -0.1, 0);
+                    glEnd();
+                glPopMatrix();
+            glPopMatrix();
+        glPopMatrix();
     glPopMatrix();
 }
