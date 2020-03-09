@@ -31,7 +31,7 @@ float angle = 0.0;
 float angleL2 = 0.0;
 float cameraAngle = 10.0;
 int way = 0;
-float r = 5;//Rayon, Distance entre la camera et l'objet
+float r = 8;//Rayon, Distance entre la camera et l'objet
 float phi = 0;//Angle de rotation verticale de la camera
 float alpha = 0;//Angle de rotation horizontale de la camera
 float xCam = 0, yCam = 0, zCam = 0;//Coordonnees de la camera
@@ -251,33 +251,41 @@ void update(int value){
 }
 
 void setlight(){
-            //here you set the lights and parameters, example with one light
-            float LightAmbient[] = { 0.1f, 0.1f, 0.05f, 1.0f };
-            float LightEmission[] = { 1.0f, 1.0f, 0.8f, 1.0f };
-            float LightDiffuse[] = { 1.0f, 1.0f, 0.8f, 1.0f };
-            float LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-            float LightDirection[]={-0.5f, -0.5f, -0.5f};
-            glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
-            glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
-            glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular);
-            glLightfv(GL_LIGHT0, GL_POSITION, LightDirection);
-            glEnable(GL_LIGHTING);
-            glEnable(GL_LIGHT0);
-    }
+    //here you set the lights and parameters, example with one light
+    float LightAmbient[] = { 0.1f, 0.1f, 0.05f, 1.0f };
+    float LightEmission[] = { 1.0f, 1.0f, 0.8f, 1.0f };
+    float LightDiffuse[] = { 1.0f, 1.0f, 0.8f, 1.0f };
+    float LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    float LightDirection[]={-0.5f, -0.5f, -0.5f};
 
-    void setmaterial(){
-            //here you set materials, you must declare each one of the colors global or locally like this:
-            float MatAmbient[] = { 0.1f, 0.1f, 0.1f, 1.0f };
-            float MatDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-            float MatSpecular[] = { 0.1f, 0.1f, 0.0f, 0.1f };
-            float MatShininess = 60;
-            float color[] = {0.0f,0.0f,0.0f,1.0f};
-            glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
-            glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
-            glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
-            glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, MatShininess);
-            glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, color);
-    }
+    float lightPos[] = {2, 2, 2, 1};
+    float lightColor[] = {1, 0, 0};
+
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor);
+    glLightfv(GL_LIGHT1, GL_POSITION, lightPos);
+    glEnable(GL_LIGHT1);
+
+    glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular);
+    glLightfv(GL_LIGHT0, GL_POSITION, LightDirection);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+}
+
+void setmaterial(){
+    //here you set materials, you must declare each one of the colors global or locally like this:
+    float MatAmbient[] = { 0.1f, 0.1f, 0.1f, 1.0f };
+    float MatDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    float MatSpecular[] = { 0.1f, 0.1f, 0.0f, 0.1f };
+    float MatShininess = 60;
+    float color[] = {0.0f,0.0f,0.0f,1.0f};
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, MatShininess);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, color);
+}
 
 /* Fonction de gestion du clavier */
 void keyboard(unsigned char key, int x, int y) {
@@ -795,16 +803,16 @@ void createHead(){
 
 void mouseMove(int x, int y) {
     if (x > 250) {
-        if (xCam >= 1.5 && lz > -1) {
+        if (xCam >= 1.5 && lz > -1.5) {
             lz -= 0.01;
         }
-        if (xCam < 1.5 && lz < 1) {
+        if (xCam < 1.5 && lz < 1.5) {
             lz += 0.01;
         }
-        if (zCam >= 1.5 && lx < 1) {
+        if (zCam >= 1.5 && lx < 1.5) {
             lx += 0.01;
         }
-        if (zCam <= 1.5 && lx > -1) {
+        if (zCam <= 1.5 && lx > -1.5) {
             lx -= 0.01;
         }
     }
