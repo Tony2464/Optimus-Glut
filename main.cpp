@@ -45,6 +45,10 @@ float radius = 0.25;
 float lx = 0.0;
 float ly = 0.0;
 float rotateRightLeg = 0;
+float rotateLeftLeg = 0;
+int rotateRightLegLimit = 0;
+float rotateRightKnee = 0;
+float rotateLeftKnee = 0;
 
 /* prototypes de fonctions */
 void initRendering();                           // Initialisation du rendu
@@ -549,19 +553,33 @@ void display(){
                 glEnd();
             glPopMatrix();
         glPopMatrix();
+
+        //Top
+        glPushMatrix();
+            glScalef(1.09,1.0,0.6);
+            glTranslatef(-0.5, 0.07, -0.7);
+            glRotated(90,1,0,0);
+            glBegin(GL_QUADS);
+            glNormal3f(0,0,1);
+            glVertex3f(0.0f, 0.0f, 0.0f);
+            glVertex3f(1.0f, 0.0f, 0.0f);
+            glVertex3f(1.0f, 1.4f, 0.0f);
+            glVertex3f(0.0f, 1.4f, 0.0f);
+            glEnd();
+        glPopMatrix();
     glPopMatrix();
     /******************PELVIS*************/
 
 
-     /***************LEGS****************/
+    /***************LEGS****************/
 
     /**************right leg**************/
     glPushMatrix();
         glTranslatef(0.1, -0.1, 0);
 
-            //glTranslatef(1, -0.1, 0);
+            glTranslatef(0, -1.0, 0);
             glRotated(rotateRightLeg, 1, 0, 0);
-          //glTranslatef(0.1, -0.1, 0);
+            glTranslatef(0, 1.0, 0);
         //Thigh
         glPushMatrix();
             glColor3f(0.45f,0.4f,0.4f);
@@ -580,188 +598,76 @@ void display(){
 
         //Calf
         glPushMatrix();
-            glColor3f(0.0f,0.0f,1.0f);
-            glTranslatef(0.3, -2.7, 0);
-            glScalef(0.6, 1.5, 0.8);
-            createCube();
-        glPopMatrix();
+            glTranslatef(0, -2.0, 0);
+            glRotated(rotateRightKnee, 1, 0, 0);
+            glTranslatef(0, 2.0, 0);
 
-        //Foot
-        glPushMatrix();
-                //Left triangle
             glPushMatrix();
-                glTranslatef(0.0, -3.45, 0.75);
-                    glBegin(GL_QUADS);
-                    glNormal3f(0,0,1);
-                    glVertex3f(0.0f, 0.0f, -0.4f);
-                    glVertex3f(0.0f, 0.0f, 0.2f);
-                    glVertex3f(0.0f, 0.4f, 0.2f);
-                    glVertex3f(0.0f, 0.70f, -0.4f);
-                    glEnd();
-            glPopMatrix();
-                //Right triangle
-            glPushMatrix();
-                glTranslatef(0.6, -3.45, 0.75);
-                    glBegin(GL_QUADS);
-                    glNormal3f(0,0,1);
-                    glVertex3f(0.0f, 0.0f, -0.4f);
-                    glVertex3f(0.0f, 0.0f, 0.2f);
-                    glVertex3f(0.0f, 0.4f, 0.2f);
-                    glVertex3f(0.0f, 0.70f, -0.4f);
-                    glEnd();
+                glColor3f(0.0f,0.0f,1.0f);
+                glTranslatef(0.3, -2.7, 0);
+                glScalef(0.6, 1.5, 0.8);
+                createCube();
             glPopMatrix();
 
-            //Front
+            //Foot
             glPushMatrix();
-                glTranslatef(0.0, -3.45, 0.75);
-                    glBegin(GL_QUADS);
-                    glNormal3f(0,0,1);
-                    glVertex3f(0.0f, 0.0f, 0.2f);
-                    glVertex3f(0.6f, 0.0f, 0.2f);
-                    glVertex3f(0.6f, 0.4f, 0.2f);
-                    glVertex3f(0.0f, 0.4f, 0.2f);
-                    glEnd();
+                    //Left triangle
+                glPushMatrix();
+                    glTranslatef(0.0, -3.45, 0.75);
+                        glBegin(GL_QUADS);
+                        glNormal3f(0,0,1);
+                        glVertex3f(0.0f, 0.0f, -0.4f);
+                        glVertex3f(0.0f, 0.0f, 0.2f);
+                        glVertex3f(0.0f, 0.4f, 0.2f);
+                        glVertex3f(0.0f, 0.70f, -0.4f);
+                        glEnd();
+                glPopMatrix();
+                    //Right triangle
+                glPushMatrix();
+                    glTranslatef(0.6, -3.45, 0.75);
+                        glBegin(GL_QUADS);
+                        glNormal3f(0,0,1);
+                        glVertex3f(0.0f, 0.0f, -0.4f);
+                        glVertex3f(0.0f, 0.0f, 0.2f);
+                        glVertex3f(0.0f, 0.4f, 0.2f);
+                        glVertex3f(0.0f, 0.70f, -0.4f);
+                        glEnd();
+                glPopMatrix();
+
+                //Front
+                glPushMatrix();
+                    glTranslatef(0.0, -3.45, 0.75);
+                        glBegin(GL_QUADS);
+                        glNormal3f(0,0,1);
+                        glVertex3f(0.0f, 0.0f, 0.2f);
+                        glVertex3f(0.6f, 0.0f, 0.2f);
+                        glVertex3f(0.6f, 0.4f, 0.2f);
+                        glVertex3f(0.0f, 0.4f, 0.2f);
+                        glEnd();
+                glPopMatrix();
+
+                //Top
+                glPushMatrix();
+                    glTranslatef(0.0, -3.45, 0.75);
+                        glBegin(GL_QUADS);
+                        glNormal3f(0,0,1);
+                        glVertex3f(0.0f, 0.70f, -0.4f);
+                        glVertex3f(0.6f, 0.70f, -0.4f);
+                        glVertex3f(0.6f, 0.4f, 0.2f);
+                        glVertex3f(0.0f, 0.4f, 0.2f);
+                        glEnd();
+                glPopMatrix();
+
             glPopMatrix();
 
-            //Top
-            glPushMatrix();
-                glTranslatef(0.0, -3.45, 0.75);
-                    glBegin(GL_QUADS);
-                    glNormal3f(0,0,1);
-                    glVertex3f(0.0f, 0.70f, -0.4f);
-                    glVertex3f(0.6f, 0.70f, -0.4f);
-                    glVertex3f(0.6f, 0.4f, 0.2f);
-                    glVertex3f(0.0f, 0.4f, 0.2f);
-                    glEnd();
-            glPopMatrix();
-
-        glPopMatrix();
-
-        //Wheel up
-        glPushMatrix();
-            glTranslated(0.6,-2.4,0);
-            glRotated(90,0,1,0);
-            glColor3f(0.1f,0.1f,0.1f);
-            GLUquadricObj *quadratic;
-            quadratic = gluNewQuadric();
-            gluCylinder(quadratic, 0.3f, 0.3f, 0.3, 80, 80);
-
-            //Draw Circle
-            glColor3f(0.2f,0.2f,0.2f);
-			glBegin(GL_POLYGON);
-				for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
- 					glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
-			glEnd();
-        glPopMatrix();
-
-        //Wheel bottom
-        glPushMatrix();
-            glTranslated(0.6,-3.1,0);
-            glRotated(90,0,1,0);
-            glColor3f(0.1f,0.1f,0.1f);
-            GLUquadricObj *quadratic2;
-            quadratic2 = gluNewQuadric();
-            gluCylinder(quadratic2, 0.3f, 0.3f, 0.3, 80, 80);
-
-            //Draw Circle
-            glColor3f(0.2f,0.2f,0.2f);
-			glBegin(GL_POLYGON);
-				for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
- 					glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
-			glEnd();
-        glPopMatrix();
-    glPopMatrix();
-
-    /*********************left leg**************/
-    glPushMatrix();
-        glTranslatef(-0.7, -0.1, 0);
-        //Thigh
-        glPushMatrix();
-            glColor3f(0.45f,0.4f,0.4f);
-            glTranslatef(0.3, -1.5, 0);
-            glScalef(0.4, 1.10, 0.6);
-            createCube();
-        glPopMatrix();
-
-        //Knee
-        glPushMatrix();
-            glColor3f(1, 1, 1);
-            glTranslatef(0.3, -1.95, 0);
-            glScaled(0.75,0.75,0.75);
-            glutSolidSphere(radius, 255, 255);
-        glPopMatrix();
-
-        //Calf
-        glPushMatrix();
-            glColor3f(0.0f,0.0f,1.0f);
-            glTranslatef(0.3, -2.7, 0);
-            glScalef(0.6, 1.5, 0.8);
-            createCube();
-        glPopMatrix();
-
-        //Foot
-        glPushMatrix();
-                //Left triangle
-            glPushMatrix();
-                glTranslatef(0.0, -3.45, 0.75);
-                    glBegin(GL_QUADS);
-                    glNormal3f(0,0,1);
-                    glVertex3f(0.0f, 0.0f, -0.4f);
-                    glVertex3f(0.0f, 0.0f, 0.2f);
-                    glVertex3f(0.0f, 0.4f, 0.2f);
-                    glVertex3f(0.0f, 0.70f, -0.4f);
-                    glEnd();
-            glPopMatrix();
-                //Right triangle
-            glPushMatrix();
-                glTranslatef(0.6, -3.45, 0.75);
-                    glBegin(GL_QUADS);
-                    glNormal3f(0,0,1);
-                    glVertex3f(0.0f, 0.0f, -0.4f);
-                    glVertex3f(0.0f, 0.0f, 0.2f);
-                    glVertex3f(0.0f, 0.4f, 0.2f);
-                    glVertex3f(0.0f, 0.70f, -0.4f);
-                    glEnd();
-            glPopMatrix();
-
-            //Front
-            glPushMatrix();
-                glTranslatef(0.0, -3.45, 0.75);
-                    glBegin(GL_QUADS);
-                    glNormal3f(0,0,1);
-                    glVertex3f(0.0f, 0.0f, 0.2f);
-                    glVertex3f(0.6f, 0.0f, 0.2f);
-                    glVertex3f(0.6f, 0.4f, 0.2f);
-                    glVertex3f(0.0f, 0.4f, 0.2f);
-                    glEnd();
-            glPopMatrix();
-
-            //Top
-            glPushMatrix();
-                glTranslatef(0.0, -3.45, 0.75);
-                    glBegin(GL_QUADS);
-                    glNormal3f(0,0,1);
-                    glVertex3f(0.0f, 0.70f, -0.4f);
-                    glVertex3f(0.6f, 0.70f, -0.4f);
-                    glVertex3f(0.6f, 0.4f, 0.2f);
-                    glVertex3f(0.0f, 0.4f, 0.2f);
-                    glEnd();
-            glPopMatrix();
-
-        glPopMatrix();
-
-
-        glPushMatrix();
-            glRotated(180,0,1,0);
-            glTranslated(-0.6,0,0);
             //Wheel up
             glPushMatrix();
                 glTranslated(0.6,-2.4,0);
                 glRotated(90,0,1,0);
                 glColor3f(0.1f,0.1f,0.1f);
-                GLUquadricObj *quadratic3;
-                quadratic3 = gluNewQuadric();
-                gluCylinder(quadratic3, 0.3f, 0.3f, 0.3, 80, 80);
+                GLUquadricObj *quadratic;
+                quadratic = gluNewQuadric();
+                gluCylinder(quadratic, 0.3f, 0.3f, 0.3, 80, 80);
 
                 //Draw Circle
                 glColor3f(0.2f,0.2f,0.2f);
@@ -776,9 +682,9 @@ void display(){
                 glTranslated(0.6,-3.1,0);
                 glRotated(90,0,1,0);
                 glColor3f(0.1f,0.1f,0.1f);
-                GLUquadricObj *quadratic4;
-                quadratic4 = gluNewQuadric();
-                gluCylinder(quadratic4, 0.3f, 0.3f, 0.3, 80, 80);
+                GLUquadricObj *quadratic2;
+                quadratic2 = gluNewQuadric();
+                gluCylinder(quadratic2, 0.3f, 0.3f, 0.3, 80, 80);
 
                 //Draw Circle
                 glColor3f(0.2f,0.2f,0.2f);
@@ -790,7 +696,135 @@ void display(){
         glPopMatrix();
     glPopMatrix();
 
-     /***************LEGS****************/
+    /*********************left leg**************/
+    glPushMatrix();
+        glTranslatef(-0.7, -0.1, 0);
+
+         glTranslatef(0, -1.0, 0);
+            glRotated(rotateLeftLeg, 1, 0, 0);
+            glTranslatef(0, 1.0, 0);
+        //Thigh
+        glPushMatrix();
+            glColor3f(0.45f,0.4f,0.4f);
+            glTranslatef(0.3, -1.5, 0);
+            glScalef(0.4, 1.10, 0.6);
+            createCube();
+        glPopMatrix();
+
+        //Knee
+        glPushMatrix();
+            glColor3f(1, 1, 1);
+            glTranslatef(0.3, -1.95, 0);
+            glScaled(0.75,0.75,0.75);
+            glutSolidSphere(radius, 255, 255);
+        glPopMatrix();
+
+        //Calf
+        glPushMatrix();
+            glTranslatef(0, -2.0, 0);
+            glRotated(rotateLeftKnee, 1, 0, 0);
+            glTranslatef(0, 2.0, 0);
+
+            glPushMatrix();
+                glColor3f(0.0f,0.0f,1.0f);
+                glTranslatef(0.3, -2.7, 0);
+                glScalef(0.6, 1.5, 0.8);
+                createCube();
+            glPopMatrix();
+
+            //Foot
+            glPushMatrix();
+                    //Left triangle
+                glPushMatrix();
+                    glTranslatef(0.0, -3.45, 0.75);
+                        glBegin(GL_QUADS);
+                        glNormal3f(0,0,1);
+                        glVertex3f(0.0f, 0.0f, -0.4f);
+                        glVertex3f(0.0f, 0.0f, 0.2f);
+                        glVertex3f(0.0f, 0.4f, 0.2f);
+                        glVertex3f(0.0f, 0.70f, -0.4f);
+                        glEnd();
+                glPopMatrix();
+                    //Right triangle
+                glPushMatrix();
+                    glTranslatef(0.6, -3.45, 0.75);
+                        glBegin(GL_QUADS);
+                        glNormal3f(0,0,1);
+                        glVertex3f(0.0f, 0.0f, -0.4f);
+                        glVertex3f(0.0f, 0.0f, 0.2f);
+                        glVertex3f(0.0f, 0.4f, 0.2f);
+                        glVertex3f(0.0f, 0.70f, -0.4f);
+                        glEnd();
+                glPopMatrix();
+
+                //Front
+                glPushMatrix();
+                    glTranslatef(0.0, -3.45, 0.75);
+                        glBegin(GL_QUADS);
+                        glNormal3f(0,0,1);
+                        glVertex3f(0.0f, 0.0f, 0.2f);
+                        glVertex3f(0.6f, 0.0f, 0.2f);
+                        glVertex3f(0.6f, 0.4f, 0.2f);
+                        glVertex3f(0.0f, 0.4f, 0.2f);
+                        glEnd();
+                glPopMatrix();
+
+                //Top
+                glPushMatrix();
+                    glTranslatef(0.0, -3.45, 0.75);
+                        glBegin(GL_QUADS);
+                        glNormal3f(0,0,1);
+                        glVertex3f(0.0f, 0.70f, -0.4f);
+                        glVertex3f(0.6f, 0.70f, -0.4f);
+                        glVertex3f(0.6f, 0.4f, 0.2f);
+                        glVertex3f(0.0f, 0.4f, 0.2f);
+                        glEnd();
+                glPopMatrix();
+
+            glPopMatrix();
+
+
+            glPushMatrix();
+                glRotated(180,0,1,0);
+                glTranslated(-0.6,0,0);
+                //Wheel up
+                glPushMatrix();
+                    glTranslated(0.6,-2.4,0);
+                    glRotated(90,0,1,0);
+                    glColor3f(0.1f,0.1f,0.1f);
+                    GLUquadricObj *quadratic3;
+                    quadratic3 = gluNewQuadric();
+                    gluCylinder(quadratic3, 0.3f, 0.3f, 0.3, 80, 80);
+
+                    //Draw Circle
+                    glColor3f(0.2f,0.2f,0.2f);
+                    glBegin(GL_POLYGON);
+                        for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
+                            glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
+                    glEnd();
+                glPopMatrix();
+
+                //Wheel bottom
+                glPushMatrix();
+                    glTranslated(0.6,-3.1,0);
+                    glRotated(90,0,1,0);
+                    glColor3f(0.1f,0.1f,0.1f);
+                    GLUquadricObj *quadratic4;
+                    quadratic4 = gluNewQuadric();
+                    gluCylinder(quadratic4, 0.3f, 0.3f, 0.3, 80, 80);
+
+                    //Draw Circle
+                    glColor3f(0.2f,0.2f,0.2f);
+                    glBegin(GL_POLYGON);
+                        for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
+                            glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
+                    glEnd();
+                glPopMatrix();
+            glPopMatrix();
+        glPopMatrix();
+    glPopMatrix();
+
+    /***************LEGS****************/
 
 
 	/* On swap (�change) les buffers, c�d, on fait passer l'image calcul�e et dessin�e
@@ -1040,14 +1074,43 @@ void mouseMove(int x, int y) {
 
 void walk(){
 
-    if(rotateRightLeg >= -45)
-        rotateRightLeg--;
-        else
+    //Avancer jambes
+    if(rotateRightLegLimit == 0){
+        //Rotation jambes
+        rotateRightLeg -= 2;
+        rotateLeftLeg += 2;
 
-            rotateRightLeg++;
+        //Rotation genoux
+        if(rotateRightLeg <= -20 ){
+            rotateRightKnee += 2;
+        }
+        if(rotateLeftLeg <= -20 ){
+            rotateLeftKnee -= 2;
+        }
 
+    }
 
-     //rotateRightLeg--;
+    if (rotateRightLeg <= -45 )
+        rotateRightLegLimit = 1;
+
+    //Reculer jambes
+    if(rotateRightLegLimit == 1){
+        //Rotation jambes
+        rotateRightLeg += 2;
+        rotateLeftLeg -= 2;
+
+        //Rotation genoux
+        if(rotateRightLeg >= 20){
+            rotateRightKnee -= 2;
+        }
+        if(rotateLeftLeg >= 20){
+            rotateLeftKnee += 2;
+        }
+    }
+
+    if (rotateRightLeg >= 45 )
+        rotateRightLegLimit =0;
+
     glutPostRedisplay();
-    glutTimerFunc(10,update, 0);
+    //glutTimerFunc(10,update, 0);
 }
