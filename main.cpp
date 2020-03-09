@@ -45,6 +45,10 @@ float radius = 0.25;
 float lx = 0.0;
 float ly = 0.0;
 float lz = 0.0;
+float dabRightArm = 0;
+float dabLeftArm = 0;
+float normalArms[2] = {90, 30};
+short myBool = 0;
 
 /* prototypes de fonctions */
 void initRendering();                           // Initialisation du rendu
@@ -66,6 +70,8 @@ void createChest();
 void createHexagone();
 void createRightArm();
 void createLeftArm();
+void dab();
+void getNormalArms();
 float* vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9);
 void mouseMove(int x, int y);
 
@@ -236,6 +242,16 @@ void keyboard(unsigned char key, int x, int y) {
 
             case 'j':   /* son */
 			    sound();
+            break;
+
+            case 'b':
+                if (dabLeftArm < 90)
+                    dab();
+            break;
+
+            case 'n':
+                if (normalArms[0] < 90)
+                    getNormalArms();
             break;
 
 			case 'q':   /* Quitter le programme */
@@ -699,13 +715,18 @@ void createRightArm() {
     //Right Shoulder
     glPushMatrix();
         glTranslatef(0.75, 0.25, 0);
+
+        glPushMatrix();
+            glScalef(0.3, 0.2, 0.2);
+            createCube();
+        glPopMatrix();
+
+        glTranslatef(0.3, 0, 0);
         glutSolidSphere(radius, 255, 255);
-    glPopMatrix();
 
     // Right Arm
-    glPushMatrix();
-        glTranslatef(0.75, 0.25, 0);
-        glRotatef(20, 0, 0, 1);
+        glRotatef(dabRightArm, 0, 0, 1);
+        glRotatef(normalArms[0], 0, 0, -1);
         glPushMatrix();
             glTranslatef(0.375, 0, 0);
             glScalef(0.75, 0.5, 0.5);
@@ -713,22 +734,27 @@ void createRightArm() {
         glPopMatrix();
 
     // Right Elbow
+        glTranslatef(0.125, 0, 0);
         glPushMatrix();
             glColor3f(1, 1, 1);
             glTranslatef(0.75, 0, 0);
             glutSolidSphere(radius, 255, 255);
         glPopMatrix();
 
+        glTranslatef(0.75, 0, 0);
+        glRotatef(normalArms[1], 0, -1, 0);
+        glTranslatef(-0.75, 0, 0);
+
     //Right Forearm
         glPushMatrix();
-            glTranslatef(1.125, 0, 0);
+            glTranslatef(1.25, 0, 0);
             glScalef(0.75, 0.5, 0.5);
             createCube();
         glPopMatrix();
 
     //Right Sword
         glPushMatrix();
-            glTranslatef(1.25, -0.05, 0);
+            glTranslatef(1.625, -0.05, 0);
             glPushMatrix();
                 glBegin(GL_QUADS);
                     glVertex3f(0, 0, -0.15);
@@ -783,20 +809,35 @@ void createLeftArm() {
     //Left Shoulder
     glPushMatrix();
         glTranslatef(-0.75, 0.25, 0);
+
+        glPushMatrix();
+            glScalef(0.3, 0.2, 0.2);
+            createCube();
+        glPopMatrix();
+
+        glTranslatef(-0.3, 0, 0);
         glutSolidSphere(radius, 255, 255);
     glPopMatrix();
 
+
     //Left Arm
+    glTranslatef(-0.3, 0, 0);
     glPushMatrix();
         glTranslatef(-0.75, 0.25, 0);
-        glRotatef(90, 0, -1, 0);
+        glRotatef(dabLeftArm, 0, -1, 0);
+        glRotatef(normalArms[0], 0, 0, -1);
         glPushMatrix();
             glTranslatef(0.375, 0, 0);
             glScalef(0.75, 0.5, 0.5);
             createCube();
         glPopMatrix();
 
+        glTranslatef(0.75, 0, 0);
+        glRotatef(normalArms[1], 0, -1, 0);
+        glTranslatef(-0.75, 0, 0);
+
     //Left Elbow
+        glTranslatef(0.125, 0, 0);
         glPushMatrix();
             glColor3f(1, 1, 1);
             glTranslatef(0.75, 0, 0);
@@ -805,8 +846,8 @@ void createLeftArm() {
 
     //Left Forearm
         glPushMatrix();
-            glTranslatef(0.75, 0, 0);
-            //glRotatef(90, 0, 2.5, 1);
+            glTranslatef(0.875, 0, 0);
+            glRotatef(dabLeftArm, 0, 2.5, 1);
             glPushMatrix();
                 glTranslatef(0.375, 0, 0);
                 glScalef(0.75, 0.5, 0.5);
@@ -817,21 +858,30 @@ void createLeftArm() {
             glPushMatrix();
                 glTranslatef(0.75, 0, 0);
                 glBegin(GL_QUADS);
+
+                    normal = vectorProduct(0, 0, -0.15, 1.5, 0, -0.15, 0, 0.1, 0);
+                    glNormal3f(normal[0], normal[1], normal[2]);
                     glVertex3f(0, 0, -0.15);
                     glVertex3f(1.5, 0, -0.15);
                     glVertex3f(1.5, 0.1, 0);
                     glVertex3f(0, 0.1, 0);
 
+                    normal = vectorProduct(0, -0.1, 0, 1.5, -0.1, 0, 0, 0, -0.15);
+                    glNormal3f(normal[0], -normal[1], -normal[2]);
                     glVertex3f(0, 0, -0.15);
                     glVertex3f(1.5, 0, -0.15);
                     glVertex3f(1.5, -0.1, 0);
                     glVertex3f(0, -0.1, 0);
 
+                    normal = vectorProduct(0, 0, 0.15, 1.5, 0, 0.15, 0, 0.1, 0);
+                    glNormal3f(normal[0], normal[1], normal[2]);
                     glVertex3f(0, 0, 0.15);
                     glVertex3f(1.5, 0, 0.15);
                     glVertex3f(1.5, 0.1, 0);
                     glVertex3f(0, 0.1, 0);
 
+                    normal = vectorProduct(0, -0.1, 0, 1.5, -0.1, 0, 0, 0, 0.15);
+                    glNormal3f(normal[0], -normal[1], -normal[2]);
                     glVertex3f(0, 0, 0.15);
                     glVertex3f(1.5, 0, 0.15);
                     glVertex3f(1.5, -0.1, 0);
@@ -842,18 +892,27 @@ void createLeftArm() {
                 glPushMatrix();
                     glTranslatef(1.5, 0, 0);
                     glBegin(GL_TRIANGLES);
+
+                        normal = vectorProduct(0, 0, 0.15, 0.5, 0, 0, 0, 0.1, 0);
+                        glNormal3f(normal[0], normal[1], normal[2]);
                         glVertex3f(0, 0, 0.15);
                         glVertex3f(0.5, 0, 0);
                         glVertex3f(0, 0.1, 0);
 
+                        normal = vectorProduct(0, -0.1, 0, 0.5, 0, 0, 0, 0, 0.15);
+                        glNormal3f(normal[0], normal[1], normal[2]);
                         glVertex3f(0, 0, 0.15);
                         glVertex3f(0.5, 0, 0);
                         glVertex3f(0, -0.1, 0);
 
+                        normal = vectorProduct(0, 0, -0.15, 0, 0.1, 0, 0.5, 0, 0);
+                        glNormal3f(normal[0], normal[1], normal[2]);
                         glVertex3f(0, 0, -0.15);
                         glVertex3f(0.5, 0, 0);
                         glVertex3f(0, 0.1, 0);
 
+                        normal = vectorProduct(0, -0.1, 0, 0.5, 0, 0, 0, 0, -0.15);
+                        glNormal3f(normal[0], normal[1], normal[2]);
                         glVertex3f(0, 0, -0.15);
                         glVertex3f(0.5, 0, 0);
                         glVertex3f(0, -0.1, 0);
@@ -862,4 +921,20 @@ void createLeftArm() {
             glPopMatrix();
         glPopMatrix();
     glPopMatrix();
+}
+
+void dab() {
+    dabLeftArm += 1.8;
+    dabRightArm += 0.4;
+
+    normalArms[0] -= 1.8;
+    normalArms[1] -= 0.4;
+}
+
+void getNormalArms() {
+    dabLeftArm -= 1.8;
+    dabRightArm -= 0.4;
+
+    normalArms[0] += 1.8;
+    normalArms[1] += 0.6;
 }
