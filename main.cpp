@@ -191,76 +191,9 @@ void display(){
         createLeftArm();
     glPopMatrix();
 
-
-
-    //Back
-    normal = vectorProduct(-0.5f, -0.9f, -0.4f, 0.5f, -0.9f, -0.4f, -0.5f, -0.5f, -0.4f);
-    glNormal3f(normal[0], normal[1], -normal[2]);
-    glVertex3f(-0.5f, -0.9f, -0.4f);
-    glVertex3f(0.5f, -0.9f, -0.4f);
-    glVertex3f(0.5f, -0.5f, -0.4f);
-    glVertex3f(-0.5f, -0.5f, -0.4f);
-
-    //Front right
-    normal = vectorProduct(0.5f, -0.9f, 0.5f, 0.7f, -0.9f, 0.0f, 0.5f, -0.5f, 0.5f);
-    glNormal3f(normal[0], normal[1], normal[2]);
-    glVertex3f(0.5f, -0.9f, 0.5f);
-    glVertex3f(0.7f, -0.9f, 0.0f);
-    glVertex3f(0.7f, -0.5f, 0.0f);
-    glVertex3f(0.5f, -0.5f, 0.5f);
-
-    //Back right
-    normal = vectorProduct(0.5f, -0.9f, -0.4f, 0.7f, -0.9f, 0.0f, 0.5f, -0.5f, -0.4f);
-    glNormal3f(-normal[0], normal[1], -normal[2]);
-    glVertex3f(0.5f, -0.9f, -0.4f);
-    glVertex3f(0.7f, -0.9f, 0.0f);
-    glVertex3f(0.7f, -0.5f, 0.0f);
-    glVertex3f(0.5f, -0.5f, -0.4f);
-
-    //Back left
-    normal = vectorProduct(-0.5f, -0.9f, -0.4f, -0.7f, -0.9f, 0.0f, -0.5f, -0.5f, -0.4f);
-    glNormal3f(normal[0], normal[1], normal[2]);
-    glVertex3f(-0.5f, -0.9f, -0.4f);
-    glVertex3f(-0.7f, -0.9f, 0.0f);
-    glVertex3f(-0.7f, -0.5f, 0.0f);
-    glVertex3f(-0.5f, -0.5f, -0.4f);
-
-    //Front left
-    normal = vectorProduct(-0.5f, -0.9f, 0.5f, -0.7f, -0.9f, 0.0f, -0.5f, -0.5f, 0.5f);
-    glNormal3f(normal[0], normal[1], normal[2]);
-    glVertex3f(-0.5f, -0.9f, 0.5f);
-    glVertex3f(-0.7f, -0.9f, 0.0f);
-    glVertex3f(-0.7f, -0.5f, 0.0f);
-    glVertex3f(-0.5f, -0.5f, 0.5f);
-
-    glEnd();
-    glPopMatrix();
-
-    glEnd();
-    glPopMatrix();
-
-    //Right arm
     glPushMatrix();
-        glPushMatrix();
-            glTranslatef(1.125, 0.25, 0);
-            glScalef(0.75, 0.5, 0.5);
-            createCube();
-        glPopMatrix();
-
-        glPushMatrix();
-            glColor3f(1, 1, 1);
-            glTranslatef(1.5, 0.25, 0);
-            glutSolidSphere(radius, 255, 255);
-        glPopMatrix();
-
-        glPushMatrix();
-            glTranslatef(1.875, 0.25, 0);
-            glScalef(0.75, 0.5, 0.5);
-            createCube();
-        glPopMatrix();
+        createHead();
     glPopMatrix();
-
-    createHead();
 
 	/* On swap (�change) les buffers, c�d, on fait passer l'image calcul�e et dessin�e
 	dans le back buffer au buffer qui va l'afficher: le front buffer (en g�n�ral), c'est le bouble buffering
