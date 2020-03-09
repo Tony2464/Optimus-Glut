@@ -62,6 +62,8 @@ void SpecialInput(int key, int x, int y);
 void createCube();
 float* vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9);
 void mouseMove(int x, int y);
+void setlight();
+void setmaterial();
 
 
 /* Programme principal */
@@ -147,6 +149,8 @@ void display(){
 	/* A vous de jouer */
 
 
+    //setlight();
+    //setmaterial();
 
     //Top of the chest
     glPushMatrix();
@@ -737,6 +741,35 @@ void update(int value){
 
 
 }
+
+void setlight(){
+            //here you set the lights and parameters, example with one light
+            float LightAmbient[] = { 0.1f, 0.1f, 0.05f, 1.0f };
+            float LightEmission[] = { 1.0f, 1.0f, 0.8f, 1.0f };
+            float LightDiffuse[] = { 1.0f, 1.0f, 0.8f, 1.0f };
+            float LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+            float LightDirection[]={-0.5f, -0.5f, -0.5f};
+            glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
+            glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
+            glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular);
+            glLightfv(GL_LIGHT0, GL_POSITION, LightDirection);
+            glEnable(GL_LIGHTING);
+            glEnable(GL_LIGHT0);
+    }
+
+    void setmaterial(){
+            //here you set materials, you must declare each one of the colors global or locally like this:
+            float MatAmbient[] = { 0.1f, 0.1f, 0.1f, 1.0f };
+            float MatDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+            float MatSpecular[] = { 0.1f, 0.1f, 0.0f, 0.1f };
+            float MatShininess = 60;
+            float color[] = {0.0f,0.0f,0.0f,1.0f};
+            glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
+            glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
+            glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
+            glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, MatShininess);
+            glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, color);
+    }
 
 /* Fonction de gestion du clavier */
 void keyboard(unsigned char key, int x, int y) {
