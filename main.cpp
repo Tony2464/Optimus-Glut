@@ -31,7 +31,7 @@ float angle = 0.0;
 float angleL2 = 0.0;
 float cameraAngle = 10.0;
 int way = 0;
-float r = 8;//Rayon, Distance entre la camera et l'objet
+float r = 6;//Rayon, Distance entre la camera et l'objet
 float phi = 0;//Angle de rotation verticale de la camera
 float alpha = 0;//Angle de rotation horizontale de la camera
 float xCam = 0, yCam = 0, zCam = 0;//Coordonnees de la camera
@@ -170,7 +170,7 @@ void display(){
 	/* A vous de jouer */
 
 
-    //setlight();
+    setlight();
     //setmaterial();
 
     //Top of the chest
@@ -211,7 +211,7 @@ void display(){
     glPopMatrix();
 
     glPushMatrix();
-        setmaterial(3);
+        setmaterial(5);
         createPelvis();
         glutPostRedisplay();
     glPopMatrix();
@@ -263,19 +263,40 @@ void setlight(){
     float LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float LightDirection[]={-0.5f, -0.5f, -0.5f};
 
-    float lightPos[] = {2, 2, 2, 1};
-    float lightColor[] = {1, 0, 0};
+    float lightPos1[] = {-2, 0, -2, 1};
+    float lightColor1[] = {1, 1, 1};
 
-    glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor);
-    glLightfv(GL_LIGHT1, GL_POSITION, lightPos);
+    float lightPos2[] = {2, 0, -2, 1};
+    float lightColor2[] = {1, 1, 1};
+
+    float lightPos3[] = {2, 0, 2, 1};
+    float lightColor3[] = {1, 1, 1};
+
+    float lightPos4[] = {-2, 0, 2, 1};
+    float lightColor4[] = {1, 1, 1};
+
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);
+    glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
     glEnable(GL_LIGHT1);
+
+    glLightfv(GL_LIGHT2, GL_DIFFUSE, lightColor2);
+    glLightfv(GL_LIGHT2, GL_POSITION, lightPos2);
+    glEnable(GL_LIGHT2);
+
+    glLightfv(GL_LIGHT3, GL_DIFFUSE, lightColor3);
+    glLightfv(GL_LIGHT3, GL_POSITION, lightPos3);
+    glEnable(GL_LIGHT3);
+
+    glLightfv(GL_LIGHT4, GL_DIFFUSE, lightColor4);
+    glLightfv(GL_LIGHT4, GL_POSITION, lightPos4);
+    glEnable(GL_LIGHT4);
 
     glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
     glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular);
     glLightfv(GL_LIGHT0, GL_POSITION, LightDirection);
     glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
+    //glEnable(GL_LIGHT0);
 }
 
 void setmaterial(int mode){
@@ -283,14 +304,14 @@ void setmaterial(int mode){
     float MatAmbient[] = { 0.1f, 0.1f, 0.1f, 1.0f };
     float MatDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float MatSpecular[] = { 0.1f, 0.1f, 0.0f, 0.1f };
-    float MatShininess = 60;
+    float MatShininess = 10;
     float color[] = {1.0f,0.0f,0.0f,1.0f};
-    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
-    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, MatShininess);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, color);
-    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
+//    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
+//    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
+//    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
+//    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, MatShininess);
+//    glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, color);
+//    glColorMaterial(GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE);
     glEnable(GL_COLOR_MATERIAL);
 
 
@@ -317,7 +338,7 @@ void setmaterial(int mode){
         break;
 
     case 6 :
-        glColor3f(0.2f, 0.2f, 0.2f);
+        glColor3f(0.6f, 0.2f, 0.2f);
         break;
 
     case 7 :
@@ -325,7 +346,7 @@ void setmaterial(int mode){
         break;
 
     case 8 :
-        glColor3f(0.2f, 0.2f, 0.2f);
+        glColor3f(0.7f, 0.7f, 0.7f);
         break;
     }
 
@@ -847,31 +868,31 @@ void createHead(){
 void mouseMove(int x, int y) {
     if (x > 250) {
         if (xCam >= 1.5 && lz > -1.5) {
-            lz -= 0.01;
+            lz -= 0.03;
         }
         if (xCam < 1.5 && lz < 1.5) {
-            lz += 0.01;
+            lz += 0.03;
         }
         if (zCam >= 1.5 && lx < 1.5) {
-            lx += 0.01;
+            lx += 0.03;
         }
         if (zCam <= 1.5 && lx > -1.5) {
-            lx -= 0.01;
+            lx -= 0.03;
         }
     }
 
     if (x < 250) {
-        if (xCam >= 1.5 && lz < 1) {
-            lz += 0.01;
+        if (xCam >= 1.5 && lz < 1.5) {
+            lz += 0.03;
         }
-        if (xCam < 1.5 && lz > -1) {
-            lz -= 0.01;
+        if (xCam < 1.5 && lz > -1.5) {
+            lz -= 0.03;
         }
-        if (zCam >= 1.5 && lx > -1) {
-            lx -= 0.01;
+        if (zCam >= 1.5 && lx > -1.5) {
+            lx -= 0.03;
         }
-        if (zCam <= 1.5 && lx < 1) {
-            lx += 0.01;
+        if (zCam <= 1.5 && lx < 1.5) {
+            lx += 0.03;
         }
     }
 
@@ -1142,6 +1163,7 @@ void createRightArm() {
 
     //Right Shoulder
     glPushMatrix();
+        setmaterial(3);
         glTranslatef(0.75, 0.25, 0);
 
         glPushMatrix();
@@ -1156,6 +1178,7 @@ void createRightArm() {
         glRotatef(dabRightArm, 0, 0, 1);
         glRotatef(normalArms[0], 0, 0, -1);
         glPushMatrix();
+            setmaterial(6);
             glTranslatef(0.375, 0, 0);
             glScalef(0.75, 0.5, 0.5);
             createCube();
@@ -1164,6 +1187,7 @@ void createRightArm() {
     // Right Elbow
         glTranslatef(0.125, 0, 0);
         glPushMatrix();
+            setmaterial(3);
             glTranslatef(0.75, 0, 0);
             glutSolidSphere(radius, 255, 255);
         glPopMatrix();
@@ -1174,31 +1198,41 @@ void createRightArm() {
 
     //Right Forearm
         glPushMatrix();
+            setmaterial(6);
             glTranslatef(1.25, 0, 0);
             glScalef(0.75, 0.5, 0.5);
             createCube();
         glPopMatrix();
 
     //Right Sword
+        setmaterial(8);
         glPushMatrix();
             glTranslatef(1.625, -0.05, 0);
             glPushMatrix();
                 glBegin(GL_QUADS);
+                    normal = vectorProduct(0, 0, -0.15, 1.5, 0, -0.15, 0, 0.1, 0);
+                    glNormal3f(normal[0], normal[1], normal[2]);
                     glVertex3f(0, 0, -0.15);
                     glVertex3f(1.5, 0, -0.15);
                     glVertex3f(1.5, 0.1, 0);
                     glVertex3f(0, 0.1, 0);
 
+                    normal = vectorProduct(0, -0.1, 0, 1.5, -0.1, 0, 0, 0, -0.15);
+                    glNormal3f(normal[0], -normal[1], -normal[2]);
                     glVertex3f(0, 0, -0.15);
                     glVertex3f(1.5, 0, -0.15);
                     glVertex3f(1.5, -0.1, 0);
                     glVertex3f(0, -0.1, 0);
 
+                    normal = vectorProduct(0, 0, 0.15, 1.5, 0, 0.15, 0, 0.1, 0);
+                    glNormal3f(normal[0], normal[1], normal[2]);
                     glVertex3f(0, 0, 0.15);
                     glVertex3f(1.5, 0, 0.15);
                     glVertex3f(1.5, 0.1, 0);
                     glVertex3f(0, 0.1, 0);
 
+                    normal = vectorProduct(0, -0.1, 0, 0.5, 0, 0, 0, 0, -0.15);
+                    glNormal3f(normal[0], normal[1], normal[2]);
                     glVertex3f(0, 0, 0.15);
                     glVertex3f(1.5, 0, 0.15);
                     glVertex3f(1.5, -0.1, 0);
@@ -1210,18 +1244,26 @@ void createRightArm() {
             glPushMatrix();
             glTranslatef(1.5, 0, 0);
                 glBegin(GL_TRIANGLES);
+                    normal = vectorProduct(0, 0, 0.15, 0.5, 0, 0, 0, 0.1, 0);
+                    glNormal3f(normal[0], normal[1], normal[2]);
                     glVertex3f(0, 0, 0.15);
                     glVertex3f(0.5, 0, 0);
                     glVertex3f(0, 0.1, 0);
 
+                    normal = vectorProduct(0, -0.1, 0, 0.5, 0, 0, 0, 0, 0.15);
+                    glNormal3f(normal[0], normal[1], normal[2]);
                     glVertex3f(0, 0, 0.15);
                     glVertex3f(0.5, 0, 0);
                     glVertex3f(0, -0.1, 0);
 
+                    normal = vectorProduct(0, 0, -0.15, 0, 0.1, 0, 0.5, 0, 0);
+                    glNormal3f(normal[0], normal[1], normal[2]);
                     glVertex3f(0, 0, -0.15);
                     glVertex3f(0.5, 0, 0);
                     glVertex3f(0, 0.1, 0);
 
+                    normal = vectorProduct(0, -0.1, 0, 0.5, 0, 0, 0, 0, -0.15);
+                    glNormal3f(normal[0], normal[1], normal[2]);
                     glVertex3f(0, 0, -0.15);
                     glVertex3f(0.5, 0, 0);
                     glVertex3f(0, -0.1, 0);
@@ -1235,6 +1277,7 @@ void createLeftArm() {
 
     //Left Shoulder
     glPushMatrix();
+        setmaterial(3);
         glTranslatef(-0.75, 0.25, 0);
 
         glPushMatrix();
@@ -1249,6 +1292,7 @@ void createLeftArm() {
 
     //Left Arm
     glTranslatef(-0.3, 0, 0);
+    setmaterial(6);
     glPushMatrix();
         glTranslatef(-0.75, 0.25, 0);
         glRotatef(dabLeftArm, 0, -1, 0);
@@ -1266,13 +1310,15 @@ void createLeftArm() {
     //Left Elbow
         glTranslatef(0.125, 0, 0);
         glPushMatrix();
-            glTranslatef(0.75, 0, 0);
+            setmaterial(3);
+            glTranslatef(0.75, 0, -0.05);
             glutSolidSphere(radius, 255, 255);
         glPopMatrix();
 
     //Left Forearm
         glPushMatrix();
-            glTranslatef(0.875, 0, 0);
+            setmaterial(6);
+            glTranslatef(0.875, 0, -0.05);
             glRotatef(dabLeftArm, 0, 2.5, 1);
             glPushMatrix();
                 glTranslatef(0.375, 0, 0);
@@ -1282,6 +1328,7 @@ void createLeftArm() {
 
     //Left Sword
             glPushMatrix();
+                setmaterial(8);
                 glTranslatef(0.75, 0, 0);
                 glBegin(GL_QUADS);
 
@@ -1542,7 +1589,7 @@ void createLegs(){
     /**************right leg**************/
     glPushMatrix();
         glTranslatef(0.1, -0.1, 0);
-
+            setmaterial(3);
             glTranslatef(0, -1.0, 0);
             glRotated(rotateRightLeg, 1, 0, 0);
             glTranslatef(0, 1.0, 0);
@@ -1562,6 +1609,7 @@ void createLegs(){
 
         //Calf
         glPushMatrix();
+            setmaterial(2);
             glTranslatef(0, -2.0, 0);
             glRotated(rotateRightKnee, 1, 0, 0);
             glTranslatef(0, 2.0, 0);
@@ -1578,7 +1626,7 @@ void createLegs(){
                 glPushMatrix();
                     glTranslatef(0.0, -3.45, 0.75);
                         glBegin(GL_QUADS);
-                        glNormal3f(0,-1,0);
+                        glNormal3f(0, -1, 0);
                         glVertex3f(0.0f, 0.0f, -0.4f);
                         glVertex3f(0.0f, 0.0f, 0.2f);
                         glVertex3f(0.0f, 0.4f, 0.2f);
@@ -1589,7 +1637,7 @@ void createLegs(){
                 glPushMatrix();
                     glTranslatef(0.6, -3.45, 0.75);
                         glBegin(GL_QUADS);
-                        glNormal3f(0,1,0);
+                        glNormal3f(0, 1, 0);
                         glVertex3f(0.0f, 0.0f, -0.4f);
                         glVertex3f(0.0f, 0.0f, 0.2f);
                         glVertex3f(0.0f, 0.4f, 0.2f);
@@ -1613,10 +1661,10 @@ void createLegs(){
                 glPushMatrix();
                     glTranslatef(0.0, -3.45, 0.75);
                         glBegin(GL_QUADS);
-                        normal = vectorProduct(0.0f, 0.70f, -0.4f, 0.6f, 0.70f, -0.4f, 0.0f, 0.4f, 0.2f);
+                        normal = vectorProduct(0.0f, 0.4f, 0.2f, 0.6f, 0.4f, 0.2f, 0.0f, 0.7f, -0.4f);
                         glNormal3f(normal[0], normal[1], normal[2]);
-                        glVertex3f(0.0f, 0.70f, -0.4f);
-                        glVertex3f(0.6f, 0.70f, -0.4f);
+                        glVertex3f(0.0f, 0.7f, -0.4f);
+                        glVertex3f(0.6f, 0.7f, -0.4f);
                         glVertex3f(0.6f, 0.4f, 0.2f);
                         glVertex3f(0.0f, 0.4f, 0.2f);
                         glEnd();
@@ -1663,8 +1711,8 @@ void createLegs(){
     /*********************left leg**************/
     glPushMatrix();
         glTranslatef(-0.7, -0.1, 0);
-
-         glTranslatef(0, -1.0, 0);
+        setmaterial(3);
+        glTranslatef(0, -1.0, 0);
             glRotated(rotateLeftLeg, 1, 0, 0);
             glTranslatef(0, 1.0, 0);
         //Thigh
@@ -1683,6 +1731,7 @@ void createLegs(){
 
         //Calf
         glPushMatrix();
+            setmaterial(2);
             glTranslatef(0, -2.0, 0);
             glRotated(rotateLeftKnee, 1, 0, 0);
             glTranslatef(0, 2.0, 0);
@@ -1734,10 +1783,10 @@ void createLegs(){
                 glPushMatrix();
                     glTranslatef(0.0, -3.45, 0.75);
                         glBegin(GL_QUADS);
-                        normal = vectorProduct(0.0f, 0.70f, -0.4f, 0.6f, 0.70f, -0.4f, 0.0f, 0.4f, 0.2f);
+                        normal = vectorProduct(0.0f, 0.4f, 0.2f, 0.6f, 0.4f, 0.2f, 0.0f, 0.7f, -0.4f);
                         glNormal3f(normal[0], normal[1], normal[2]);
-                        glVertex3f(0.0f, 0.70f, -0.4f);
-                        glVertex3f(0.6f, 0.70f, -0.4f);
+                        glVertex3f(0.0f, 0.7f, -0.4f);
+                        glVertex3f(0.6f, 0.7f, -0.4f);
                         glVertex3f(0.6f, 0.4f, 0.2f);
                         glVertex3f(0.0f, 0.4f, 0.2f);
                         glEnd();
