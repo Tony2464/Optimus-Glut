@@ -435,6 +435,7 @@ void display(){
     glPushMatrix();
         glBegin(GL_POLYGON);
         glColor3f(0.2f, 0.2f, 0.8f);
+        glNormal3f(0.0f,1.0f,0.0f);
 
         glVertex3f(0.0f, 0.95f, 0.4f);
         glVertex3f(0.3f, 0.95f, 0.3f);
@@ -448,6 +449,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        normal = vectorProduct(0.0f, 0.5f, 0.4f, 0.3f, 0.5f, 0.3f, 0.0f, 0.95f, 0.4f);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(0.0f, 0.95f, 0.4f);
         glVertex3f(0.0f, 0.5f, 0.4f);
@@ -458,6 +461,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        normal = vectorProduct(0.0f, 0.5f, 0.4f, -0.3f, 0.5f, 0.3f, 0.0f, 0.95f, 0.4f);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(0.0f, 0.95f, 0.4f);
         glVertex3f(0.0f, 0.5f, 0.4f);
@@ -468,6 +473,7 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        glNormal3f(-1, 0, 0);
 
         glVertex3f(-0.3f, 0.95f, 0.0f);
         glVertex3f(-0.3f, 0.5f, 0.0f);
@@ -478,6 +484,7 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        glNormal3f(1, 0, 0);
 
         glVertex3f(0.3f, 0.95f, 0.0f);
         glVertex3f(0.3f, 0.5f, 0.0f);
@@ -488,6 +495,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        normal = vectorProduct(-0.15f, 0.5f, -0.3f, -0.3f, 0.5f, 0.0f, -0.15f, 0.95f, -0.3f);
+        glNormal3f(-normal[0], normal[1], -normal[2]);
 
         glVertex3f(-0.15f, 0.5f, -0.3f);
         glVertex3f(-0.15f, 0.95f, -0.3f);
@@ -498,6 +507,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        normal = vectorProduct(0.3f, 0.5f, 0.0f, 0.15f, 0.5f, -0.3f, 0.3f, 0.95f, 0.0f);
+        glNormal3f(normal[0], normal[1], -normal[2]);
 
         glVertex3f(0.15f, 0.5f, -0.3f);
         glVertex3f(0.15f, 0.95f, -0.3f);
@@ -508,6 +519,7 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        glNormal3f(0.0f,0.0f,-1.0f);
 
         glVertex3f(0.15f, 0.5f, -0.3f);
         glVertex3f(0.15f, 0.95f, -0.3f);
@@ -518,6 +530,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        normal = vectorProduct(0.3f, 0.5f, 0.2f, 0.4f, 0.5f, 0.2f, 0.3f, 0.75f, 0.2f);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(0.3f, 0.5f, 0.2f);
         glVertex3f(0.4f, 0.5f, 0.2f);
@@ -528,6 +542,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        normal = vectorProduct(0.4f, 0.5f, 0.1f, 0.3f, 0.5f, 0.1f, 0.4f, 0.75f, 0.1f);
+        glNormal3f(normal[0], normal[1], -normal[2]);
 
         glVertex3f(0.3f, 0.5f, 0.1f);
         glVertex3f(0.4f, 0.5f, 0.1f);
@@ -538,6 +554,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        normal = vectorProduct(0.4f, 0.5f, 0.2f, 0.4f, 0.5f, 0.1f, 0.4f, 0.75f, 0.2f);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(0.4f, 0.5f, 0.1f);
         glVertex3f(0.4f, 0.5f, 0.2f);
@@ -548,6 +566,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        normal = vectorProduct(-0.4f, 0.5f, 0.2f, -0.3f, 0.5f, 0.2f, -0.4f, 0.75f, 0.2f);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(-0.3f, 0.5f, 0.2f);
         glVertex3f(-0.4f, 0.5f, 0.2f);
@@ -558,6 +578,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        normal = vectorProduct(-0.3f, 0.5f, 0.1f, -0.4f, 0.5f, 0.1f, -0.3f, 0.75f, 0.1f);
+        glNormal3f(normal[0], normal[1], -normal[2]);
 
         glVertex3f(-0.3f, 0.5f, 0.1f);
         glVertex3f(-0.4f, 0.5f, 0.1f);
@@ -568,6 +590,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        normal = vectorProduct(-0.4f, 0.5f, 0.1f, -0.4f, 0.5f, 0.2f, -0.4f, 0.75f, 0.1f);
+        glNormal3f(-normal[0], normal[1], -normal[2]);
 
         glVertex3f(-0.4f, 0.5f, 0.1f);
         glVertex3f(-0.4f, 0.5f, 0.2f);
@@ -578,6 +602,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_TRIANGLES);
+        normal = vectorProduct(-0.4f, 0.75f, 0.2f, -0.3f, 0.75f, 0.2f, -0.3f, 1.1f, 0.15f);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(-0.3f, 0.75f, 0.2f);
         glVertex3f(-0.4f, 0.75f, 0.2f);
@@ -587,6 +613,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_TRIANGLES);
+        normal = vectorProduct(-0.3f, 0.75f, 0.2f, -0.3f, 0.75f, 0.1f, -0.3f, 1.1f, 0.15f);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(-0.3f, 0.75f, 0.1f);
         glVertex3f(-0.3f, 0.75f, 0.2f);
@@ -596,6 +624,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_TRIANGLES);
+        normal = vectorProduct(-0.4f, 0.75f, 0.1f, -0.4f, 0.75f, 0.2f, -0.3f, 1.1f, 0.15f);
+        glNormal3f(-normal[0], normal[1], normal[2]);
 
         glVertex3f(-0.4f, 0.75f, 0.1f);
         glVertex3f(-0.4f, 0.75f, 0.2f);
@@ -605,8 +635,10 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_TRIANGLES);
+        normal = vectorProduct(-0.3f, 0.75f, 0.1f, -0.4f, 0.75f, 0.1f, -0.3f, 1.1f, 0.15f);
+        glNormal3f(-normal[0], normal[1], -normal[2]);
 
-        glVertex3f(-0.4f, 0.75f, 0.1f);
+        glVertex3f(-0.3f, 0.75f, 0.1f);
         glVertex3f(-0.4f, 0.75f, 0.1f);
         glVertex3f(-0.3f, 1.1f, 0.15f);
 
@@ -615,6 +647,8 @@ void display(){
     //
     glPushMatrix();
         glBegin(GL_TRIANGLES);
+        normal = vectorProduct(0.3f, 0.75f, 0.2f, 0.4f, 0.75f, 0.2f, 0.3f, 1.1f, 0.15f);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(0.3f, 0.75f, 0.2f);
         glVertex3f(0.4f, 0.75f, 0.2f);
@@ -624,6 +658,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_TRIANGLES);
+        normal = vectorProduct(0.3f, 0.75f, 0.1f, 0.3f, 0.75f, 0.2f, 0.3f, 1.1f, 0.15f);
+        glNormal3f(-normal[0], normal[1], normal[2]);
 
         glVertex3f(0.3f, 0.75f, 0.1f);
         glVertex3f(0.3f, 0.75f, 0.2f);
@@ -633,6 +669,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_TRIANGLES);
+        normal = vectorProduct(0.3f, 0.75f, 0.2f, 0.3f, 0.75f, 0.1f, 0.3f, 1.1f, 0.15f);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(0.4f, 0.75f, 0.1f);
         glVertex3f(0.4f, 0.75f, 0.2f);
@@ -642,8 +680,10 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_TRIANGLES);
+        normal = vectorProduct(0.4f, 0.75f, 0.2f, 0.3f, 0.75f, 0.1f, 0.3f, 1.1f, 0.15f);
+        glNormal3f(normal[0], normal[1], -normal[2]);
 
-        glVertex3f(0.4f, 0.75f, 0.1f);
+        glVertex3f(0.3f, 0.75f, 0.1f);
         glVertex3f(0.4f, 0.75f, 0.1f);
         glVertex3f(0.3f, 1.1f, 0.15f);
 
@@ -651,6 +691,7 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        glNormal3f(0.0f,0.0f,-1.0f);
 
         glVertex3f(-0.1f, 0.95f, -0.2f);
         glVertex3f(-0.05f, 1.0f, -0.2f);
@@ -661,6 +702,7 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        glNormal3f(0.0f,0.0f,1.0f);
 
         glVertex3f(-0.1f, 0.95f, 0.3f);
         glVertex3f(-0.05f, 1.0f, 0.3f);
@@ -671,6 +713,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        normal = vectorProduct(-0.1f, 0.95f, -0.2f, -0.1f, 0.95f, 0.3f, -0.05f, 1.0f, -0.2f);
+        glNormal3f(-normal[0], normal[1], normal[2]);
 
         glVertex3f(-0.1f, 0.95f, -0.2f);
         glVertex3f(-0.05f, 1.0f, -0.2f);
@@ -681,6 +725,8 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        normal = vectorProduct(0.1f, 0.95f, 0.3f, 0.1f, 0.95f, -0.2f, 0.05f, 1.0f, 0.3f);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(0.1f, 0.95f, -0.2f);
         glVertex3f(0.05f, 1.0f, -0.2f);
@@ -691,6 +737,7 @@ void display(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
+        glNormal3f(0.0f,1.0f,0.0f);
 
         glVertex3f(-0.05f, 1.0f, -0.2f);
         glVertex3f(0.05f, 1.0f, -0.2f);
