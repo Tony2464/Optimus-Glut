@@ -700,17 +700,16 @@ void walk(){
     //Avancer jambes
     if(rotateRightLegLimit == 0){
         //Rotation jambes
-        rotateRightLeg -= 2;
-        rotateLeftLeg += 2;
+        rotateRightLeg -= 2;//Avance jambe g
+        rotateLeftLeg += 2;//Recule jambe d
 
         //Rotation genoux
         if(rotateRightLeg <= -20 ){
-            rotateRightKnee += 2;
+            rotateRightKnee += 2;//Recule genou g
         }
         if(rotateLeftLeg <= -20 ){
-            rotateLeftKnee -= 2;
+            rotateLeftKnee -= 2;//Avance genou d
         }
-
     }
 
     if (rotateRightLeg <= -45 )
@@ -719,15 +718,15 @@ void walk(){
     //Reculer jambes
     if(rotateRightLegLimit == 1){
         //Rotation jambes
-        rotateRightLeg += 2;
-        rotateLeftLeg -= 2;
+        rotateRightLeg += 2;//Recule jambe g
+        rotateLeftLeg -= 2;//Avance jambe d
 
         //Rotation genoux
         if(rotateRightLeg >= 20){
-            rotateRightKnee -= 2;
+            rotateRightKnee -= 2;//Avance genou d
         }
         if(rotateLeftLeg >= 20){
-            rotateLeftKnee += 2;
+            rotateLeftKnee += 2;//Recule genou g
         }
     }
 
@@ -735,7 +734,6 @@ void walk(){
         rotateRightLegLimit =0;
 
     glutPostRedisplay();
-    //glutTimerFunc(10,update, 0);
 }
 
 void createPelvis(){
