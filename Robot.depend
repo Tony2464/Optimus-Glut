@@ -85,11 +85,15 @@
 1578947565 c:\mingw\include\msvcrtver.h
 	<_mingw.h>
 
+<<<<<<< HEAD
 1562433050 D
 
 1581774952 c:\mingw\include\features.h
 
 1581774952 s
+=======
+1581774952 c:\mingw\include\features.h
+>>>>>>> legs
 
 1578947565 c:\mingw\include\strings.h
 	<_mingw.h>
@@ -366,7 +370,11 @@
 1578947565 c:\mingw\include\math.h
 	<_mingw.h>
 
+<<<<<<< HEAD
 1583775454 source:c:\users\anthony\desktop\optimus-glut\main.cpp
+=======
+1583772236 source:c:\users\anthony\desktop\optimus-glut\main.cpp
+>>>>>>> legs
 	<windows.h>
 	<GLUT/glut.h>
 	<GL/glut.h>
