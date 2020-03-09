@@ -1,6 +1,6 @@
 
 /*********************************************************/
-/*        Projet Infgraphie : Optimus-Glut               */
+/*        Projet Infographie : Optimus-Glut               */
 /*********************************************************/
 /*													     */
 /* Groupe : Nicolas Fouchard, Steven Ye, Anthony Fargette*/
@@ -64,6 +64,7 @@ float* vectorProduct(float point1, float point2, float point3, float point4, flo
 void mouseMove(int x, int y);
 void setlight();
 void setmaterial();
+void createHead();
 
 
 /* Programme principal */
@@ -431,6 +432,258 @@ void display(){
         glPopMatrix();
     glPopMatrix();
 
+    createHead();
+
+	/* On swap (�change) les buffers, c�d, on fait passer l'image calcul�e et dessin�e
+	dans le back buffer au buffer qui va l'afficher: le front buffer (en g�n�ral), c'est le bouble buffering
+	Cela �vite une image anim�e sacad�e, si elle �tait directement trac�e dans le front buffer*/
+	glutSwapBuffers();
+
+	/* On force l'affichage */
+	glFlush(); // nettoie les fen�tres pr�c�dentes
+}
+
+
+
+/*  Mise en forme de la sc�ne pour l'affichage */
+void reshape(int w,  // w: largeur fen�tre
+			 int h)  // h: hauteur fen�tre
+{
+	/* Viewport: cadrage. Sp�cifie la r�gion (position et taille en px) que l'image observ�e de la sc�ne occupe
+	� l'�cran => r�duction et agrandissement de l'image possible*/
+	glViewport(0, 0,(GLsizei) w, (GLsizei) h);
+
+	/* Sp�cifie que la matrice de projection va �tre modifi�e  */
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();             // matrice courante: l'identit�
+	//glOrtho(-2.0, 2.0, -2.0, 2.0, 1.5, 20.0);
+	//glFrustum(-1.0, 1.0, -1.0, 1.0, 1.5, 20.0);
+
+	/* Perspective avec point de fuite */
+	gluPerspective(60.0,                       // angle d'ouverture vertical cam�ra
+				   (GLfloat) w / (GLfloat) h,  // ratio largeur-hauteur
+				   1.0,						   // plan proche z=1
+				   200.0);                     // plan �loign� z=200
+
+
+}
+
+void update(int value){
+
+
+
+}
+
+void setlight(){
+            //here you set the lights and parameters, example with one light
+            float LightAmbient[] = { 0.1f, 0.1f, 0.05f, 1.0f };
+            float LightEmission[] = { 1.0f, 1.0f, 0.8f, 1.0f };
+            float LightDiffuse[] = { 1.0f, 1.0f, 0.8f, 1.0f };
+            float LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+            float LightDirection[]={-0.5f, -0.5f, -0.5f};
+            glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
+            glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
+            glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular);
+            glLightfv(GL_LIGHT0, GL_POSITION, LightDirection);
+            glEnable(GL_LIGHTING);
+            glEnable(GL_LIGHT0);
+    }
+
+    void setmaterial(){
+            //here you set materials, you must declare each one of the colors global or locally like this:
+            float MatAmbient[] = { 0.1f, 0.1f, 0.1f, 1.0f };
+            float MatDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+            float MatSpecular[] = { 0.1f, 0.1f, 0.0f, 0.1f };
+            float MatShininess = 60;
+            float color[] = {0.0f,0.0f,0.0f,1.0f};
+            glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
+            glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
+            glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
+            glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, MatShininess);
+            glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, color);
+    }
+
+/* Fonction de gestion du clavier */
+void keyboard(unsigned char key, int x, int y) {
+
+		switch (key) {
+
+			case 'z':   /* rotation */
+			    zoom();
+                glutPostRedisplay();
+            break;
+
+            case 'd':   /* rotation */
+			    dezoom();
+                glutPostRedisplay();
+            break;
+
+            case 'j':   /* son */
+			    sound();
+            break;
+
+			case 'q':   /* Quitter le programme */
+				exit(0);
+            break;
+		}
+}
+
+/* Fonction de gestion du clavier pour les fleches */
+void SpecialInput(int key, int x, int y) {
+    switch(key) {
+    case GLUT_KEY_UP:
+        rotateUp();
+        glutPostRedisplay();
+    break;
+
+    case GLUT_KEY_DOWN:
+        rotateDown();
+        glutPostRedisplay();
+    break;
+
+    case GLUT_KEY_LEFT:
+        rotateLeft();
+        glutPostRedisplay();
+    break;
+
+    case GLUT_KEY_RIGHT:
+        rotateRight();
+        glutPostRedisplay();
+    break;
+    }
+}
+
+
+/*Fonctions de rotation et de zoom de la camera*/
+void rotateRight() {
+    alpha += rotateValue;
+}
+
+void rotateLeft() {
+    alpha -= rotateValue;
+}
+
+void rotateUp() {
+    phi += rotateValue;
+        if(phi > M_PI/2 - limitRotate)
+            phi = M_PI/2 - 0.005;
+}
+
+void rotateDown() {
+    phi -= rotateValue;
+        if(phi < - M_PI/2 + limitRotate)
+                phi = - M_PI/2 + 0.005;
+}
+
+void zoom() {
+    r -= zoomValue;
+        if(r < limitZoom)
+            r = limitZoom;
+}
+
+void dezoom() {
+    r += zoomValue;
+}
+
+void sound(){
+
+  FMOD_SYSTEM * sys;
+  FMOD_SOUND * sound;
+  FMOD_RESULT resultat;
+  FMOD_CHANNEL * channel;
+
+  FMOD_System_Create(&sys);
+  FMOD_System_Init(sys, 1, FMOD_INIT_NORMAL, NULL);
+
+  /* On ouvre la musique */
+  resultat = FMOD_System_CreateSound(sys, "../../sounds/jesuisoptimus.mp3", FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM, 0, &sound);
+
+    if (resultat != FMOD_OK)
+  {
+      fprintf(stderr, "Impossible de lire le fichier mp3\n");
+  }
+
+  /* On joue la musique */
+  FMOD_System_PlaySound(sys, FMOD_CHANNEL_FREE, sound, 0, NULL);
+
+  Sleep(4000);
+  FMOD_Sound_Release(sound);
+  FMOD_System_Close(sys);
+
+}
+
+float* vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9) {
+    float vector1[3];
+    float vector2[3];
+    float* normalVector = (float*) malloc(sizeof(float) * 3);
+
+    vector1[0] = point4 - point1;
+    vector1[1] = point5 - point2;
+    vector1[2] = point6 - point3;
+
+    vector2[0] = point7 - point1;
+    vector2[1] = point8 - point2;
+    vector2[2] = point9 - point3;
+
+    *normalVector = vector1[1] * vector2[2] - vector1[2] * vector2[1];
+    *(normalVector + 1) = vector1[2] * vector2[0] - vector1[0] * vector2[2];
+    *(normalVector + 2) = vector1[0] * vector2[1] - vector1[1] * vector2[0];
+
+    return normalVector;
+}
+
+void createCube() {
+    glPushMatrix();
+        glBegin(GL_QUADS);
+
+        glNormal3f(0, 0, 1);
+        //Front
+        glVertex3f(-0.5f, 0.5f, 0.5f);
+        glVertex3f(-0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, 0.5f, 0.5f);
+
+        glNormal3f(1, 0, 0);
+        //Right
+        glVertex3f(0.5f, 0.5f, 0.5f);
+        glVertex3f(0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, -0.5f, -0.5f);
+        glVertex3f(0.5f, 0.5f, -0.5f);
+
+        glNormal3f(0, 0, -1);
+        //Back
+        glVertex3f(-0.5f, 0.5f, -0.5f);
+        glVertex3f(-0.5f, -0.5f, -0.5f);
+        glVertex3f(0.5f, -0.5f, -0.5f);
+        glVertex3f(0.5f, 0.5f, -0.5f);
+
+        glNormal3f(-1, 0, 0);
+        //Left
+        glVertex3f(-0.5f, 0.5f, 0.5f);
+        glVertex3f(-0.5f, -0.5f, 0.5f);
+        glVertex3f(-0.5f, -0.5f, -0.5f);
+        glVertex3f(-0.5f, 0.5f, -0.5f);
+
+        glNormal3f(0, 1, 0);
+        //Up
+        glVertex3f(-0.5f, 0.5f, 0.5f);
+        glVertex3f(0.5f, 0.5f, 0.5f);
+        glVertex3f(0.5f, 0.5f, -0.5f);
+        glVertex3f(-0.5f, 0.5f, -0.5f);
+
+        glNormal3f(0, -1, 0);
+        //Down
+        glVertex3f(-0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, -0.5f, 0.5f);
+        glVertex3f(0.5f, -0.5f, -0.5f);
+        glVertex3f(-0.5f, -0.5f, -0.5f);
+
+        glEnd();
+    glPopMatrix();
+}
+
+void createHead(){
+
     //Head
     glPushMatrix();
         glBegin(GL_POLYGON);
@@ -747,254 +1000,6 @@ void display(){
     glEnd();
     glPopMatrix();
 
-
-
-	/* On swap (�change) les buffers, c�d, on fait passer l'image calcul�e et dessin�e
-	dans le back buffer au buffer qui va l'afficher: le front buffer (en g�n�ral), c'est le bouble buffering
-	Cela �vite une image anim�e sacad�e, si elle �tait directement trac�e dans le front buffer*/
-	glutSwapBuffers();
-
-	/* On force l'affichage */
-	glFlush(); // nettoie les fen�tres pr�c�dentes
-}
-
-
-
-/*  Mise en forme de la sc�ne pour l'affichage */
-void reshape(int w,  // w: largeur fen�tre
-			 int h)  // h: hauteur fen�tre
-{
-	/* Viewport: cadrage. Sp�cifie la r�gion (position et taille en px) que l'image observ�e de la sc�ne occupe
-	� l'�cran => r�duction et agrandissement de l'image possible*/
-	glViewport(0, 0,(GLsizei) w, (GLsizei) h);
-
-	/* Sp�cifie que la matrice de projection va �tre modifi�e  */
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();             // matrice courante: l'identit�
-	//glOrtho(-2.0, 2.0, -2.0, 2.0, 1.5, 20.0);
-	//glFrustum(-1.0, 1.0, -1.0, 1.0, 1.5, 20.0);
-
-	/* Perspective avec point de fuite */
-	gluPerspective(60.0,                       // angle d'ouverture vertical cam�ra
-				   (GLfloat) w / (GLfloat) h,  // ratio largeur-hauteur
-				   1.0,						   // plan proche z=1
-				   200.0);                     // plan �loign� z=200
-
-
-}
-
-void update(int value){
-
-
-
-}
-
-void setlight(){
-            //here you set the lights and parameters, example with one light
-            float LightAmbient[] = { 0.1f, 0.1f, 0.05f, 1.0f };
-            float LightEmission[] = { 1.0f, 1.0f, 0.8f, 1.0f };
-            float LightDiffuse[] = { 1.0f, 1.0f, 0.8f, 1.0f };
-            float LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-            float LightDirection[]={-0.5f, -0.5f, -0.5f};
-            glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
-            glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
-            glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular);
-            glLightfv(GL_LIGHT0, GL_POSITION, LightDirection);
-            glEnable(GL_LIGHTING);
-            glEnable(GL_LIGHT0);
-    }
-
-    void setmaterial(){
-            //here you set materials, you must declare each one of the colors global or locally like this:
-            float MatAmbient[] = { 0.1f, 0.1f, 0.1f, 1.0f };
-            float MatDiffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-            float MatSpecular[] = { 0.1f, 0.1f, 0.0f, 0.1f };
-            float MatShininess = 60;
-            float color[] = {0.0f,0.0f,0.0f,1.0f};
-            glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, MatAmbient);
-            glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, MatDiffuse);
-            glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, MatSpecular);
-            glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, MatShininess);
-            glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, color);
-    }
-
-/* Fonction de gestion du clavier */
-void keyboard(unsigned char key, int x, int y) {
-
-		switch (key) {
-
-			case 'z':   /* rotation */
-			    zoom();
-                glutPostRedisplay();
-            break;
-
-            case 'd':   /* rotation */
-			    dezoom();
-                glutPostRedisplay();
-            break;
-
-            case 'j':   /* son */
-			    sound();
-            break;
-
-			case 'q':   /* Quitter le programme */
-				exit(0);
-            break;
-		}
-}
-
-/* Fonction de gestion du clavier pour les fleches */
-void SpecialInput(int key, int x, int y) {
-    switch(key) {
-    case GLUT_KEY_UP:
-        rotateUp();
-        glutPostRedisplay();
-    break;
-
-    case GLUT_KEY_DOWN:
-        rotateDown();
-        glutPostRedisplay();
-    break;
-
-    case GLUT_KEY_LEFT:
-        rotateLeft();
-        glutPostRedisplay();
-    break;
-
-    case GLUT_KEY_RIGHT:
-        rotateRight();
-        glutPostRedisplay();
-    break;
-    }
-}
-
-
-/*Fonctions de rotation et de zoom de la camera*/
-void rotateRight() {
-    alpha += rotateValue;
-}
-
-void rotateLeft() {
-    alpha -= rotateValue;
-}
-
-void rotateUp() {
-    phi += rotateValue;
-        if(phi > M_PI/2 - limitRotate)
-            phi = M_PI/2 - 0.005;
-}
-
-void rotateDown() {
-    phi -= rotateValue;
-        if(phi < - M_PI/2 + limitRotate)
-                phi = - M_PI/2 + 0.005;
-}
-
-void zoom() {
-    r -= zoomValue;
-        if(r < limitZoom)
-            r = limitZoom;
-}
-
-void dezoom() {
-    r += zoomValue;
-}
-
-void sound(){
-
-  FMOD_SYSTEM * sys;
-  FMOD_SOUND * sound;
-  FMOD_RESULT resultat;
-  FMOD_CHANNEL * channel;
-
-  FMOD_System_Create(&sys);
-  FMOD_System_Init(sys, 1, FMOD_INIT_NORMAL, NULL);
-
-  /* On ouvre la musique */
-  resultat = FMOD_System_CreateSound(sys, "../../sounds/jesuisoptimus.mp3", FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM, 0, &sound);
-
-    if (resultat != FMOD_OK)
-  {
-      fprintf(stderr, "Impossible de lire le fichier mp3\n");
-  }
-
-  /* On joue la musique */
-  FMOD_System_PlaySound(sys, FMOD_CHANNEL_FREE, sound, 0, NULL);
-
-  Sleep(4000);
-  FMOD_Sound_Release(sound);
-  FMOD_System_Close(sys);
-
-}
-
-float* vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9) {
-    float vector1[3];
-    float vector2[3];
-    float* normalVector = (float*) malloc(sizeof(float) * 3);
-
-    vector1[0] = point4 - point1;
-    vector1[1] = point5 - point2;
-    vector1[2] = point6 - point3;
-
-    vector2[0] = point7 - point1;
-    vector2[1] = point8 - point2;
-    vector2[2] = point9 - point3;
-
-    *normalVector = vector1[1] * vector2[2] - vector1[2] * vector2[1];
-    *(normalVector + 1) = vector1[2] * vector2[0] - vector1[0] * vector2[2];
-    *(normalVector + 2) = vector1[0] * vector2[1] - vector1[1] * vector2[0];
-
-    return normalVector;
-}
-
-void createCube() {
-    glPushMatrix();
-        glBegin(GL_QUADS);
-
-        glNormal3f(0, 0, 1);
-        //Front
-        glVertex3f(-0.5f, 0.5f, 0.5f);
-        glVertex3f(-0.5f, -0.5f, 0.5f);
-        glVertex3f(0.5f, -0.5f, 0.5f);
-        glVertex3f(0.5f, 0.5f, 0.5f);
-
-        glNormal3f(1, 0, 0);
-        //Right
-        glVertex3f(0.5f, 0.5f, 0.5f);
-        glVertex3f(0.5f, -0.5f, 0.5f);
-        glVertex3f(0.5f, -0.5f, -0.5f);
-        glVertex3f(0.5f, 0.5f, -0.5f);
-
-        glNormal3f(0, 0, -1);
-        //Back
-        glVertex3f(-0.5f, 0.5f, -0.5f);
-        glVertex3f(-0.5f, -0.5f, -0.5f);
-        glVertex3f(0.5f, -0.5f, -0.5f);
-        glVertex3f(0.5f, 0.5f, -0.5f);
-
-        glNormal3f(-1, 0, 0);
-        //Left
-        glVertex3f(-0.5f, 0.5f, 0.5f);
-        glVertex3f(-0.5f, -0.5f, 0.5f);
-        glVertex3f(-0.5f, -0.5f, -0.5f);
-        glVertex3f(-0.5f, 0.5f, -0.5f);
-
-        glNormal3f(0, 1, 0);
-        //Up
-        glVertex3f(-0.5f, 0.5f, 0.5f);
-        glVertex3f(0.5f, 0.5f, 0.5f);
-        glVertex3f(0.5f, 0.5f, -0.5f);
-        glVertex3f(-0.5f, 0.5f, -0.5f);
-
-        glNormal3f(0, -1, 0);
-        //Down
-        glVertex3f(-0.5f, -0.5f, 0.5f);
-        glVertex3f(0.5f, -0.5f, 0.5f);
-        glVertex3f(0.5f, -0.5f, -0.5f);
-        glVertex3f(-0.5f, -0.5f, -0.5f);
-
-        glEnd();
-    glPopMatrix();
 }
 
 void mouseMove(int x, int y) {
