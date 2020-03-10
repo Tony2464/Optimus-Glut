@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1396220518 source:d:\mes documents\projets git\projet optimus glut\soil\src\block.cpp
+	"Block.h"
+
+1396220518 d:\mes documents\projets git\projet optimus glut\soil\include\block.h
+	<GL/gl.h>
+	<GL/glu.h>
+	"glut.h"
+	"SOIL.h"
+
+976663372 d:\mes documents\projets git\projet optimus glut\soil\include\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1215450808 d:\mes documents\projets git\projet optimus glut\soil\include\soil.h
+
+1395997220 source:d:\mes documents\projets git\projet optimus glut\soil\src\camera.cpp
+	"Camera.h"
+	<math.h>
+
+1395960066 d:\mes documents\projets git\projet optimus glut\soil\include\camera.h
+
+1396017018 source:d:\mes documents\projets git\projet optimus glut\soil\src\main.cpp
+	<stdlib.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	"glut.h"
+	"SOIL.h"
+	"Camera.h"
+	"Map.h"
+
+1395959424 d:\mes documents\projets git\projet optimus glut\soil\include\map.h
+	<GL/gl.h>
+	<GL/glu.h>
+	"glut.h"
+	"SOIL.h"
+	"Camera.h"
+
+1396220566 source:d:\mes documents\projets git\projet optimus glut\soil\src\map.cpp
+	"Map.h"
+	"Block.h"
+
