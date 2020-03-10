@@ -6,6 +6,7 @@
 
 class Robot
 {
+public:
     float *normal;
     float radius = 0.25;
     float dabRightArm = 0;

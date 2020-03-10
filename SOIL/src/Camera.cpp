@@ -8,7 +8,7 @@ Camera::Camera()
 
     posx = 0.0f;
     posy = 1.5f;
-    posz = 5.0f;
+    posz = 15.0f;
 
     dirx = 0.0f;
     diry = 0.0f;

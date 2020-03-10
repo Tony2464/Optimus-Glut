@@ -1,5 +1,6 @@
 #include "Map.h"
 #include "Block.h"
+#include "Robot.h"
 
 #define GL_CLAMP_TO_EDGE 0x812F
 #define SKY_DISTANCE 200.0f
@@ -44,7 +45,61 @@ void Map::LoadTextures()
 
 void Map::DrawGround()
 {
-    Block *b = new Block(2.0f, 2.0f, 2.0f);
+    Block *b = new Block(0.0f, 0.0f, 0.0f);
+    Robot *optimus = new Robot();
+
+    //
+    //Top of the chest
+    glPushMatrix();
+        glTranslatef(0, 3.7, 5);
+        glPushMatrix();
+            optimus->setMaterial(1);
+             optimus->createChest();
+            glutPostRedisplay();
+        glPopMatrix();
+
+        //Back (jetpack)
+        glPushMatrix();
+            optimus->setMaterial(2);
+            optimus->createJetpack();
+            glutPostRedisplay();
+        glPopMatrix();
+
+        glPushMatrix();
+            optimus->setMaterial(3);
+            optimus->createHexagone();
+            glutPostRedisplay();
+        glPopMatrix();
+
+        //Right arm
+        glPushMatrix();
+            glScalef(1, 0.99, 1);
+            optimus->createRightArm();
+        glPopMatrix();
+
+        glPushMatrix();
+            glScalef(1, 0.99, 1);
+            optimus->createLeftArm();
+        glPopMatrix();
+
+        glPushMatrix();
+            optimus->setMaterial(2);
+            optimus->createHead();
+            glutPostRedisplay();
+        glPopMatrix();
+
+        glPushMatrix();
+            optimus->setMaterial(5);
+            optimus->createPelvis();
+            glutPostRedisplay();
+        glPopMatrix();
+
+        glPushMatrix();
+            optimus->createLegs();
+            glutPostRedisplay();
+        glPopMatrix();
+    glPopMatrix();
+    //
 
     glEnable(GL_TEXTURE_2D);
     glColor3f(1.0f, 1.0f, 1.0f);

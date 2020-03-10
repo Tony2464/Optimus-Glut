@@ -8,6 +8,7 @@
 
 #include "Camera.h"
 #include "Map.h"
+#include "Robot.h"
 
 
 // Objet Camera
@@ -159,9 +160,9 @@ int main(int argc, char **argv)
     /** CREATION FENETRE **/
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowPosition(100,100);
-    glutInitWindowSize(320,320);
-    glutCreateWindow("Implémentation :: Textures");
+    glutInitWindowPosition(0,0);
+    glutInitWindowSize(1920,1080);
+    glutCreateWindow("Optimus Soil");
 
     /** FONCTIONS GLUT **/
     glutDisplayFunc(renderScene);
