@@ -263,17 +263,20 @@ void setlight(){
     float LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     float LightDirection[]={-0.5f, -0.5f, -0.5f};
 
-    float lightPos1[] = {-2, 0, -2, 1};
+    float lightPos1[] = {3, 3, 3, 1};
     float lightColor1[] = {1, 1, 1};
 
-    float lightPos2[] = {2, 0, -2, 1};
+    float lightPos2[] = {2, 0, 0, 1};
     float lightColor2[] = {1, 1, 1};
 
-    float lightPos3[] = {2, 0, 2, 1};
+    float lightPos3[] = {-2, 0, 0, 1};
     float lightColor3[] = {1, 1, 1};
 
-    float lightPos4[] = {-2, 0, 2, 1};
+    float lightPos4[] = {0, 2, 5, 1};
     float lightColor4[] = {1, 1, 1};
+
+    float lightPos5[] = {0, 0, -5, 1};
+    float lightColor5[] = {1, 1, 1};
 
     glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);
     glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
@@ -290,6 +293,10 @@ void setlight(){
     glLightfv(GL_LIGHT4, GL_DIFFUSE, lightColor4);
     glLightfv(GL_LIGHT4, GL_POSITION, lightPos4);
     glEnable(GL_LIGHT4);
+
+    glLightfv(GL_LIGHT5, GL_DIFFUSE, lightColor5);
+    glLightfv(GL_LIGHT5, GL_POSITION, lightPos5);
+    glEnable(GL_LIGHT5);
 
     glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
@@ -326,7 +333,7 @@ void setmaterial(int mode){
          break;
 
     case 3 :
-         glColor3f(0.5f,0.5f,0.5f);
+         glColor3f(0.7f, 0.7f, 0.7f);
          break;
 
     case 4 :
@@ -338,7 +345,7 @@ void setmaterial(int mode){
         break;
 
     case 6 :
-        glColor3f(0.6f, 0.2f, 0.2f);
+        glColor3f(0.6f, 0.0f, 0.0f);
         break;
 
     case 7 :
@@ -551,7 +558,7 @@ void createHead(){
     //Head
     glPushMatrix();
         glBegin(GL_POLYGON);
-        glNormal3f(0.0f,1.0f,0.0f);
+        glNormal3f(0.0f, 1.0f, 0.0f);
 
         glVertex3f(0.0f, 0.95f, 0.4f);
         glVertex3f(0.3f, 0.95f, 0.3f);
@@ -577,7 +584,7 @@ void createHead(){
     glPopMatrix();
     glPushMatrix();
         glBegin(GL_QUADS);
-        normal = vectorProduct(0.0f, 0.5f, 0.4f, -0.3f, 0.5f, 0.3f, 0.0f, 0.95f, 0.4f);
+        normal = vectorProduct(-0.3f, 0.5f, 0.3f, 0.0f, 0.5f, 0.4f, -0.3f, 0.95f, 0.3f);
         glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(0.0f, 0.95f, 0.4f);
@@ -612,7 +619,7 @@ void createHead(){
     glPushMatrix();
         glBegin(GL_QUADS);
         normal = vectorProduct(-0.15f, 0.5f, -0.3f, -0.3f, 0.5f, 0.0f, -0.15f, 0.95f, -0.3f);
-        glNormal3f(-normal[0], normal[1], -normal[2]);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(-0.15f, 0.5f, -0.3f);
         glVertex3f(-0.15f, 0.95f, -0.3f);
@@ -624,7 +631,7 @@ void createHead(){
     glPushMatrix();
         glBegin(GL_QUADS);
         normal = vectorProduct(0.3f, 0.5f, 0.0f, 0.15f, 0.5f, -0.3f, 0.3f, 0.95f, 0.0f);
-        glNormal3f(normal[0], normal[1], -normal[2]);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(0.15f, 0.5f, -0.3f);
         glVertex3f(0.15f, 0.95f, -0.3f);
@@ -659,7 +666,7 @@ void createHead(){
     glPushMatrix();
         glBegin(GL_QUADS);
         normal = vectorProduct(0.4f, 0.5f, 0.1f, 0.3f, 0.5f, 0.1f, 0.4f, 0.75f, 0.1f);
-        glNormal3f(normal[0], normal[1], -normal[2]);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(0.3f, 0.5f, 0.1f);
         glVertex3f(0.4f, 0.5f, 0.1f);
@@ -695,7 +702,7 @@ void createHead(){
     glPushMatrix();
         glBegin(GL_QUADS);
         normal = vectorProduct(-0.3f, 0.5f, 0.1f, -0.4f, 0.5f, 0.1f, -0.3f, 0.75f, 0.1f);
-        glNormal3f(normal[0], normal[1], -normal[2]);
+        glNormal3f(normal[0], normal[1], normal[2]);
 
         glVertex3f(-0.3f, 0.5f, 0.1f);
         glVertex3f(-0.4f, 0.5f, 0.1f);
@@ -996,31 +1003,28 @@ void createJetpack() {
         glVertex3f(0.5f, -0.5f, -0.5f);
 
         //Top
-        glNormal3f(0, -1, 0);
+        glNormal3f(0, 1, 0);
         glVertex3f(0.3f, 0.5f, -0.5f);
         glVertex3f(0.3f, 0.5f, -0.7f);
         glVertex3f(0.5f, 0.5f, -0.7f);
         glVertex3f(0.5f, 0.5f, -0.5f);
 
         //Back
-        normal = vectorProduct(0.3, -0.5, -0.7, 0.5, -0.5, -0.7, 0.3, 0.5, -0.7);
-        glNormal3f(normal[0], normal[1], normal[2]);
+        glNormal3f(0, 0, -1);
         glVertex3f(0.3f, -0.5f, -0.7f);
         glVertex3f(0.5f, -0.5f, -0.7f);
         glVertex3f(0.5f, 0.5f, -0.7f);
         glVertex3f(0.3f, 0.5f, -0.7f);
 
         //Right
-        normal = vectorProduct(0.5, -0.5, -0.5, 0.5, -0.5, -0.7, 0.5, 0.5, -0.5);
-        glNormal3f(normal[0], normal[1], normal[2]);
+        glNormal3f(1, 0, 0);
         glVertex3f(0.5f, -0.5f, -0.5f);
         glVertex3f(0.5f, -0.5f, -0.7f);
         glVertex3f(0.5f, 0.5f, -0.7f);
         glVertex3f(0.5f, 0.5f, -0.5f);
 
-        //Right
-        normal = vectorProduct(0.3, -0.5f, -0.5f, 0.3f, -0.5f, -0.7f, 0.3f, 0.5f, -0.5f);
-        glNormal3f(normal[0], normal[1], normal[2]);
+        //Left
+        glNormal3f(-1, 0, 0);
         glVertex3f(0.3f, -0.5f, -0.5f);
         glVertex3f(0.3f, -0.5f, -0.7f);
         glVertex3f(0.3f, 0.5f, -0.7f);
@@ -1218,7 +1222,7 @@ void createRightArm() {
                     glVertex3f(0, 0.1, 0);
 
                     normal = vectorProduct(0, -0.1, 0, 1.5, -0.1, 0, 0, 0, -0.15);
-                    glNormal3f(normal[0], -normal[1], -normal[2]);
+                    glNormal3f(normal[0], normal[1], normal[2]);
                     glVertex3f(0, 0, -0.15);
                     glVertex3f(1.5, 0, -0.15);
                     glVertex3f(1.5, -0.1, 0);
@@ -1231,7 +1235,7 @@ void createRightArm() {
                     glVertex3f(1.5, 0.1, 0);
                     glVertex3f(0, 0.1, 0);
 
-                    normal = vectorProduct(0, -0.1, 0, 0.5, 0, 0, 0, 0, -0.15);
+                    normal = vectorProduct(0, -0.1, 0, 1.5, -0.1, 0, 0, 0, 0.15);
                     glNormal3f(normal[0], normal[1], normal[2]);
                     glVertex3f(0, 0, 0.15);
                     glVertex3f(1.5, 0, 0.15);
@@ -1571,8 +1575,8 @@ void createPelvis(){
 
         //Top
         glPushMatrix();
-            glScalef(1.09,1.0,0.6);
-            glTranslatef(-0.5, 0.07, -0.7);
+            glScalef(1.09, 1.0, 0.6);
+            glTranslatef(-0.5, 0.149, -0.7);
             glRotated(90,1,0,0);
             glBegin(GL_QUADS);
             glNormal3f(0,1,0);
