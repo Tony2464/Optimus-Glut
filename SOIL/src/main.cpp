@@ -54,20 +54,34 @@ void KeyboardDown(unsigned char key, int xx, int yy)
     case 'q':
         cam->deltaStrafe = 1;
         break;
+
+    case 'b':
+        if (optimus->dabLeftArm < 90)
+            optimus->dab();
+    break;
+
+    case 'n':
+        if (optimus->normalArms[0] < 90)
+            optimus->getNormalArms();
+    break;
+
+    case 'a':   /* marcher */
+        optimus->walk();
+        glutPostRedisplay();
+    break;
     }
 }
 void KeyboardUp(unsigned char key, int xx, int yy)
 {
-    switch(key)
-    {
-    case 'z':
-    case 's':
-        cam->deltaForward = 0;
-        break;
-    case 'q':
-    case 'd':
-        cam->deltaStrafe = 0;
-        break;
+    switch(key) {
+        case 'z':
+        case 's':
+            cam->deltaForward = 0;
+            break;
+        case 'q':
+        case 'd':
+            cam->deltaStrafe = 0;
+            break;
     }
 }
 void SpecialDown(int key, int xx, int yy)
