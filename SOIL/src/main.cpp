@@ -1,5 +1,5 @@
 #include <stdlib.h>
-
+#include <stdio.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 
@@ -10,14 +10,12 @@
 #include "Map.h"
 #include "Robot.h"
 
-
 // Objet Camera
 Camera *cam = new Camera();
-// Objet Scène
+// Objet Scï¿½ne
 Map *m = new Map();
+// Robot
 Robot *optimus = new Robot();
-
-
 
 /** GESTION FENETRE **/
 void reshapeWindow(int w, int h)
@@ -25,7 +23,7 @@ void reshapeWindow(int w, int h)
     if (h == 0)
         h = 1;
 
-    float ratio =  w * 1.0 / h;
+    float ratio = w * 1.0 / h;
 
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -38,10 +36,10 @@ void reshapeWindow(int w, int h)
 /** FONCTIONS DE GESTION CLAVIER **/
 void KeyboardDown(unsigned char key, int xx, int yy)
 {
-    switch(key)
+    switch (key)
     {
     case 'e': // Unlock Camera
-        cam->locked = (cam->locked)?0:1;
+        cam->locked = (cam->locked) ? 0 : 1;
         break;
     case 'z':
         cam->deltaForward = 1;
@@ -59,39 +57,44 @@ void KeyboardDown(unsigned char key, int xx, int yy)
     case 'b':
         if (optimus->dabLeftArm < 90)
             optimus->dab();
-    break;
+        break;
 
     case 'n':
         if (optimus->normalArms[0] < 90)
             optimus->getNormalArms();
-    break;
+        break;
 
-    case 'a':   /* marcher */
+    case 'a': /* marcher */
         optimus->walk();
         glutPostRedisplay();
-    break;
+        break;
 
-    case 'k':   /* quit */
+    case 'j': /* play sound */
+        optimus->sound();
+        break;
+
+    case 'k': /* quit */
         exit(0);
-    break;
+        break;
     }
 }
 void KeyboardUp(unsigned char key, int xx, int yy)
 {
-    switch(key) {
-        case 'z':
-        case 's':
-            cam->deltaForward = 0;
-            break;
-        case 'q':
-        case 'd':
-            cam->deltaStrafe = 0;
-            break;
+    switch (key)
+    {
+    case 'z':
+    case 's':
+        cam->deltaForward = 0;
+        break;
+    case 'q':
+    case 'd':
+        cam->deltaStrafe = 0;
+        break;
     }
 }
 void SpecialDown(int key, int xx, int yy)
 {
-    switch(key)
+    switch (key)
     {
     case GLUT_KEY_UP:
         cam->deltaForward = 1;
@@ -109,7 +112,7 @@ void SpecialDown(int key, int xx, int yy)
 }
 void SpecialUp(int key, int xx, int yy)
 {
-    switch(key)
+    switch (key)
     {
     case GLUT_KEY_UP:
     case GLUT_KEY_DOWN:
@@ -138,7 +141,7 @@ void mouseButton(int button, int state, int x, int y)
         {
             cam->releaseCam();
         }
-        // Mise à jour origine du clic
+        // Mise ï¿½ jour origine du clic
         else
         {
             cam->grabCam(x, y);
@@ -158,18 +161,15 @@ void renderScene(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-    // Définition de la caméra
-    gluLookAt(  cam->posx, cam->posy, cam->posz,
-                cam->posx+cam->dirx, cam->posy+cam->diry,  cam->posz+cam->dirz,
-                0.0f, 1.0f,  0.0f
-                );
+    // Dï¿½finition de la camï¿½ra
+    gluLookAt(cam->posx, cam->posy, cam->posz,
+              cam->posx + cam->dirx, cam->posy + cam->diry, cam->posz + cam->dirz,
+              0.0f, 1.0f, 0.0f);
 
     optimus->buildOptimus();
     m->DrawGround();
     m->DrawSkybox(cam);
     glutSwapBuffers();
-
-
 }
 
 void LoadTextures()
@@ -182,8 +182,8 @@ int main(int argc, char **argv)
     /** CREATION FENETRE **/
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-    glutInitWindowPosition(0,0);
-    glutInitWindowSize(1920,1080);
+    glutInitWindowPosition(0, 0);
+    glutInitWindowSize(1920, 1080);
     glutCreateWindow("Optimus Soil");
 
     /** FONCTIONS GLUT **/
@@ -214,5 +214,3 @@ int main(int argc, char **argv)
 
     return (1);
 }
-
-

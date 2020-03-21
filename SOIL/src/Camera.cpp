@@ -23,8 +23,6 @@ Camera::Camera()
     deltaAnglex = 0.0f;
     deltaAngley = 0.0f;
 
-
-
     locked = 1;
 }
 
@@ -34,12 +32,11 @@ void Camera::updatePos()
     {
         if (locked)
         {
-            posx += deltaForward * (dirx/cos(anglev + deltaAngley)) * MOVE_SPEED;
+            posx += deltaForward * (dirx / cos(anglev + deltaAngley)) * MOVE_SPEED;
             posy = 1.5f;
-            posz += deltaForward * (dirz/cos(anglev + deltaAngley)) * MOVE_SPEED;
-            posx += deltaStrafe * (dirz/cos(anglev + deltaAngley)) * MOVE_SPEED;
-            posz -= deltaStrafe * (dirx/cos(anglev + deltaAngley)) * MOVE_SPEED;
-
+            posz += deltaForward * (dirz / cos(anglev + deltaAngley)) * MOVE_SPEED;
+            posx += deltaStrafe * (dirz / cos(anglev + deltaAngley)) * MOVE_SPEED;
+            posz -= deltaStrafe * (dirx / cos(anglev + deltaAngley)) * MOVE_SPEED;
         }
         else
         {
@@ -73,10 +70,10 @@ void Camera::orienterCam(int x, int y)
         if (deltaAngley + anglev < -M_PI_2)
             deltaAngley = -M_PI_2 - anglev + 0.01f;
 
-        // Mis à jour de la caméra
-        dirx = sin(angleh + deltaAnglex)*cos(anglev + deltaAngley);
+        // Mis ï¿½ jour de la camï¿½ra
+        dirx = sin(angleh + deltaAnglex) * cos(anglev + deltaAngley);
         diry = -sin(anglev + deltaAngley);
-        dirz = -cos(angleh + deltaAnglex)*cos(anglev + deltaAngley);
+        dirz = -cos(angleh + deltaAnglex) * cos(anglev + deltaAngley);
     }
 }
 void Camera::releaseCam()

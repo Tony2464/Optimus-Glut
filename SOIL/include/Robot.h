@@ -36,4 +36,5 @@ public:
     void walk();
     void createPelvis();
     void createLegs();
+    void sound();
 };
