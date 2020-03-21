@@ -19,6 +19,7 @@ public:
     float rotateRightKnee = 0;
     float rotateLeftKnee = 0;
 
+    void buildOptimus();
     void createCube();
     void createJetpack();
     void createChest();

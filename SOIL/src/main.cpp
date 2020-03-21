@@ -15,6 +15,7 @@
 Camera *cam = new Camera();
 // Objet Scène
 Map *m = new Map();
+Robot *optimus = new Robot();
 
 
 
@@ -68,6 +69,10 @@ void KeyboardDown(unsigned char key, int xx, int yy)
     case 'a':   /* marcher */
         optimus->walk();
         glutPostRedisplay();
+    break;
+
+    case 'k':   /* quit */
+        exit(0);
     break;
     }
 }
@@ -159,9 +164,12 @@ void renderScene(void)
                 0.0f, 1.0f,  0.0f
                 );
 
+    optimus->buildOptimus();
     m->DrawGround();
     m->DrawSkybox(cam);
     glutSwapBuffers();
+
+
 }
 
 void LoadTextures()

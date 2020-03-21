@@ -2,6 +2,61 @@
 #include <math.h>
 #include "Robot.h"
 
+void Robot::buildOptimus(){
+
+//Top of the chest
+    glPushMatrix();
+        glTranslatef(0, 3.7, 5);
+        glPushMatrix();
+            this->setMaterial(1);
+             this->createChest();
+            glutPostRedisplay();
+        glPopMatrix();
+
+        //Back (jetpack)
+        glPushMatrix();
+            this->setMaterial(2);
+            this->createJetpack();
+            glutPostRedisplay();
+        glPopMatrix();
+
+        glPushMatrix();
+            this->setMaterial(3);
+            this->createHexagone();
+            glutPostRedisplay();
+        glPopMatrix();
+
+        //Right arm
+        glPushMatrix();
+            glScalef(1, 0.99, 1);
+            this->createRightArm();
+        glPopMatrix();
+
+        glPushMatrix();
+            glScalef(1, 0.99, 1);
+            this->createLeftArm();
+        glPopMatrix();
+
+        glPushMatrix();
+            this->setMaterial(2);
+            this->createHead();
+            glutPostRedisplay();
+        glPopMatrix();
+
+        glPushMatrix();
+            this->setMaterial(5);
+            this->createPelvis();
+            glutPostRedisplay();
+        glPopMatrix();
+
+        glPushMatrix();
+            this->createLegs();
+            glutPostRedisplay();
+        glPopMatrix();
+    glPopMatrix();
+
+}
+
 float* Robot::vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9) {
     float vector1[3];
     float vector2[3];

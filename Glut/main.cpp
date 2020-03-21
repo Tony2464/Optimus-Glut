@@ -13,7 +13,7 @@
 
 
 
-#include<windows.h>
+#include <windows.h>
 
 #ifdef __APPLE__
 #include <GLUT/glut.h>
@@ -1840,4 +1840,3 @@ void createLegs(){
     glPopMatrix();
 
 }
-
