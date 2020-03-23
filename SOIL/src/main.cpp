@@ -78,6 +78,7 @@ void KeyboardDown(unsigned char key, int xx, int yy)
         break;
     }
 }
+
 void KeyboardUp(unsigned char key, int xx, int yy)
 {
     switch (key)
@@ -193,7 +194,7 @@ int main(int argc, char **argv)
     glutTimerFunc(10, computePos, 0);
 
     /** GESTION CLAVIER **/
-    glutIgnoreKeyRepeat(1);
+    //glutIgnoreKeyRepeat(1);
     glutKeyboardFunc(KeyboardDown);
     glutKeyboardUpFunc(KeyboardUp);
     glutSpecialFunc(SpecialDown);
