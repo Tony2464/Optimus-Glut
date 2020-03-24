@@ -71,7 +71,7 @@ FMOD_SYSTEM * sys;
   FMOD_System_Init(sys, 1, FMOD_INIT_NORMAL, NULL);
 
   /* On ouvre la musique */
-  resultat = FMOD_System_CreateSound(sys, "../../sounds/jesuisoptimus.mp3", FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM, 0, &sound);
+  resultat = FMOD_System_CreateSound(sys, "sounds/jesuisoptimus.mp3", FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM, 0, &sound);
 
     if (resultat != FMOD_OK)
   {
