@@ -16,6 +16,8 @@ Camera *cam = new Camera();
 Map *m = new Map();
 // Robot
 Robot *optimus = new Robot();
+// Display optimus
+bool display = true;
 
 /** GESTION FENETRE **/
 void reshapeWindow(int w, int h)
@@ -76,6 +78,12 @@ void KeyboardDown(unsigned char key, int xx, int yy)
     case 'k': /* quit */
         exit(0);
         break;
+
+    case 'r' : /* remove */
+        display = false;
+        glutPostRedisplay();
+        break;
+
     }
 }
 
@@ -167,7 +175,9 @@ void renderScene(void)
               cam->posx + cam->dirx, cam->posy + cam->diry, cam->posz + cam->dirz,
               0.0f, 1.0f, 0.0f);
 
-    optimus->buildOptimus();
+    if (display == true) {
+        optimus->buildOptimus();
+    }
     m->DrawGround();
     m->DrawSkybox(cam);
     glutSwapBuffers();
