@@ -11,7 +11,7 @@ public:
     float radius = 0.25;
     float dabRightArm = 0;
     float dabLeftArm = 0;
-    float normalArms[2] = {90, 30};
+    float normalArms[3] = {90, 30, 0};
     short myBool = 0;
     float rotateRightLeg = 0;
     float rotateLeftLeg = 0;
@@ -28,6 +28,7 @@ public:
     void createLeftArm();
     void dab();
     void getNormalArms();
+    void transformation();
     float *vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9);
     void mouseMove(int x, int y);
     void setlight();

@@ -57,13 +57,11 @@ void KeyboardDown(unsigned char key, int xx, int yy)
         break;
 
     case 'b':
-        if (optimus->dabLeftArm < 90)
-            optimus->dab();
+        optimus->dab();
         break;
 
     case 'n':
-        if (optimus->normalArms[0] < 90)
-            optimus->getNormalArms();
+        optimus->getNormalArms();
         break;
 
     case 'a': /* marcher */
@@ -84,6 +82,8 @@ void KeyboardDown(unsigned char key, int xx, int yy)
         glutPostRedisplay();
         break;
 
+    case 't' : /* transfomation */
+        optimus->transformation();
     }
 }
 

@@ -743,6 +743,7 @@ void Robot::createRightArm() {
     // Right Arm
         glRotatef(dabRightArm, 0, 0, 1);
         glRotatef(normalArms[0], 0, 0, -1);
+        glRotatef(normalArms[2], 0, 1, 0);
         glPushMatrix();
             setMaterial(6);
             glTranslatef(0.375, 0, 0);
@@ -863,6 +864,7 @@ void Robot::createLeftArm() {
         glTranslatef(-0.75, 0.25, 0);
         glRotatef(dabLeftArm, 0, -1, 0);
         glRotatef(normalArms[0], 0, 0, -1);
+        glRotatef(normalArms[2], 0, 1, 0);
         glPushMatrix();
             glTranslatef(0.375, 0, 0);
             glScalef(0.75, 0.5, 0.5);
@@ -877,14 +879,14 @@ void Robot::createLeftArm() {
         glTranslatef(0.125, 0, 0);
         glPushMatrix();
             setMaterial(3);
-            glTranslatef(0.75, 0, -0.05);
+            glTranslatef(0.75, 0, 0);
             glutSolidSphere(radius, 255, 255);
         glPopMatrix();
 
     //Left Forearm
         glPushMatrix();
             setMaterial(6);
-            glTranslatef(0.875, 0, -0.05);
+            glTranslatef(0.875, 0, 0);
             glRotatef(dabLeftArm, 0, 2.5, 1);
             glPushMatrix();
                 glTranslatef(0.375, 0, 0);
@@ -963,19 +965,43 @@ void Robot::createLeftArm() {
 }
 
 void Robot::dab() {
-    dabLeftArm += 1.8;
-    dabRightArm += 0.4;
+    if (dabLeftArm < 90) {
+        dabLeftArm += 1.8;
+        dabRightArm += 0.4;
 
-    normalArms[0] -= 1.8;
-    normalArms[1] -= 0.4;
+        normalArms[0] -= 1.8;
+        normalArms[1] -= 0.4;
+    }
+
+    if (normalArms[2] > 0) {
+        normalArms[2] -= 1.8;
+        normalArms[1] += 0.6;
+    }
 }
 
 void Robot::getNormalArms() {
-    dabLeftArm -= 1.8;
-    dabRightArm -= 0.4;
+    if (normalArms[0] < 90) {
+        dabLeftArm -= 1.8;
+        dabRightArm -= 0.4;
 
-    normalArms[0] += 1.8;
-    normalArms[1] += 0.6;
+        normalArms[0] += 1.8;
+        normalArms[1] += 0.6;
+    }
+
+    if (normalArms[2] > 0) {
+        normalArms[2] -= 1.8;
+        normalArms[1] += 0.6;
+    }
+
+}
+
+void Robot::transformation() {
+    if (dabLeftArm > 0) dabLeftArm -= 1.8;
+    if (dabRightArm > 0) dabRightArm -= 0.4;
+    if (normalArms[1] > 0.0) normalArms[1] -= 0.6;
+    if (normalArms[2] < 90.0) normalArms[2] += 1.8;
+    if (rotateRightLeg < 90) rotateRightLeg += 1.8;
+    if (rotateLeftLeg < 90) rotateLeftLeg += 1.8;
 }
 
 void Robot::walk(){
