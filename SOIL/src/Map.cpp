@@ -20,27 +20,7 @@ void Map::LoadTextures()
     Skybox[5] = SOIL_load_OGL_texture("img/negy.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT);
 
     // Textures utilisables
-    //ListeTextures[0] = SOIL_load_OGL_texture("img/cliff.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-    //ListeTextures[1] = SOIL_load_OGL_texture("img/cobble.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-    //ListeTextures[2] = SOIL_load_OGL_texture("img/darkgrass.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[3] = SOIL_load_OGL_texture("img/darkwoodplanks.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[4] = SOIL_load_OGL_texture("img/darkwoodtiles.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[5] = SOIL_load_OGL_texture("img/deadgrass.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[6] = SOIL_load_OGL_texture("img/floorbrick.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[7] = SOIL_load_OGL_texture("img/graybrick.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[8] = SOIL_load_OGL_texture("img/graybricktiles.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[9] = SOIL_load_OGL_texture("img/greybrick.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[10] = SOIL_load_OGL_texture("img/greybricktiles.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-    ListeTextures[11] = SOIL_load_OGL_texture("img/negy.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[12] = SOIL_load_OGL_texture("img/lightwoodplanks.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[13] = SOIL_load_OGL_texture("img/lightwoodtiles.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[14] = SOIL_load_OGL_texture("img/mossbricktiles.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[15] = SOIL_load_OGL_texture("img/pavement.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[16] = SOIL_load_OGL_texture("img/pebbles.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[17] = SOIL_load_OGL_texture("img/redbrick.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-//    ListeTextures[18] = SOIL_load_OGL_texture("img/metalgate.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-    //ListeTextures[19] = SOIL_load_OGL_texture("img/betonurban.bmp",SOIL_LOAD_AUTO,SOIL_CREATE_NEW_ID,SOIL_FLAG_INVERT_Y);
-    //ListeTextures[19] = SOIL_load_OGL_texture("img/terre.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+    ListeTextures[11] = SOIL_load_OGL_texture("img/negy2.jpg", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 }
 
 void Map::DrawGround()
@@ -57,13 +37,13 @@ void Map::DrawGround()
 
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(-50.0f, 0.0f, -50.0f);
-    glTexCoord2f(0.0f, 50.0f);
-    glVertex3f(-50.0f, 0.0f, 50.0f);
-    glTexCoord2f(50.0f, 50.0f);
-    glVertex3f(50.0f, 0.0f, 50.0f);
-    glTexCoord2f(50.0f, 0.0f);
-    glVertex3f(50.0f, 0.0f, -50.0f);
+    glVertex3f(-8.0f, 0.0f, -70.0f);
+    glTexCoord2f(0.0f, 70.0f);
+    glVertex3f(-8.0f, 0.0f, 70.0f);
+    glTexCoord2f(8.0f, 70.0f);
+    glVertex3f(8.0f, 0.0f, 70.0f);
+    glTexCoord2f(8.0f, 0.0f);
+    glVertex3f(8.0f, 0.0f, -70.0f);
     glEnd();
     glTranslatef(0.0f, 1.0f, 0.0f);
     b->SetTexture(FRONT, ListeTextures[1]);
@@ -72,7 +52,6 @@ void Map::DrawGround()
     b->SetTexture(BOT, ListeTextures[4]);
     b->SetTexture(RIGHT, ListeTextures[17]);
     b->SetTexture(LEFT, ListeTextures[9]);
-    //b->SetTexture(SPHERE, ListeTextures[19]);
     b->Draw();
 }
 
