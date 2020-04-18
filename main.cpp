@@ -188,29 +188,6 @@ void display(){
     glPopMatrix();
 
     glPushMatrix();
-        setmaterial(3);
-        createHexagone();
-        glutPostRedisplay();
-    glPopMatrix();
-
-    //Right arm
-    glPushMatrix();
-        glScalef(1, 0.99, 1);
-        createRightArm();
-    glPopMatrix();
-
-    glPushMatrix();
-        glScalef(1, 0.99, 1);
-        createLeftArm();
-    glPopMatrix();
-
-    glPushMatrix();
-        setmaterial(2);
-        createHead();
-        glutPostRedisplay();
-    glPopMatrix();
-
-    glPushMatrix();
         setmaterial(5);
         createPelvis();
         glutPostRedisplay();
@@ -379,18 +356,15 @@ void keyboard(unsigned char key, int x, int y) {
             break;
 
             case 'b':
-                if (dabLeftArm < 90)
-                    dab();
+
             break;
 
             case 'n':
-                if (normalArms[0] < 90)
-                    getNormalArms();
+
             break;
 
             case 'a':   /* marcher */
-			    walk();
-                glutPostRedisplay();
+
             break;
 
 			case 'q':   /* Quitter le programme */
@@ -553,325 +527,6 @@ void createCube() {
     glPopMatrix();
 }
 
-void createHead(){
-
-    //Head
-    glPushMatrix();
-        glBegin(GL_POLYGON);
-        glNormal3f(0.0f, 1.0f, 0.0f);
-
-        glVertex3f(0.0f, 0.95f, 0.4f);
-        glVertex3f(0.3f, 0.95f, 0.3f);
-        glVertex3f(0.3f, 0.95f, 0.0f);
-        glVertex3f(0.15f, 0.95f, -0.3f);
-        glVertex3f(-0.15f, 0.95f, -0.3f);
-        glVertex3f(-0.3f, 0.95f, 0.0f);
-        glVertex3f(-0.3f, 0.95f, 0.3f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        normal = vectorProduct(0.0f, 0.5f, 0.4f, 0.3f, 0.5f, 0.3f, 0.0f, 0.95f, 0.4f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(0.0f, 0.95f, 0.4f);
-        glVertex3f(0.0f, 0.5f, 0.4f);
-        glVertex3f(0.3f, 0.5f, 0.3f);
-        glVertex3f(0.3f, 0.95f, 0.3f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        normal = vectorProduct(-0.3f, 0.5f, 0.3f, 0.0f, 0.5f, 0.4f, -0.3f, 0.95f, 0.3f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(0.0f, 0.95f, 0.4f);
-        glVertex3f(0.0f, 0.5f, 0.4f);
-        glVertex3f(-0.3f, 0.5f, 0.3f);
-        glVertex3f(-0.3f, 0.95f, 0.3f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        glNormal3f(-1, 0, 0);
-
-        glVertex3f(-0.3f, 0.95f, 0.0f);
-        glVertex3f(-0.3f, 0.5f, 0.0f);
-        glVertex3f(-0.3f, 0.5f, 0.3f);
-        glVertex3f(-0.3f, 0.95f, 0.3f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        glNormal3f(1, 0, 0);
-
-        glVertex3f(0.3f, 0.95f, 0.0f);
-        glVertex3f(0.3f, 0.5f, 0.0f);
-        glVertex3f(0.3f, 0.5f, 0.3f);
-        glVertex3f(0.3f, 0.95f, 0.3f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        normal = vectorProduct(-0.15f, 0.5f, -0.3f, -0.3f, 0.5f, 0.0f, -0.15f, 0.95f, -0.3f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(-0.15f, 0.5f, -0.3f);
-        glVertex3f(-0.15f, 0.95f, -0.3f);
-        glVertex3f(-0.3f, 0.95f, 0.0f);
-        glVertex3f(-0.3f, 0.5f, 0.0f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        normal = vectorProduct(0.3f, 0.5f, 0.0f, 0.15f, 0.5f, -0.3f, 0.3f, 0.95f, 0.0f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(0.15f, 0.5f, -0.3f);
-        glVertex3f(0.15f, 0.95f, -0.3f);
-        glVertex3f(0.3f, 0.95f, 0.0f);
-        glVertex3f(0.3f, 0.5f, 0.0f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        glNormal3f(0.0f,0.0f,-1.0f);
-
-        glVertex3f(0.15f, 0.5f, -0.3f);
-        glVertex3f(0.15f, 0.95f, -0.3f);
-        glVertex3f(-0.15f, 0.95f, -0.3f);
-        glVertex3f(-0.15f, 0.5f, -0.3f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        normal = vectorProduct(0.3f, 0.5f, 0.2f, 0.4f, 0.5f, 0.2f, 0.3f, 0.75f, 0.2f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(0.3f, 0.5f, 0.2f);
-        glVertex3f(0.4f, 0.5f, 0.2f);
-        glVertex3f(0.4f, 0.75f, 0.2f);
-        glVertex3f(0.3f, 0.75f, 0.2f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        normal = vectorProduct(0.4f, 0.5f, 0.1f, 0.3f, 0.5f, 0.1f, 0.4f, 0.75f, 0.1f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(0.3f, 0.5f, 0.1f);
-        glVertex3f(0.4f, 0.5f, 0.1f);
-        glVertex3f(0.4f, 0.75f, 0.1f);
-        glVertex3f(0.3f, 0.75f, 0.1f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        normal = vectorProduct(0.4f, 0.5f, 0.2f, 0.4f, 0.5f, 0.1f, 0.4f, 0.75f, 0.2f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(0.4f, 0.5f, 0.1f);
-        glVertex3f(0.4f, 0.5f, 0.2f);
-        glVertex3f(0.4f, 0.75f, 0.2f);
-        glVertex3f(0.4f, 0.75f, 0.1f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        normal = vectorProduct(-0.4f, 0.5f, 0.2f, -0.3f, 0.5f, 0.2f, -0.4f, 0.75f, 0.2f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(-0.3f, 0.5f, 0.2f);
-        glVertex3f(-0.4f, 0.5f, 0.2f);
-        glVertex3f(-0.4f, 0.75f, 0.2f);
-        glVertex3f(-0.3f, 0.75f, 0.2f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        normal = vectorProduct(-0.3f, 0.5f, 0.1f, -0.4f, 0.5f, 0.1f, -0.3f, 0.75f, 0.1f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(-0.3f, 0.5f, 0.1f);
-        glVertex3f(-0.4f, 0.5f, 0.1f);
-        glVertex3f(-0.4f, 0.75f, 0.1f);
-        glVertex3f(-0.3f, 0.75f, 0.1f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        normal = vectorProduct(-0.4f, 0.5f, 0.1f, -0.4f, 0.5f, 0.2f, -0.4f, 0.75f, 0.1f);
-        glNormal3f(-normal[0], normal[1], -normal[2]);
-
-        glVertex3f(-0.4f, 0.5f, 0.1f);
-        glVertex3f(-0.4f, 0.5f, 0.2f);
-        glVertex3f(-0.4f, 0.75f, 0.2f);
-        glVertex3f(-0.4f, 0.75f, 0.1f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_TRIANGLES);
-        normal = vectorProduct(-0.4f, 0.75f, 0.2f, -0.3f, 0.75f, 0.2f, -0.3f, 1.1f, 0.15f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(-0.3f, 0.75f, 0.2f);
-        glVertex3f(-0.4f, 0.75f, 0.2f);
-        glVertex3f(-0.3f, 1.1f, 0.15f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_TRIANGLES);
-        normal = vectorProduct(-0.3f, 0.75f, 0.2f, -0.3f, 0.75f, 0.1f, -0.3f, 1.1f, 0.15f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(-0.3f, 0.75f, 0.1f);
-        glVertex3f(-0.3f, 0.75f, 0.2f);
-        glVertex3f(-0.3f, 1.1f, 0.15f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_TRIANGLES);
-        normal = vectorProduct(-0.4f, 0.75f, 0.1f, -0.4f, 0.75f, 0.2f, -0.3f, 1.1f, 0.15f);
-        glNormal3f(-normal[0], normal[1], normal[2]);
-
-        glVertex3f(-0.4f, 0.75f, 0.1f);
-        glVertex3f(-0.4f, 0.75f, 0.2f);
-        glVertex3f(-0.3f, 1.1f, 0.15f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_TRIANGLES);
-        normal = vectorProduct(-0.3f, 0.75f, 0.1f, -0.4f, 0.75f, 0.1f, -0.3f, 1.1f, 0.15f);
-        glNormal3f(-normal[0], normal[1], -normal[2]);
-
-        glVertex3f(-0.3f, 0.75f, 0.1f);
-        glVertex3f(-0.4f, 0.75f, 0.1f);
-        glVertex3f(-0.3f, 1.1f, 0.15f);
-
-    glEnd();
-    glPopMatrix();
-    //
-    glPushMatrix();
-        glBegin(GL_TRIANGLES);
-        normal = vectorProduct(0.3f, 0.75f, 0.2f, 0.4f, 0.75f, 0.2f, 0.3f, 1.1f, 0.15f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(0.3f, 0.75f, 0.2f);
-        glVertex3f(0.4f, 0.75f, 0.2f);
-        glVertex3f(0.3f, 1.1f, 0.15f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_TRIANGLES);
-        normal = vectorProduct(0.3f, 0.75f, 0.1f, 0.3f, 0.75f, 0.2f, 0.3f, 1.1f, 0.15f);
-        glNormal3f(-normal[0], normal[1], normal[2]);
-
-        glVertex3f(0.3f, 0.75f, 0.1f);
-        glVertex3f(0.3f, 0.75f, 0.2f);
-        glVertex3f(0.3f, 1.1f, 0.15f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_TRIANGLES);
-        normal = vectorProduct(0.3f, 0.75f, 0.2f, 0.3f, 0.75f, 0.1f, 0.3f, 1.1f, 0.15f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(0.4f, 0.75f, 0.1f);
-        glVertex3f(0.4f, 0.75f, 0.2f);
-        glVertex3f(0.3f, 1.1f, 0.15f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_TRIANGLES);
-        normal = vectorProduct(0.4f, 0.75f, 0.2f, 0.3f, 0.75f, 0.1f, 0.3f, 1.1f, 0.15f);
-        glNormal3f(normal[0], normal[1], -normal[2]);
-
-        glVertex3f(0.3f, 0.75f, 0.1f);
-        glVertex3f(0.4f, 0.75f, 0.1f);
-        glVertex3f(0.3f, 1.1f, 0.15f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        glNormal3f(0.0f,0.0f,-1.0f);
-
-        glVertex3f(-0.1f, 0.95f, -0.2f);
-        glVertex3f(-0.05f, 1.0f, -0.2f);
-        glVertex3f(0.05f, 1.0f, -0.2f);
-        glVertex3f(0.1f, 0.95f, -0.2f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        glNormal3f(0.0f,0.0f,1.0f);
-
-        glVertex3f(-0.1f, 0.95f, 0.3f);
-        glVertex3f(-0.05f, 1.0f, 0.3f);
-        glVertex3f(0.05f, 1.0f, 0.3f);
-        glVertex3f(0.1f, 0.95f, 0.3f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        normal = vectorProduct(-0.1f, 0.95f, -0.2f, -0.1f, 0.95f, 0.3f, -0.05f, 1.0f, -0.2f);
-        glNormal3f(-normal[0], normal[1], normal[2]);
-
-        glVertex3f(-0.1f, 0.95f, -0.2f);
-        glVertex3f(-0.05f, 1.0f, -0.2f);
-        glVertex3f(-0.05f, 1.0f, 0.3f);
-        glVertex3f(-0.1f, 0.95f, 0.3f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        normal = vectorProduct(0.1f, 0.95f, 0.3f, 0.1f, 0.95f, -0.2f, 0.05f, 1.0f, 0.3f);
-        glNormal3f(normal[0], normal[1], normal[2]);
-
-        glVertex3f(0.1f, 0.95f, -0.2f);
-        glVertex3f(0.05f, 1.0f, -0.2f);
-        glVertex3f(0.05f, 1.0f, 0.3f);
-        glVertex3f(0.1f, 0.95f, 0.3f);
-
-    glEnd();
-    glPopMatrix();
-    glPushMatrix();
-        glBegin(GL_QUADS);
-        glNormal3f(0.0f,1.0f,0.0f);
-
-        glVertex3f(-0.05f, 1.0f, -0.2f);
-        glVertex3f(0.05f, 1.0f, -0.2f);
-        glVertex3f(-0.05f, 1.0f, 0.3f);
-        glVertex3f(0.05f, 1.0f, 0.3f);
-
-    glEnd();
-    glPopMatrix();
-
-}
-
 void mouseMove(int x, int y) {
     if (x > 250) {
         if (xCam >= 1.5 && lz > -1.5) {
@@ -918,76 +573,81 @@ void mouseMove(int x, int y) {
 void createChest() {
     //Top of the chest
     glPushMatrix();
+        glScalef(1,0.90,1);
+        glTranslatef(0,-0.175,0);
+        glPushMatrix();
 
-        glBegin(GL_QUADS);
+            glBegin(GL_QUADS);
 
-            glNormal3f(1, 0, 0);
-            //Right
-            glVertex3f(0.75f, 0.5f, 0.5f);
-            glVertex3f(0.75f, -0.5f, 0.5f);
-            glVertex3f(0.75f, -0.5f, -0.5f);
-            glVertex3f(0.75f, 0.5f, -0.5f);
+                glNormal3f(1, 0, 0);
+                //Right
+                glVertex3f(0.75f, 0.5f, 0.5f);
+                glVertex3f(0.75f, -0.5f, 0.5f);
+                glVertex3f(0.75f, -0.5f, -0.5f);
+                glVertex3f(0.75f, 0.5f, -0.5f);
 
-            //Back
-            glNormal3f(0, 0, -1);
-            glVertex3f(-0.75f, -0.5f, -0.5f);
-            glVertex3f(0.75f, -0.5f, -0.5f);
-            glVertex3f(0.75f, 0.5f, -0.5f);
-            glVertex3f(-0.75f, 0.5f, -0.5f);
+                //Back
+                glNormal3f(0, 0, -1);
+                glVertex3f(-0.75f, -0.5f, -0.5f);
+                glVertex3f(0.75f, -0.5f, -0.5f);
+                glVertex3f(0.75f, 0.5f, -0.5f);
+                glVertex3f(-0.75f, 0.5f, -0.5f);
 
-            //Left
-            glNormal3f(-1, 0, 0);
-            glVertex3f(-0.75f, 0.5f, 0.5f);
-            glVertex3f(-0.75f, -0.5f, 0.5f);
-            glVertex3f(-0.75f, -0.5f, -0.5f);
-            glVertex3f(-0.75f, 0.5f, -0.5f);
+                //Left
+                glNormal3f(-1, 0, 0);
+                glVertex3f(-0.75f, 0.5f, 0.5f);
+                glVertex3f(-0.75f, -0.5f, 0.5f);
+                glVertex3f(-0.75f, -0.5f, -0.5f);
+                glVertex3f(-0.75f, 0.5f, -0.5f);
 
-            //Front left
-            glVertex3f(-0.75f, 0.5f, 0.5f);
-            glVertex3f(-0.75f, -0.5f, 0.5f);
-            glVertex3f(0.0f, -0.5f, 0.7f);
-            glVertex3f(0.0f, 0.5f, 0.7f);
+                //Front left
+                glVertex3f(-0.75f, 0.5f, 0.5f);
+                glVertex3f(-0.75f, -0.5f, 0.5f);
+                glVertex3f(0.0f, -0.5f, 0.7f);
+                glVertex3f(0.0f, 0.5f, 0.7f);
 
-            //Front right
-            glVertex3f(0.75f, 0.5f, 0.5f);
-            glVertex3f(0.75f, -0.5f, 0.5f);
-            glVertex3f(0.0f, -0.5f, 0.7f);
-            glVertex3f(0.0f, 0.5f, 0.7f);
+                //Front right
+                glVertex3f(0.75f, 0.5f, 0.5f);
+                glVertex3f(0.75f, -0.5f, 0.5f);
+                glVertex3f(0.0f, -0.5f, 0.7f);
+                glVertex3f(0.0f, 0.5f, 0.7f);
 
-            //Top
-            glNormal3f(0, 1, 0);
-            glVertex3f(0.75f, 0.5f, 0.5f);
-            glVertex3f(0.75f, 0.5f, -0.5f);
-            glVertex3f(-0.75f, 0.5f, -0.5f);
-            glVertex3f(-0.75f, 0.5f, 0.5f);
+                //Top
+                glNormal3f(0, 1, 0);
+                glVertex3f(0.75f, 0.5f, 0.5f);
+                glVertex3f(0.75f, 0.5f, -0.5f);
+                glVertex3f(-0.75f, 0.5f, -0.5f);
+                glVertex3f(-0.75f, 0.5f, 0.5f);
 
-            //Bottom
-            glNormal3f(0, -1, 0);
-            glVertex3f(0.75f, -0.5f, 0.5f);
-            glVertex3f(0.75f, -0.5f, -0.5f);
-            glVertex3f(-0.75f, -0.5f, -0.5f);
-            glVertex3f(-0.75f, -0.5f, 0.5f);
+                //Bottom
+                glNormal3f(0, -1, 0);
+                glVertex3f(0.75f, -0.5f, 0.5f);
+                glVertex3f(0.75f, -0.5f, -0.5f);
+                glVertex3f(-0.75f, -0.5f, -0.5f);
+                glVertex3f(-0.75f, -0.5f, 0.5f);
 
-        glEnd();
+            glEnd();
+        glPopMatrix();
+
+        glPushMatrix();
+            glBegin(GL_TRIANGLES);
+
+                //Top triangle
+                glNormal3f(0, 1, 0);
+                glVertex3f(0.0f, 0.5f, 0.7f);
+                glVertex3f(0.75f, 0.5f, 0.5f);
+                glVertex3f(-0.75f, 0.5f, 0.5f);
+
+                //Top triangle
+                glNormal3f(0, -1, 0);
+                glVertex3f(0.0f, -0.5f, 0.7f);
+                glVertex3f(0.75f, -0.5f, 0.5f);
+                glVertex3f(-0.75f, -0.5f, 0.5f);
+
+            glEnd();
+        glPopMatrix();
     glPopMatrix();
 
-    glPushMatrix();
-        glBegin(GL_TRIANGLES);
-
-            //Top triangle
-            glNormal3f(0, 1, 0);
-            glVertex3f(0.0f, 0.5f, 0.7f);
-            glVertex3f(0.75f, 0.5f, 0.5f);
-            glVertex3f(-0.75f, 0.5f, 0.5f);
-
-            //Top triangle
-            glNormal3f(0, -1, 0);
-            glVertex3f(0.0f, -0.5f, 0.7f);
-            glVertex3f(0.75f, -0.5f, 0.5f);
-            glVertex3f(-0.75f, -0.5f, 0.5f);
-
-        glEnd();
-    glPopMatrix();
 }
 
 void createJetpack() {
@@ -1076,609 +736,90 @@ void createJetpack() {
     glPopMatrix();
 }
 
-void createHexagone() {
-    //Hexagone
-
-    glPushMatrix();
-            //Top
-        glBegin(GL_POLYGON);
-            glNormal3f(0, 1, 0);
-            glVertex3f(-0.5f, -0.5f, -0.4f);
-            glVertex3f(0.5f, -0.5f, -0.4f);
-            glVertex3f(0.7f, -0.5f, 0.0f);
-            glVertex3f(0.5f, -0.5f, 0.5f);
-            glVertex3f(-0.5f, -0.5f, 0.5f);
-            glVertex3f(-0.7f, -0.5f, 0.0f);
-
-        glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
-            //Bottom
-        glBegin(GL_POLYGON);
-
-            glNormal3f(0, -1, 0);
-            glVertex3f(-0.5f, -0.9f, -0.4f);
-            glVertex3f(0.5f, -0.9f, -0.4f);
-            glVertex3f(0.7f, -0.9f, 0.0f);
-            glVertex3f(0.5f, -0.9f, 0.5f);
-            glVertex3f(-0.5f, -0.9f, 0.5f);
-            glVertex3f(-0.7f, -0.9f, 0.0f);
-
-        glEnd();
-    glPopMatrix();
-
-    glPushMatrix();
-        glBegin(GL_QUADS);
-
-            //Front
-            normal = vectorProduct(-0.5f, -0.9f, 0.5f, 0.5f, -0.9f, 0.5f, -0.5f, -0.5f, 0.5f);
-            glNormal3f(normal[0], normal[1], normal[2]);
-            glVertex3f(-0.5f, -0.9f, 0.5f);
-            glVertex3f(0.5f, -0.9f, 0.5f);
-            glVertex3f(0.5f, -0.5f, 0.5f);
-            glVertex3f(-0.5f, -0.5f, 0.5f);
-
-            //Back
-            normal = vectorProduct(-0.5f, -0.9f, -0.4f, 0.5f, -0.9f, -0.4f, -0.5f, -0.5f, -0.4f);
-            glNormal3f(normal[0], normal[1], -normal[2]);
-            glVertex3f(-0.5f, -0.9f, -0.4f);
-            glVertex3f(0.5f, -0.9f, -0.4f);
-            glVertex3f(0.5f, -0.5f, -0.4f);
-            glVertex3f(-0.5f, -0.5f, -0.4f);
-
-            //Front right
-            normal = vectorProduct(0.5f, -0.9f, 0.5f, 0.7f, -0.9f, 0.0f, 0.5f, -0.5f, 0.5f);
-            glNormal3f(normal[0], normal[1], normal[2]);
-            glVertex3f(0.5f, -0.9f, 0.5f);
-            glVertex3f(0.7f, -0.9f, 0.0f);
-            glVertex3f(0.7f, -0.5f, 0.0f);
-            glVertex3f(0.5f, -0.5f, 0.5f);
-
-            //Back right
-            normal = vectorProduct(0.5f, -0.9f, -0.4f, 0.7f, -0.9f, 0.0f, 0.5f, -0.5f, -0.4f);
-            glNormal3f(-normal[0], normal[1], -normal[2]);
-            glVertex3f(0.5f, -0.9f, -0.4f);
-            glVertex3f(0.7f, -0.9f, 0.0f);
-            glVertex3f(0.7f, -0.5f, 0.0f);
-            glVertex3f(0.5f, -0.5f, -0.4f);
-
-            //Back left
-            normal = vectorProduct(-0.5f, -0.9f, -0.4f, -0.7f, -0.9f, 0.0f, -0.5f, -0.5f, -0.4f);
-            glNormal3f(normal[0], normal[1], normal[2]);
-            glVertex3f(-0.5f, -0.9f, -0.4f);
-            glVertex3f(-0.7f, -0.9f, 0.0f);
-            glVertex3f(-0.7f, -0.5f, 0.0f);
-            glVertex3f(-0.5f, -0.5f, -0.4f);
-
-            //Front left
-            normal = vectorProduct(-0.5f, -0.9f, 0.5f, -0.7f, -0.9f, 0.0f, -0.5f, -0.5f, 0.5f);
-            glNormal3f(normal[0], normal[1], normal[2]);
-            glVertex3f(-0.5f, -0.9f, 0.5f);
-            glVertex3f(-0.7f, -0.9f, 0.0f);
-            glVertex3f(-0.7f, -0.5f, 0.0f);
-            glVertex3f(-0.5f, -0.5f, 0.5f);
-
-        glEnd();
-    glPopMatrix();
-}
-
-void createRightArm() {
-
-    //Right Shoulder
-    glPushMatrix();
-        setmaterial(3);
-        glTranslatef(0.75, 0.25, 0);
-
-        glPushMatrix();
-            glScalef(0.3, 0.2, 0.2);
-            createCube();
-        glPopMatrix();
-
-        glTranslatef(0.3, 0, 0);
-        glutSolidSphere(radius, 255, 255);
-
-    // Right Arm
-        glRotatef(dabRightArm, 0, 0, 1);
-        glRotatef(normalArms[0], 0, 0, -1);
-        glPushMatrix();
-            setmaterial(6);
-            glTranslatef(0.375, 0, 0);
-            glScalef(0.75, 0.5, 0.5);
-            createCube();
-        glPopMatrix();
-
-    // Right Elbow
-        glTranslatef(0.125, 0, 0);
-        glPushMatrix();
-            setmaterial(3);
-            glTranslatef(0.75, 0, 0);
-            glutSolidSphere(radius, 255, 255);
-        glPopMatrix();
-
-        glTranslatef(0.75, 0, 0);
-        glRotatef(normalArms[1], 0, -1, 0);
-        glTranslatef(-0.75, 0, 0);
-
-    //Right Forearm
-        glPushMatrix();
-            setmaterial(6);
-            glTranslatef(1.25, 0, 0);
-            glScalef(0.75, 0.5, 0.5);
-            createCube();
-        glPopMatrix();
-
-    //Right Sword
-        setmaterial(8);
-        glPushMatrix();
-            glTranslatef(1.625, -0.05, 0);
-            glPushMatrix();
-                glBegin(GL_QUADS);
-                    normal = vectorProduct(0, 0, -0.15, 1.5, 0, -0.15, 0, 0.1, 0);
-                    glNormal3f(normal[0], normal[1], normal[2]);
-                    glVertex3f(0, 0, -0.15);
-                    glVertex3f(1.5, 0, -0.15);
-                    glVertex3f(1.5, 0.1, 0);
-                    glVertex3f(0, 0.1, 0);
-
-                    normal = vectorProduct(0, -0.1, 0, 1.5, -0.1, 0, 0, 0, -0.15);
-                    glNormal3f(normal[0], normal[1], normal[2]);
-                    glVertex3f(0, 0, -0.15);
-                    glVertex3f(1.5, 0, -0.15);
-                    glVertex3f(1.5, -0.1, 0);
-                    glVertex3f(0, -0.1, 0);
-
-                    normal = vectorProduct(0, 0, 0.15, 1.5, 0, 0.15, 0, 0.1, 0);
-                    glNormal3f(normal[0], normal[1], normal[2]);
-                    glVertex3f(0, 0, 0.15);
-                    glVertex3f(1.5, 0, 0.15);
-                    glVertex3f(1.5, 0.1, 0);
-                    glVertex3f(0, 0.1, 0);
-
-                    normal = vectorProduct(0, -0.1, 0, 1.5, -0.1, 0, 0, 0, 0.15);
-                    glNormal3f(normal[0], normal[1], normal[2]);
-                    glVertex3f(0, 0, 0.15);
-                    glVertex3f(1.5, 0, 0.15);
-                    glVertex3f(1.5, -0.1, 0);
-                    glVertex3f(0, -0.1, 0);
-                glEnd();
-            glPopMatrix();
-
-        //Right Sword Tip
-            glPushMatrix();
-            glTranslatef(1.5, 0, 0);
-                glBegin(GL_TRIANGLES);
-                    normal = vectorProduct(0, 0, 0.15, 0.5, 0, 0, 0, 0.1, 0);
-                    glNormal3f(normal[0], normal[1], normal[2]);
-                    glVertex3f(0, 0, 0.15);
-                    glVertex3f(0.5, 0, 0);
-                    glVertex3f(0, 0.1, 0);
-
-                    normal = vectorProduct(0, -0.1, 0, 0.5, 0, 0, 0, 0, 0.15);
-                    glNormal3f(normal[0], normal[1], normal[2]);
-                    glVertex3f(0, 0, 0.15);
-                    glVertex3f(0.5, 0, 0);
-                    glVertex3f(0, -0.1, 0);
-
-                    normal = vectorProduct(0, 0, -0.15, 0, 0.1, 0, 0.5, 0, 0);
-                    glNormal3f(normal[0], normal[1], normal[2]);
-                    glVertex3f(0, 0, -0.15);
-                    glVertex3f(0.5, 0, 0);
-                    glVertex3f(0, 0.1, 0);
-
-                    normal = vectorProduct(0, -0.1, 0, 0.5, 0, 0, 0, 0, -0.15);
-                    glNormal3f(normal[0], normal[1], normal[2]);
-                    glVertex3f(0, 0, -0.15);
-                    glVertex3f(0.5, 0, 0);
-                    glVertex3f(0, -0.1, 0);
-                glEnd();
-            glPopMatrix();
-        glPopMatrix();
-    glPopMatrix();
-}
-
-void createLeftArm() {
-
-    //Left Shoulder
-    glPushMatrix();
-        setmaterial(3);
-        glTranslatef(-0.75, 0.25, 0);
-
-        glPushMatrix();
-            glScalef(0.3, 0.2, 0.2);
-            createCube();
-        glPopMatrix();
-
-        glTranslatef(-0.3, 0, 0);
-        glutSolidSphere(radius, 255, 255);
-    glPopMatrix();
-
-
-    //Left Arm
-    glTranslatef(-0.3, 0, 0);
-    setmaterial(6);
-    glPushMatrix();
-        glTranslatef(-0.75, 0.25, 0);
-        glRotatef(dabLeftArm, 0, -1, 0);
-        glRotatef(normalArms[0], 0, 0, -1);
-        glPushMatrix();
-            glTranslatef(0.375, 0, 0);
-            glScalef(0.75, 0.5, 0.5);
-            createCube();
-        glPopMatrix();
-
-        glTranslatef(0.75, 0, 0);
-        glRotatef(normalArms[1], 0, -1, 0);
-        glTranslatef(-0.75, 0, 0);
-
-    //Left Elbow
-        glTranslatef(0.125, 0, 0);
-        glPushMatrix();
-            setmaterial(3);
-            glTranslatef(0.75, 0, -0.05);
-            glutSolidSphere(radius, 255, 255);
-        glPopMatrix();
-
-    //Left Forearm
-        glPushMatrix();
-            setmaterial(6);
-            glTranslatef(0.875, 0, -0.05);
-            glRotatef(dabLeftArm, 0, 2.5, 1);
-            glPushMatrix();
-                glTranslatef(0.375, 0, 0);
-                glScalef(0.75, 0.5, 0.5);
-                createCube();
-            glPopMatrix();
-
-    //Left Sword
-            glPushMatrix();
-                setmaterial(8);
-                glTranslatef(0.75, 0, 0);
-                glBegin(GL_QUADS);
-
-                    normal = vectorProduct(0, 0, -0.15, 1.5, 0, -0.15, 0, 0.1, 0);
-                    glNormal3f(normal[0], normal[1], normal[2]);
-                    glVertex3f(0, 0, -0.15);
-                    glVertex3f(1.5, 0, -0.15);
-                    glVertex3f(1.5, 0.1, 0);
-                    glVertex3f(0, 0.1, 0);
-
-                    normal = vectorProduct(0, -0.1, 0, 1.5, -0.1, 0, 0, 0, -0.15);
-                    glNormal3f(normal[0], -normal[1], -normal[2]);
-                    glVertex3f(0, 0, -0.15);
-                    glVertex3f(1.5, 0, -0.15);
-                    glVertex3f(1.5, -0.1, 0);
-                    glVertex3f(0, -0.1, 0);
-
-                    normal = vectorProduct(0, 0, 0.15, 1.5, 0, 0.15, 0, 0.1, 0);
-                    glNormal3f(normal[0], normal[1], normal[2]);
-                    glVertex3f(0, 0, 0.15);
-                    glVertex3f(1.5, 0, 0.15);
-                    glVertex3f(1.5, 0.1, 0);
-                    glVertex3f(0, 0.1, 0);
-
-                    normal = vectorProduct(0, -0.1, 0, 1.5, -0.1, 0, 0, 0, 0.15);
-                    glNormal3f(normal[0], -normal[1], -normal[2]);
-                    glVertex3f(0, 0, 0.15);
-                    glVertex3f(1.5, 0, 0.15);
-                    glVertex3f(1.5, -0.1, 0);
-                    glVertex3f(0, -0.1, 0);
-                glEnd();
-
-        //Left Sword Tip
-                glPushMatrix();
-                    glTranslatef(1.5, 0, 0);
-                    glBegin(GL_TRIANGLES);
-
-                        normal = vectorProduct(0, 0, 0.15, 0.5, 0, 0, 0, 0.1, 0);
-                        glNormal3f(normal[0], normal[1], normal[2]);
-                        glVertex3f(0, 0, 0.15);
-                        glVertex3f(0.5, 0, 0);
-                        glVertex3f(0, 0.1, 0);
-
-                        normal = vectorProduct(0, -0.1, 0, 0.5, 0, 0, 0, 0, 0.15);
-                        glNormal3f(normal[0], normal[1], normal[2]);
-                        glVertex3f(0, 0, 0.15);
-                        glVertex3f(0.5, 0, 0);
-                        glVertex3f(0, -0.1, 0);
-
-                        normal = vectorProduct(0, 0, -0.15, 0, 0.1, 0, 0.5, 0, 0);
-                        glNormal3f(normal[0], normal[1], normal[2]);
-                        glVertex3f(0, 0, -0.15);
-                        glVertex3f(0.5, 0, 0);
-                        glVertex3f(0, 0.1, 0);
-
-                        normal = vectorProduct(0, -0.1, 0, 0.5, 0, 0, 0, 0, -0.15);
-                        glNormal3f(normal[0], normal[1], normal[2]);
-                        glVertex3f(0, 0, -0.15);
-                        glVertex3f(0.5, 0, 0);
-                        glVertex3f(0, -0.1, 0);
-                    glEnd();
-                glPopMatrix();
-            glPopMatrix();
-        glPopMatrix();
-    glPopMatrix();
-}
-
-void dab() {
-    dabLeftArm += 1.8;
-    dabRightArm += 0.4;
-
-    normalArms[0] -= 1.8;
-    normalArms[1] -= 0.4;
-}
-
-void getNormalArms() {
-    dabLeftArm -= 1.8;
-    dabRightArm -= 0.4;
-
-    normalArms[0] += 1.8;
-    normalArms[1] += 0.6;
-}
-
-void walk(){
-
-    //Avancer jambes
-    if(rotateRightLegLimit == 0){
-        //Rotation jambes
-        rotateRightLeg -= 2;//Avance jambe g
-        rotateLeftLeg += 2;//Recule jambe d
-
-        //Rotation genoux
-        if(rotateRightLeg <= -20 ){
-            rotateRightKnee += 2;//Recule genou g
-        }
-        if(rotateLeftLeg <= -20 ){
-            rotateLeftKnee -= 2;//Avance genou d
-        }
-    }
-
-    if (rotateRightLeg <= -45 )
-        rotateRightLegLimit = 1;
-
-    //Reculer jambes
-    if(rotateRightLegLimit == 1){
-        //Rotation jambes
-        rotateRightLeg += 2;//Recule jambe g
-        rotateLeftLeg -= 2;//Avance jambe d
-
-        //Rotation genoux
-        if(rotateRightLeg >= 20){
-            rotateRightKnee -= 2;//Avance genou d
-        }
-        if(rotateLeftLeg >= 20){
-            rotateLeftKnee += 2;//Recule genou g
-        }
-    }
-
-    if (rotateRightLeg >= 45 )
-        rotateRightLegLimit =0;
-
-    glutPostRedisplay();
-}
-
 void createPelvis(){
-    glPushMatrix();
-        glTranslatef(0, -1.08, 0.04);
-        glScalef(1.2, 1.2, 1.2);
+ 
 
-        //CENTER BLOCK
+
+    //Top of the chest
+    glPushMatrix();
+        glTranslatef(0,-1,0);
         glPushMatrix();
-            glScalef(0.25, 0.3, 0.8);
+            glScalef(1.5, 0.8, 1.40);
             createCube();
         glPopMatrix();
-
-        //RIGHT TRIANGLE
+        
+        //Front wheels
+        //Right wheel
         glPushMatrix();
-            //Front triangle
-            glPushMatrix();
-                glTranslatef(0.1, 0.15, -0.4);
-                glBegin(GL_QUADS);
-                glNormal3f(0,0,1);
-                glVertex3f(0.0f, 0.0f, 0.8f);
-                glVertex3f(0.0f, -0.3f, 0.8f);
-                glVertex3f(0.45f, -0.1f, 0.8f);
-                glVertex3f(0.45f, 0.0f, 0.8f);
-                glEnd();
-            glPopMatrix();
+            glTranslated(0.5,-0.20,0.2);
+            glRotated(90,0,1,0);
+            setmaterial(4);
+            GLUquadricObj *quadratic6;
+            quadratic6 = gluNewQuadric();
+            gluCylinder(quadratic6, 0.3f, 0.3f, 0.3, 80, 80);
 
-            //Back triangle
-            glPushMatrix();
-                glTranslatef(0.1, 0.15, -1.2);
-                glBegin(GL_QUADS);
-                glNormal3f(0, 0, -1);
-                glVertex3f(0.0f, 0.0f, 0.8f);
-                glVertex3f(0.0f, -0.3f, 0.8f);
-                glVertex3f(0.45f, -0.1f, 0.8f);
-                glVertex3f(0.45f, 0.0f, 0.8f);
-                glEnd();
-            glPopMatrix();
-
-            //Bottom
-            glPushMatrix();
-                glTranslatef(0.1, 0.15, -0.4);
-                glBegin(GL_QUADS);
-                normal = vectorProduct(0.0f, -0.3f, 0.8f, 0.45f, -0.1f, 0.8f, 0.0f, -0.3f, -0.01f);
-                glNormal3f(normal[0], -normal[1], normal[2]);
-                glVertex3f(0.0f, -0.3f, 0.8f);
-                glVertex3f(0.45f, -0.1f, 0.8f);
-                glVertex3f(0.45f, -0.1f, -0.01f);
-                glVertex3f(0.0f, -0.3f, -0.01f);
-                glEnd();
-            glPopMatrix();
-
-            //Side right
-            glPushMatrix();
-                glTranslatef(0.1, 0.15, -0.4);
-                glBegin(GL_QUADS);
-                glNormal3f(1, 0, 0);
-                glVertex3f(0.45f, -0.1f, 0.8f);
-                glVertex3f(0.45f, -0.1f, -0.01f);
-                glVertex3f(0.45f, 0.0f, -0.01f);
-                glVertex3f(0.45f, 0.0f, 0.8f);
-                glEnd();
-            glPopMatrix();
+            //Draw Circle
+            setmaterial(5);
+            glBegin(GL_POLYGON);
+                for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
+                    glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
+            glEnd();
         glPopMatrix();
 
-        //LEFT TRIANGLE
+        //Left wheel
         glPushMatrix();
             glRotated(180,0,1,0);
-            //Front triangle
-            glPushMatrix();
-                glTranslatef(0.1, 0.15, -0.4);
-                glBegin(GL_QUADS);
-                glNormal3f(0,0,1);
-                glVertex3f(0.0f, 0.0f, 0.8f);
-                glVertex3f(0.0f, -0.3f, 0.8f);
-                glVertex3f(0.45f, -0.1f, 0.8f);
-                glVertex3f(0.45f, 0.0f, 0.8f);
-                glEnd();
-            glPopMatrix();
+            glTranslated(0.5,-0.20,-0.20);
+            glRotated(90,0,1,0);
+            setmaterial(4);
+            GLUquadricObj *quadratic7;
+            quadratic7 = gluNewQuadric();
+            gluCylinder(quadratic7, 0.3f, 0.3f, 0.3, 80, 80);
 
-            //Back triangle
-            glPushMatrix();
-                glTranslatef(0.1, 0.15, -1.2);
-                glBegin(GL_QUADS);
-                glNormal3f(0, 0, -1);
-                glVertex3f(0.0f, 0.0f, 0.8f);
-                glVertex3f(0.0f, -0.3f, 0.8f);
-                glVertex3f(0.45f, -0.1f, 0.8f);
-                glVertex3f(0.45f, 0.0f, 0.8f);
-                glEnd();
-            glPopMatrix();
-
-            //Bottom
-            glPushMatrix();
-                glTranslatef(0.1, 0.15, -0.4);
-                glBegin(GL_QUADS);
-                normal = vectorProduct(0.0f, -0.3f, 0.8f, 0.45f, -0.1f, 0.8f, 0.0f, -0.3f, -0.01f);
-                glNormal3f(normal[0], -normal[1], normal[2]);
-                glVertex3f(0.0f, -0.3f, 0.8f);
-                glVertex3f(0.45f, -0.1f, 0.8f);
-                glVertex3f(0.45f, -0.1f, -0.01f);
-                glVertex3f(0.0f, -0.3f, -0.01f);
-                glEnd();
-            glPopMatrix();
-
-            //Side right
-            glPushMatrix();
-                glTranslatef(0.1, 0.15, -0.4);
-                glBegin(GL_QUADS);
-                glNormal3f(1, 0, 0);
-                glVertex3f(0.45f, -0.1f, 0.8f);
-                glVertex3f(0.45f, -0.1f, -0.01f);
-                glVertex3f(0.45f, 0.0f, -0.01f);
-                glVertex3f(0.45f, 0.0f, 0.8f);
-                glEnd();
-            glPopMatrix();
-        glPopMatrix();
-
-        //Top
-        glPushMatrix();
-            glScalef(1.09, 1.0, 0.6);
-            glTranslatef(-0.5, 0.149, -0.7);
-            glRotated(90,1,0,0);
-            glBegin(GL_QUADS);
-            glNormal3f(0,1,0);
-            glVertex3f(0.0f, 0.0f, 0.0f);
-            glVertex3f(1.0f, 0.0f, 0.0f);
-            glVertex3f(1.0f, 1.4f, 0.0f);
-            glVertex3f(0.0f, 1.4f, 0.0f);
+            //Draw Circle
+            setmaterial(5);
+            glBegin(GL_POLYGON);
+                for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
+                    glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
             glEnd();
         glPopMatrix();
     glPopMatrix();
+
 }
 
 void createLegs(){
-    /**************right leg**************/
+    /**************"LEGS"**************/
     glPushMatrix();
-        glTranslatef(0.1, -0.1, 0);
-            setmaterial(3);
-            glTranslatef(0, -1.0, 0);
-            glRotated(rotateRightLeg, 1, 0, 0);
-            glTranslatef(0, 1.0, 0);
+        // glTranslatef(0.1, -0.1, 0);
+        setmaterial(3);
+        glTranslatef(0, -1.0, 0);
+        glRotated(90, 1,0,0);
+        
+        glTranslatef(0, 0.25, 0);
         //Thigh
         glPushMatrix();
-            glTranslatef(0.3, -1.5, 0);
-            glScalef(0.4, 1.10, 0.6);
+            glTranslatef(0, -1.5, 0);
+            glScalef(1.5, 1.10, 0.6);
             createCube();
-        glPopMatrix();
-
-        //Knee
-        glPushMatrix();
-            glTranslatef(0.3, -1.95, 0);
-            glScaled(0.75,0.75,0.75);
-            glutSolidSphere(radius, 255, 255);
         glPopMatrix();
 
         //Calf
         glPushMatrix();
             setmaterial(2);
-            glTranslatef(0, -2.0, 0);
-            glRotated(rotateRightKnee, 1, 0, 0);
+            glTranslatef(0, -2.1, 0);
             glTranslatef(0, 2.0, 0);
 
             glPushMatrix();
-                glTranslatef(0.3, -2.7, 0);
-                glScalef(0.6, 1.5, 0.8);
+                glTranslatef(0, -2.7, 0);
+                glScalef(1.5, 1.5, 0.8);
                 createCube();
             glPopMatrix();
 
-            //Foot
-            glPushMatrix();
-                    //Left triangle
-                glPushMatrix();
-                    glTranslatef(0.0, -3.45, 0.75);
-                        glBegin(GL_QUADS);
-                        glNormal3f(0, -1, 0);
-                        glVertex3f(0.0f, 0.0f, -0.4f);
-                        glVertex3f(0.0f, 0.0f, 0.2f);
-                        glVertex3f(0.0f, 0.4f, 0.2f);
-                        glVertex3f(0.0f, 0.70f, -0.4f);
-                        glEnd();
-                glPopMatrix();
-                    //Right triangle
-                glPushMatrix();
-                    glTranslatef(0.6, -3.45, 0.75);
-                        glBegin(GL_QUADS);
-                        glNormal3f(0, 1, 0);
-                        glVertex3f(0.0f, 0.0f, -0.4f);
-                        glVertex3f(0.0f, 0.0f, 0.2f);
-                        glVertex3f(0.0f, 0.4f, 0.2f);
-                        glVertex3f(0.0f, 0.70f, -0.4f);
-                        glEnd();
-                glPopMatrix();
 
-                //Front
-                glPushMatrix();
-                    glTranslatef(0.0, -3.45, 0.75);
-                        glBegin(GL_QUADS);
-                        glNormal3f(0,0,1);
-                        glVertex3f(0.0f, 0.0f, 0.2f);
-                        glVertex3f(0.6f, 0.0f, 0.2f);
-                        glVertex3f(0.6f, 0.4f, 0.2f);
-                        glVertex3f(0.0f, 0.4f, 0.2f);
-                        glEnd();
-                glPopMatrix();
-
-                //Top
-                glPushMatrix();
-                    glTranslatef(0.0, -3.45, 0.75);
-                        glBegin(GL_QUADS);
-                        normal = vectorProduct(0.0f, 0.4f, 0.2f, 0.6f, 0.4f, 0.2f, 0.0f, 0.7f, -0.4f);
-                        glNormal3f(normal[0], normal[1], normal[2]);
-                        glVertex3f(0.0f, 0.7f, -0.4f);
-                        glVertex3f(0.6f, 0.7f, -0.4f);
-                        glVertex3f(0.6f, 0.4f, 0.2f);
-                        glVertex3f(0.0f, 0.4f, 0.2f);
-                        glEnd();
-                glPopMatrix();
-
-            glPopMatrix();
-
+            //RIGHT WHEELS
             //Wheel up
             glPushMatrix();
-                glTranslated(0.6,-2.4,0);
+                glTranslated(0.5,-2.4,0.2);
                 glRotated(90,0,1,0);
                 setmaterial(4);
                 GLUquadricObj *quadratic;
@@ -1695,7 +836,7 @@ void createLegs(){
 
             //Wheel bottom
             glPushMatrix();
-                glTranslated(0.6,-3.1,0);
+                glTranslated(0.5,-3.1,0.2);
                 glRotated(90,0,1,0);
                 setmaterial(4);
                 GLUquadricObj *quadratic2;
@@ -1709,102 +850,14 @@ void createLegs(){
                         glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
                 glEnd();
             glPopMatrix();
-        glPopMatrix();
-    glPopMatrix();
 
-    /*********************left leg**************/
-    glPushMatrix();
-        glTranslatef(-0.7, -0.1, 0);
-        setmaterial(3);
-        glTranslatef(0, -1.0, 0);
-            glRotated(rotateLeftLeg, 1, 0, 0);
-            glTranslatef(0, 1.0, 0);
-        //Thigh
-        glPushMatrix();
-            glTranslatef(0.3, -1.5, 0);
-            glScalef(0.4, 1.10, 0.6);
-            createCube();
-        glPopMatrix();
-
-        //Knee
-        glPushMatrix();
-            glTranslatef(0.3, -1.95, 0);
-            glScaled(0.75,0.75,0.75);
-            glutSolidSphere(radius, 255, 255);
-        glPopMatrix();
-
-        //Calf
-        glPushMatrix();
-            setmaterial(2);
-            glTranslatef(0, -2.0, 0);
-            glRotated(rotateLeftKnee, 1, 0, 0);
-            glTranslatef(0, 2.0, 0);
-
-            glPushMatrix();
-                glTranslatef(0.3, -2.7, 0);
-                glScalef(0.6, 1.5, 0.8);
-                createCube();
-            glPopMatrix();
-
-            //Foot
-            glPushMatrix();
-                    //Left triangle
-                glPushMatrix();
-                    glTranslatef(0.0, -3.45, 0.75);
-                        glBegin(GL_QUADS);
-                        glNormal3f(0,-1,0);
-                        glVertex3f(0.0f, 0.0f, -0.4f);
-                        glVertex3f(0.0f, 0.0f, 0.2f);
-                        glVertex3f(0.0f, 0.4f, 0.2f);
-                        glVertex3f(0.0f, 0.70f, -0.4f);
-                        glEnd();
-                glPopMatrix();
-                    //Right triangle
-                glPushMatrix();
-                    glTranslatef(0.6, -3.45, 0.75);
-                        glBegin(GL_QUADS);
-                        glNormal3f(0,1,0);
-                        glVertex3f(0.0f, 0.0f, -0.4f);
-                        glVertex3f(0.0f, 0.0f, 0.2f);
-                        glVertex3f(0.0f, 0.4f, 0.2f);
-                        glVertex3f(0.0f, 0.70f, -0.4f);
-                        glEnd();
-                glPopMatrix();
-
-                //Front
-                glPushMatrix();
-                    glTranslatef(0.0, -3.45, 0.75);
-                        glBegin(GL_QUADS);
-                        glNormal3f(0,0,1);
-                        glVertex3f(0.0f, 0.0f, 0.2f);
-                        glVertex3f(0.6f, 0.0f, 0.2f);
-                        glVertex3f(0.6f, 0.4f, 0.2f);
-                        glVertex3f(0.0f, 0.4f, 0.2f);
-                        glEnd();
-                glPopMatrix();
-
-                //Top
-                glPushMatrix();
-                    glTranslatef(0.0, -3.45, 0.75);
-                        glBegin(GL_QUADS);
-                        normal = vectorProduct(0.0f, 0.4f, 0.2f, 0.6f, 0.4f, 0.2f, 0.0f, 0.7f, -0.4f);
-                        glNormal3f(normal[0], normal[1], normal[2]);
-                        glVertex3f(0.0f, 0.7f, -0.4f);
-                        glVertex3f(0.6f, 0.7f, -0.4f);
-                        glVertex3f(0.6f, 0.4f, 0.2f);
-                        glVertex3f(0.0f, 0.4f, 0.2f);
-                        glEnd();
-                glPopMatrix();
-
-            glPopMatrix();
-
-
+            //LEFT WHEELS
             glPushMatrix();
                 glRotated(180,0,1,0);
-                glTranslated(-0.6,0,0);
-                //Wheel up
+                glTranslated(0, 0, -0.40);
+
                 glPushMatrix();
-                    glTranslated(0.6,-2.4,0);
+                    glTranslated(0.5,-2.4,0.2);
                     glRotated(90,0,1,0);
                     setmaterial(4);
                     GLUquadricObj *quadratic3;
@@ -1821,7 +874,7 @@ void createLegs(){
 
                 //Wheel bottom
                 glPushMatrix();
-                    glTranslated(0.6,-3.1,0);
+                    glTranslated(0.5,-3.1,0.2);
                     glRotated(90,0,1,0);
                     setmaterial(4);
                     GLUquadricObj *quadratic4;
@@ -1836,8 +889,85 @@ void createLegs(){
                     glEnd();
                 glPopMatrix();
             glPopMatrix();
+
+
+
+
         glPopMatrix();
     glPopMatrix();
 
+    /*********************left leg**************/
+    // glPushMatrix();
+    //     glTranslatef(-0.7, -0.1, 0);
+    //     setmaterial(3);
+    //     glTranslatef(0, -1.0, 0);
+    //         glRotated(rotateLeftLeg, 1, 0, 0);
+    //         glTranslatef(0, 1.0, 0);
+    //     //Thigh
+    //     glPushMatrix();
+    //         glTranslatef(0.3, -1.5, 0);
+    //         glScalef(0.4, 1.10, 0.6);
+    //         createCube();
+    //     glPopMatrix();
+
+    //     //Knee
+    //     glPushMatrix();
+    //         glTranslatef(0.3, -1.95, 0);
+    //         glScaled(0.75,0.75,0.75);
+    //         glutSolidSphere(radius, 255, 255);
+    //     glPopMatrix();
+
+    //     //Calf
+    //     glPushMatrix();
+    //         setmaterial(2);
+    //         glTranslatef(0, -2.0, 0);
+    //         glRotated(rotateLeftKnee, 1, 0, 0);
+    //         glTranslatef(0, 2.0, 0);
+
+    //         glPushMatrix();
+    //             glTranslatef(0.3, -2.7, 0);
+    //             glScalef(0.6, 1.5, 0.8);
+    //             createCube();
+    //         glPopMatrix();
+
+    //         glPushMatrix();
+    //             glRotated(180,0,1,0);
+    //             glTranslated(-0.6,0,0);
+    //             //Wheel up
+    //             glPushMatrix();
+    //                 glTranslated(0.6,-2.4,0);
+    //                 glRotated(90,0,1,0);
+    //                 setmaterial(4);
+    //                 GLUquadricObj *quadratic3;
+    //                 quadratic3 = gluNewQuadric();
+    //                 gluCylinder(quadratic3, 0.3f, 0.3f, 0.3, 80, 80);
+
+    //                 //Draw Circle
+    //                 setmaterial(5);
+    //                 glBegin(GL_POLYGON);
+    //                     for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
+    //                         glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
+    //                 glEnd();
+    //             glPopMatrix();
+
+    //             //Wheel bottom
+    //             glPushMatrix();
+    //                 glTranslated(0.6,-3.1,0);
+    //                 glRotated(90,0,1,0);
+    //                 setmaterial(4);
+    //                 GLUquadricObj *quadratic4;
+    //                 quadratic4 = gluNewQuadric();
+    //                 gluCylinder(quadratic4, 0.3f, 0.3f, 0.3, 80, 80);
+
+    //                 //Draw Circle
+    //                 setmaterial(5);
+    //                 glBegin(GL_POLYGON);
+    //                     for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
+    //                         glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
+    //                 glEnd();
+    //             glPopMatrix();
+    //         glPopMatrix();
+    //     glPopMatrix();
+    // glPopMatrix();
 }
 
