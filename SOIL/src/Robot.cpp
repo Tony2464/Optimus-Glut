@@ -505,12 +505,16 @@ void Robot::createChest() {
             glVertex3f(-0.75f, 0.5f, -0.5f);
 
             //Front left
+            normal = vectorProduct(-0.75f, -0.5f, 0.5f, 0.0f, -0.5f, 0.7f,-0.75f, 0.5f, 0.5f);
+            glNormal3f(normal[0], normal[1], normal[2]);
             glVertex3f(-0.75f, 0.5f, 0.5f);
             glVertex3f(-0.75f, -0.5f, 0.5f);
             glVertex3f(0.0f, -0.5f, 0.7f);
             glVertex3f(0.0f, 0.5f, 0.7f);
 
             //Front right
+            normal = vectorProduct(0.0f, -0.5f, 0.7f,0.75f, -0.5f, 0.5f,0.0f, 0.5f, 0.7f);
+            glNormal3f(normal[0], normal[1], normal[2]);
             glVertex3f(0.75f, 0.5f, 0.5f);
             glVertex3f(0.75f, -0.5f, 0.5f);
             glVertex3f(0.0f, -0.5f, 0.7f);

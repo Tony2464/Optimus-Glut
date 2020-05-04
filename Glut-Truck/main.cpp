@@ -601,12 +601,16 @@ void createChest() {
                 glVertex3f(-0.75f, 0.5f, -0.5f);
 
                 //Front left
+                normal = vectorProduct(-0.75f, -0.5f, 0.5f, 0.0f, -0.5f, 0.7f,-0.75f, 0.5f, 0.5f);
+                glNormal3f(normal[0], normal[1], normal[2]);
                 glVertex3f(-0.75f, 0.5f, 0.5f);
                 glVertex3f(-0.75f, -0.5f, 0.5f);
                 glVertex3f(0.0f, -0.5f, 0.7f);
                 glVertex3f(0.0f, 0.5f, 0.7f);
 
                 //Front right
+                normal = vectorProduct(0.0f, -0.5f, 0.7f,0.75f, -0.5f, 0.5f,0.0f, 0.5f, 0.7f);
+                glNormal3f(normal[0], normal[1], normal[2]);
                 glVertex3f(0.75f, 0.5f, 0.5f);
                 glVertex3f(0.75f, -0.5f, 0.5f);
                 glVertex3f(0.0f, -0.5f, 0.7f);
@@ -889,84 +893,6 @@ void createLegs(){
                     glEnd();
                 glPopMatrix();
             glPopMatrix();
-
-
-
-
         glPopMatrix();
     glPopMatrix();
-
-    /*********************left leg**************/
-    // glPushMatrix();
-    //     glTranslatef(-0.7, -0.1, 0);
-    //     setmaterial(3);
-    //     glTranslatef(0, -1.0, 0);
-    //         glRotated(rotateLeftLeg, 1, 0, 0);
-    //         glTranslatef(0, 1.0, 0);
-    //     //Thigh
-    //     glPushMatrix();
-    //         glTranslatef(0.3, -1.5, 0);
-    //         glScalef(0.4, 1.10, 0.6);
-    //         createCube();
-    //     glPopMatrix();
-
-    //     //Knee
-    //     glPushMatrix();
-    //         glTranslatef(0.3, -1.95, 0);
-    //         glScaled(0.75,0.75,0.75);
-    //         glutSolidSphere(radius, 255, 255);
-    //     glPopMatrix();
-
-    //     //Calf
-    //     glPushMatrix();
-    //         setmaterial(2);
-    //         glTranslatef(0, -2.0, 0);
-    //         glRotated(rotateLeftKnee, 1, 0, 0);
-    //         glTranslatef(0, 2.0, 0);
-
-    //         glPushMatrix();
-    //             glTranslatef(0.3, -2.7, 0);
-    //             glScalef(0.6, 1.5, 0.8);
-    //             createCube();
-    //         glPopMatrix();
-
-    //         glPushMatrix();
-    //             glRotated(180,0,1,0);
-    //             glTranslated(-0.6,0,0);
-    //             //Wheel up
-    //             glPushMatrix();
-    //                 glTranslated(0.6,-2.4,0);
-    //                 glRotated(90,0,1,0);
-    //                 setmaterial(4);
-    //                 GLUquadricObj *quadratic3;
-    //                 quadratic3 = gluNewQuadric();
-    //                 gluCylinder(quadratic3, 0.3f, 0.3f, 0.3, 80, 80);
-
-    //                 //Draw Circle
-    //                 setmaterial(5);
-    //                 glBegin(GL_POLYGON);
-    //                     for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
-    //                         glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
-    //                 glEnd();
-    //             glPopMatrix();
-
-    //             //Wheel bottom
-    //             glPushMatrix();
-    //                 glTranslated(0.6,-3.1,0);
-    //                 glRotated(90,0,1,0);
-    //                 setmaterial(4);
-    //                 GLUquadricObj *quadratic4;
-    //                 quadratic4 = gluNewQuadric();
-    //                 gluCylinder(quadratic4, 0.3f, 0.3f, 0.3, 80, 80);
-
-    //                 //Draw Circle
-    //                 setmaterial(5);
-    //                 glBegin(GL_POLYGON);
-    //                     for(double i = 0; i < 2 * M_PI; i += M_PI / 6) //<-- Change this Value
-    //                         glVertex3f(cos(i) * 0.31, sin(i) * 0.31, 0.3);
-    //                 glEnd();
-    //             glPopMatrix();
-    //         glPopMatrix();
-    //     glPopMatrix();
-    // glPopMatrix();
 }
