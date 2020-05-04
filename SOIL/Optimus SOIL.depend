@@ -139,3 +139,73 @@
 
 1585217368 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\fmod\fmod_memoryinfo.h
 
+1588605731 source:c:\users\anthony\desktop\optimus-glut\soil\src\block.cpp
+	"Block.h"
+
+1588605616 c:\users\anthony\desktop\optimus-glut\soil\include\block.h
+	<GL/gl.h>
+	<GL/glu.h>
+	"glut.h"
+	"SOIL.h"
+
+1588605616 c:\users\anthony\desktop\optimus-glut\soil\include\glut.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1588605616 c:\users\anthony\desktop\optimus-glut\soil\include\soil.h
+
+1588605616 source:c:\users\anthony\desktop\optimus-glut\soil\src\camera.cpp
+	"Camera.h"
+	<math.h>
+
+1588605616 c:\users\anthony\desktop\optimus-glut\soil\include\camera.h
+
+1588605616 source:c:\users\anthony\desktop\optimus-glut\soil\src\main.cpp
+	<stdlib.h>
+	<stdio.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	"glut.h"
+	"SOIL.h"
+	"Camera.h"
+	"Map.h"
+	"Robot.h"
+
+1588605616 c:\users\anthony\desktop\optimus-glut\soil\include\map.h
+	<GL/gl.h>
+	<GL/glu.h>
+	"glut.h"
+	"SOIL.h"
+	"Camera.h"
+
+1588605616 c:\users\anthony\desktop\optimus-glut\soil\include\robot.h
+	<GL/gl.h>
+	<GL/glu.h>
+	"glut.h"
+	"SOIL.h"
+
+1588605731 source:c:\users\anthony\desktop\optimus-glut\soil\src\map.cpp
+	"Map.h"
+	"Block.h"
+	"Robot.h"
+
+1588605616 source:c:\users\anthony\desktop\optimus-glut\soil\src\robot.cpp
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	<windows.h>
+	"Robot.h"
+	"../fmod/fmod.h"
+
+1588605616 c:\users\anthony\desktop\optimus-glut\soil\fmod\fmod.h
+	"fmod_codec.h"
+	"fmod_dsp.h"
+	"fmod_memoryinfo.h"
+
+1588605616 c:\users\anthony\desktop\optimus-glut\soil\fmod\fmod_codec.h
+
+1588605616 c:\users\anthony\desktop\optimus-glut\soil\fmod\fmod_dsp.h
+
+1588605616 c:\users\anthony\desktop\optimus-glut\soil\fmod\fmod_memoryinfo.h
+
