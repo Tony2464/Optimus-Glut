@@ -39,6 +39,6 @@ public:
     float walk();
     void createPelvis();
     void createLegs();
-    void sound();
+    void sound(int mode);
     void reverseTrans();
 };

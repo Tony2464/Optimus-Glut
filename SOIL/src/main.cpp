@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <thread>
 
 #include "glut.h"
 #include "SOIL.h"
@@ -11,6 +12,7 @@
 #include "Robot.h"
 #include "Truck.h"
 
+using namespace std;
 // Objet Camera
 Camera *cam = new Camera();
 // Objet Sc�ne
@@ -19,8 +21,23 @@ Map *m = new Map();
 Robot *optimus = new Robot();
 // Display optimus
 bool display = true;
+//Sounds
+bool status = false;
+bool status2 = false;
 //Truck
 Truck *truck = new Truck();
+
+void task(){
+
+    optimus->sound(2);
+    status = true;
+}
+
+void task2(){
+
+    optimus->sound(3);
+    status2 = true;
+}
 
 /** GESTION FENETRE **/
 void reshapeWindow(int w, int h)
@@ -79,25 +96,47 @@ void KeyboardDown(unsigned char key, int xx, int yy)
         break;
 
     case 'j': /* play sound */
-        optimus->sound();
+        optimus->sound(1);
         break;
 
     case 'k': /* quit */
         exit(0);
         break;
 
-    case 't' : /* transformation */
+    case 't' : {/* transformation */
         if (optimus->transformation()) {
             display = false;
             glutPostRedisplay();
         }
+        if(status == false){
+
+            thread thr{task};
+            thr.join();
+
+        }
+
         break;
+    }
 
 
-    case 'r':
-        if (!display) {
+    case 'r':{
+
+    if (!display) {
             optimus->optiZ = truck->gogogo();
         }
+
+
+    }
+
+    if(status2 == false){
+
+            thread thr{task2};
+            thr.join();
+
+        }
+
+        break;
+
     }
 }
 

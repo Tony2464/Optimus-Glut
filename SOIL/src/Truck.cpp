@@ -4,6 +4,9 @@
 #include <windows.h>
 #include "Truck.h"
 
+#define M_PI 3.14
+#define M_PI_2 1.57
+
 void Truck::buildTruck(){
 
     glPushMatrix();
@@ -488,7 +491,7 @@ float Truck::gogogo() {
     if (truckZ == 0) {
         truckZ = 0.05;
     } else {
-        truckZ += 0.05 + (truckZ * 0.1);
+        truckZ += 0.05 + (truckZ * 0.02);
     }
     return truckZ;
 }

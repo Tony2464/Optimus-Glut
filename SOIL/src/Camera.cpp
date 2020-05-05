@@ -1,6 +1,9 @@
 #include "Camera.h"
 #include <math.h>
 
+#define M_PI 3.14
+#define M_PI_2 1.57
+
 Camera::Camera()
 {
     deltaForward = 0;

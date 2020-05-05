@@ -1,50 +1,52 @@
 # depslib dependency file v1.0
-1586103539 source:d:\mes documents\projets git\projet optimus glut\soil\src\block.cpp
+1588605902 source:d:\mes documents\projets git\projet optimus glut\soil\src\block.cpp
 	"Block.h"
 
-1584807855 d:\mes documents\projets git\projet optimus glut\soil\include\block.h
+1588605902 d:\mes documents\projets git\projet optimus glut\soil\include\block.h
 	<GL/gl.h>
 	<GL/glu.h>
 	"glut.h"
 	"SOIL.h"
 
-1584807855 d:\mes documents\projets git\projet optimus glut\soil\include\glut.h
+1588605902 d:\mes documents\projets git\projet optimus glut\soil\include\glut.h
 	<windows.h>
 	<GL/gl.h>
 	<GL/glu.h>
 
-1584807855 d:\mes documents\projets git\projet optimus glut\soil\include\soil.h
+1588605902 d:\mes documents\projets git\projet optimus glut\soil\include\soil.h
 
-1584807855 source:d:\mes documents\projets git\projet optimus glut\soil\src\camera.cpp
+1588711499 source:d:\mes documents\projets git\projet optimus glut\soil\src\camera.cpp
 	"Camera.h"
 	<math.h>
 
-1584807855 d:\mes documents\projets git\projet optimus glut\soil\include\camera.h
+1588605902 d:\mes documents\projets git\projet optimus glut\soil\include\camera.h
 
-1586102413 source:d:\mes documents\projets git\projet optimus glut\soil\src\main.cpp
+1588716153 source:d:\mes documents\projets git\projet optimus glut\soil\src\main.cpp
 	<stdlib.h>
 	<stdio.h>
 	<GL/gl.h>
 	<GL/glu.h>
+	<thread>
 	"glut.h"
 	"SOIL.h"
 	"Camera.h"
 	"Map.h"
 	"Robot.h"
+	"Truck.h"
 
-1584807855 d:\mes documents\projets git\projet optimus glut\soil\include\map.h
+1588605902 d:\mes documents\projets git\projet optimus glut\soil\include\map.h
 	<GL/gl.h>
 	<GL/glu.h>
 	"glut.h"
 	"SOIL.h"
 	"Camera.h"
 
-1586106019 source:d:\mes documents\projets git\projet optimus glut\soil\src\map.cpp
+1588605902 source:d:\mes documents\projets git\projet optimus glut\soil\src\map.cpp
 	"Map.h"
 	"Block.h"
 	"Robot.h"
 
-1585304418 source:d:\mes documents\projets git\projet optimus glut\soil\src\robot.cpp
+1588716036 source:d:\mes documents\projets git\projet optimus glut\soil\src\robot.cpp
 	<stdlib.h>
 	<stdio.h>
 	<math.h>
@@ -52,22 +54,22 @@
 	"Robot.h"
 	"../fmod/fmod.h"
 
-1585304418 d:\mes documents\projets git\projet optimus glut\soil\include\robot.h
+1588712304 d:\mes documents\projets git\projet optimus glut\soil\include\robot.h
 	<GL/gl.h>
 	<GL/glu.h>
 	"glut.h"
 	"SOIL.h"
 
-1584807855 d:\mes documents\projets git\projet optimus glut\soil\fmod\fmod.h
+1588605901 d:\mes documents\projets git\projet optimus glut\soil\fmod\fmod.h
 	"fmod_codec.h"
 	"fmod_dsp.h"
 	"fmod_memoryinfo.h"
 
-1584807855 d:\mes documents\projets git\projet optimus glut\soil\fmod\fmod_codec.h
+1588605901 d:\mes documents\projets git\projet optimus glut\soil\fmod\fmod_codec.h
 
-1584807855 d:\mes documents\projets git\projet optimus glut\soil\fmod\fmod_dsp.h
+1588605901 d:\mes documents\projets git\projet optimus glut\soil\fmod\fmod_dsp.h
 
-1584807855 d:\mes documents\projets git\projet optimus glut\soil\fmod\fmod_memoryinfo.h
+1588605901 d:\mes documents\projets git\projet optimus glut\soil\fmod\fmod_memoryinfo.h
 
 1588702623 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\block.cpp
 	"Block.h"
@@ -224,6 +226,19 @@
 	"SOIL.h"
 
 1588706636 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\truck.cpp
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	<windows.h>
+	"Truck.h"
+
+1588707909 d:\mes documents\projets git\projet optimus glut\soil\include\truck.h
+	<GL/gl.h>
+	<GL/glu.h>
+	"glut.h"
+	"SOIL.h"
+
+1588711510 source:d:\mes documents\projets git\projet optimus glut\soil\src\truck.cpp
 	<stdlib.h>
 	<stdio.h>
 	<math.h>

@@ -2,8 +2,12 @@
 #include <stdio.h>
 #include <math.h>
 #include <windows.h>
+
 #include "Robot.h"
 #include "../fmod/fmod.h"
+
+#define M_PI 3.14
+#define M_PI_2 1.57
 
 void Robot::buildOptimus(){
 
@@ -61,7 +65,7 @@ void Robot::buildOptimus(){
 
 }
 
-void Robot::sound(){
+void Robot::sound(int mode){
 
 FMOD_SYSTEM * sys;
   FMOD_SOUND * sound;
@@ -71,21 +75,33 @@ FMOD_SYSTEM * sys;
   FMOD_System_Create(&sys);
   FMOD_System_Init(sys, 1, FMOD_INIT_NORMAL, NULL);
 
+  switch(mode){
+
+  case 1 : resultat = FMOD_System_CreateSound(sys, "sounds/jesuisoptimus.mp3", FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM, 0, &sound);
+  break;
+
+  case 2 : resultat = FMOD_System_CreateSound(sys, "sounds/transformation_sound.mp3", FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM, 0, &sound);
+  break;
+
+  case 3 : resultat = FMOD_System_CreateSound(sys, "sounds/truck_sound.mp3", FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM, 0, &sound);
+  break;
+
+  }
+
   /* On ouvre la musique */
-  resultat = FMOD_System_CreateSound(sys, "sounds/jesuisoptimus.mp3", FMOD_SOFTWARE | FMOD_2D | FMOD_CREATESTREAM, 0, &sound);
+
 
     if (resultat != FMOD_OK)
   {
       printf("Impossible de lire le fichier mp3\n");
-       //cout << "Impossible de lire le fichier mp3\n";
   }
 
   /* On joue la musique */
   FMOD_System_PlaySound(sys, FMOD_CHANNEL_FREE, sound, 0, NULL);
 
-  Sleep(4000);
-  FMOD_Sound_Release(sound);
-  FMOD_System_Close(sys);
+  //Sleep(4000);
+  //FMOD_Sound_Release(sound);
+  //FMOD_System_Close(sys);
 
 }
 
