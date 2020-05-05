@@ -18,6 +18,8 @@ public:
     int rotateRightLegLimit = 0;
     float rotateRightKnee = 0;
     float rotateLeftKnee = 0;
+    float optiY;
+    float optiZ;
 
     void buildOptimus();
     void createCube();
@@ -34,8 +36,9 @@ public:
     void setlight();
     void setMaterial(int mode);
     void createHead();
-    void walk();
+    float walk();
     void createPelvis();
     void createLegs();
     void sound();
+    void reverseTrans();
 };

@@ -9,6 +9,7 @@ class Truck
 public:
     float *normal;
     float normalArms[3] = {90, 30, 0};
+    float truckZ = 0;
 
     void buildTruck();
     void createCube();
@@ -23,4 +24,5 @@ public:
     void createHead();
     void createPelvis();
     void createLegs();
+    float gogogo();
 };

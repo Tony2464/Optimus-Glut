@@ -7,7 +7,8 @@
 void Truck::buildTruck(){
 
     glPushMatrix();
-        glTranslatef(0,2,0);
+        glTranslatef(0, 0, truckZ);
+        glTranslatef(0, 1.5, 4);
         //Top of the chest
         glPushMatrix();
             this->setMaterial(1);
@@ -284,7 +285,7 @@ void Truck::createPelvis(){
             glScalef(1.5, 0.8, 1.40);
             createCube();
         glPopMatrix();
-        
+
         //Front wheels
         //Right wheel
         glPushMatrix();
@@ -331,7 +332,7 @@ void Truck::createLegs(){
         setMaterial(3);
         glTranslatef(0, -1.0, 0);
         glRotated(90, 1,0,0);
-        
+
         glTranslatef(0, 0.25, 0);
         //Thigh
         glPushMatrix();
@@ -481,4 +482,13 @@ void Truck::setMaterial(int mode){
         break;
     }
 
+}
+
+float Truck::gogogo() {
+    if (truckZ == 0) {
+        truckZ = 0.05;
+    } else {
+        truckZ += 0.05 + (truckZ * 0.1);
+    }
+    return truckZ;
 }

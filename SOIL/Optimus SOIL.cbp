@@ -60,6 +60,7 @@
 		<Unit filename="include/Camera.h" />
 		<Unit filename="include/Map.h" />
 		<Unit filename="include/Robot.h" />
+		<Unit filename="include/Truck.h" />
 		<Unit filename="sounds/jesuisoptimus.mp3" />
 		<Unit filename="src/Block.cpp" />
 		<Unit filename="src/Camera.cpp" />

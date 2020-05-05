@@ -65,11 +65,17 @@ void KeyboardDown(unsigned char key, int xx, int yy)
 
     case 'n':
         optimus->getNormalArms();
+        if (display == false) {
+            optimus->reverseTrans();
+            display = true;
+        }
         break;
 
     case 'a': /* marcher */
-        optimus->walk();
-        glutPostRedisplay();
+        if (display) {
+            truck->truckZ = optimus->walk();
+            glutPostRedisplay();
+        }
         break;
 
     case 'j': /* play sound */
@@ -84,9 +90,14 @@ void KeyboardDown(unsigned char key, int xx, int yy)
         if (optimus->transformation()) {
             display = false;
             glutPostRedisplay();
-            break;
         }
+        break;
 
+
+    case 'r':
+        if (!display) {
+            optimus->optiZ = truck->gogogo();
+        }
     }
 }
 

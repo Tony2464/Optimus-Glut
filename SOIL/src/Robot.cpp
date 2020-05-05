@@ -9,7 +9,8 @@ void Robot::buildOptimus(){
 
 //Top of the chest
     glPushMatrix();
-        glTranslatef(0, 3.7, 5);
+        glTranslatef(0, optiY, optiZ);
+        glTranslatef(0, 3.55, 5);
         glPushMatrix();
             this->setMaterial(1);
              this->createChest();
@@ -963,132 +964,6 @@ void Robot::createLeftArm() {
     glPopMatrix();
 }
 
-/*
-void Robot::createLeftArm() {
-
-    //Left Shoulder
-    glPushMatrix();
-        setMaterial(3);
-        glTranslatef(-0.75, 0.25, 0);
-
-        glPushMatrix();
-            glScalef(0.3, 0.2, 0.2);
-            createCube();
-        glPopMatrix();
-
-        glTranslatef(-0.3, 0, 0);
-        glutSolidSphere(radius, 255, 255);
-    glPopMatrix();
-
-
-    //Left Arm
-    glTranslatef(-0.3, 0, 0);
-    setMaterial(6);
-    glPushMatrix();
-        glTranslatef(-0.75, 0.25, 0);
-        glRotatef(dabLeftArm, 0, -1, 0);
-        glRotatef(normalArms[0], 0, 0, -1);
-        glRotatef(normalArms[2], 0, 1, 0);
-        glPushMatrix();
-            glTranslatef(0.375, 0, 0);
-            glScalef(0.75, 0.5, 0.5);
-            createCube();
-        glPopMatrix();
-
-        glTranslatef(0.75, 0, 0);
-        glRotatef(normalArms[1], 0, -1, 0);
-        glTranslatef(-0.75, 0, 0);
-
-    //Left Elbow
-        glTranslatef(0.125, 0, 0);
-        glPushMatrix();
-            setMaterial(3);
-            glTranslatef(0.75, 0, 0);
-            glutSolidSphere(radius, 255, 255);
-        glPopMatrix();
-
-    //Left Forearm
-        glPushMatrix();
-            setMaterial(6);
-            glTranslatef(0.875, 0, 0);
-            glRotatef(dabLeftArm, 0, 2.5, 1);
-            glPushMatrix();
-                glTranslatef(0.375, 0, 0);
-                glScalef(0.75, 0.5, 0.5);
-                createCube();
-            glPopMatrix();
-
-    //Left Sword
-            glPushMatrix();
-                setMaterial(8);
-                glTranslatef(0.75, 0, 0);
-                glBegin(GL_QUADS);
-
-                    normal = vectorProduct(0, 0, -0.15, 1.5, 0, -0.15, 0, 0.1, 0);
-                    glNormal3f(normal[0], normal[1], normal[2]);
-                    glVertex3f(0, 0, -0.15);
-                    glVertex3f(1.5, 0, -0.15);
-                    glVertex3f(1.5, 0.1, 0);
-                    glVertex3f(0, 0.1, 0);
-
-                    normal = vectorProduct(0, -0.1, 0, 1.5, -0.1, 0, 0, 0, -0.15);
-                    glNormal3f(normal[0], -normal[1], -normal[2]);
-                    glVertex3f(0, 0, -0.15);
-                    glVertex3f(1.5, 0, -0.15);
-                    glVertex3f(1.5, -0.1, 0);
-                    glVertex3f(0, -0.1, 0);
-
-                    normal = vectorProduct(0, 0, 0.15, 1.5, 0, 0.15, 0, 0.1, 0);
-                    glNormal3f(normal[0], normal[1], normal[2]);
-                    glVertex3f(0, 0, 0.15);
-                    glVertex3f(1.5, 0, 0.15);
-                    glVertex3f(1.5, 0.1, 0);
-                    glVertex3f(0, 0.1, 0);
-
-                    normal = vectorProduct(0, -0.1, 0, 1.5, -0.1, 0, 0, 0, 0.15);
-                    glNormal3f(normal[0], -normal[1], -normal[2]);
-                    glVertex3f(0, 0, 0.15);
-                    glVertex3f(1.5, 0, 0.15);
-                    glVertex3f(1.5, -0.1, 0);
-                    glVertex3f(0, -0.1, 0);
-                glEnd();
-
-        //Left Sword Tip
-                glPushMatrix();
-                    glTranslatef(1.5, 0, 0);
-                    glBegin(GL_TRIANGLES);
-
-                        normal = vectorProduct(0, 0, 0.15, 0.5, 0, 0, 0, 0.1, 0);
-                        glNormal3f(normal[0], normal[1], normal[2]);
-                        glVertex3f(0, 0, 0.15);
-                        glVertex3f(0.5, 0, 0);
-                        glVertex3f(0, 0.1, 0);
-
-                        normal = vectorProduct(0, -0.1, 0, 0.5, 0, 0, 0, 0, 0.15);
-                        glNormal3f(normal[0], normal[1], normal[2]);
-                        glVertex3f(0, 0, 0.15);
-                        glVertex3f(0.5, 0, 0);
-                        glVertex3f(0, -0.1, 0);
-
-                        normal = vectorProduct(0, 0, -0.15, 0, 0.1, 0, 0.5, 0, 0);
-                        glNormal3f(normal[0], normal[1], normal[2]);
-                        glVertex3f(0, 0, -0.15);
-                        glVertex3f(0.5, 0, 0);
-                        glVertex3f(0, 0.1, 0);
-
-                        normal = vectorProduct(0, -0.1, 0, 0.5, 0, 0, 0, 0, -0.15);
-                        glNormal3f(normal[0], normal[1], normal[2]);
-                        glVertex3f(0, 0, -0.15);
-                        glVertex3f(0.5, 0, 0);
-                        glVertex3f(0, -0.1, 0);
-                    glEnd();
-                glPopMatrix();
-            glPopMatrix();
-        glPopMatrix();
-    glPopMatrix();
-}
-*/
-
 void Robot::dab() {
     if (dabLeftArm < 90) {
         dabLeftArm += 1.8;
@@ -1118,6 +993,16 @@ void Robot::getNormalArms() {
         normalArms[1] += 0.6;
     }
 
+    if (normalArms[3] < 0) {
+        normalArms[3] += 3.6;
+    }
+}
+
+void Robot::reverseTrans() {
+    rotateRightLeg = 0;
+    rotateLeftLeg = 0;
+    optiY = 0;
+    optiZ = 0;
 }
 
 bool Robot::transformation() {
@@ -1131,13 +1016,16 @@ bool Robot::transformation() {
     if (rotateRightLeg < 90) rotateRightLeg += 1.8;
     if (rotateLeftLeg < 90) rotateLeftLeg += 1.8;
 
+    if (optiY > -2) optiY -= 0.04;
+    if (optiZ > -2) optiZ -= 0.04;
+
     if (dabLeftArm <= 0 && dabRightArm <= 0 && normalArms[1] <= 0.1 && normalArms[2] >= 90 && rotateRightLeg >= 90 && rotateLeftLeg >= 90)
         return true;
 
     return false;
 }
 
-void Robot::walk(){
+float Robot::walk(){
 
     //Avancer jambes
     if(rotateRightLegLimit == 0){
@@ -1173,9 +1061,11 @@ void Robot::walk(){
     }
 
     if (rotateRightLeg >= 45 )
-        rotateRightLegLimit =0;
+        rotateRightLegLimit = 0;
 
+    optiZ += 0.3;
     glutPostRedisplay();
+    return optiZ;
 }
 
 void Robot::createPelvis(){
