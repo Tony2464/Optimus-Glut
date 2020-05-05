@@ -175,3 +175,55 @@ void Map::DrawSkybox(Camera *cam)
     glVertex3f(SKY_DISTANCE + cam->posx, -SKY_DISTANCE + cam->posy, SKY_DISTANCE + cam->posz);
     glEnd();
 }
+
+
+void Map::setLight(){
+    //here you set the lights and parameters, example with one light
+    float LightAmbient[] = { 0.75f, 0.75f, 0.75f, 1.0f };
+    float LightEmission[] = { 1.0f, 1.0f, 0.8f, 1.0f };
+    float LightDiffuse[] = { 1.0f, 1.0f, 0.8f, 1.0f };
+    float LightSpecular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+    float LightDirection[]={-0.5f, -0.5f, -0.5f};
+
+    float lightPos1[] = {3, 3, 3, 1};
+    float lightColor1[] = {1, 1, 1};
+
+    float lightPos2[] = {2, 3, 3, 1};
+    float lightColor2[] = {1, 1, 1};
+
+    float lightPos3[] = {-2, 3, 3, 1};
+    float lightColor3[] = {1, 1, 1};
+
+    float lightPos4[] = {0, 2, 5, 1};
+    float lightColor4[] = {1, 1, 1};
+
+    float lightPos5[] = {0, 0, -5, 1};
+    float lightColor5[] = {1, 1, 1};
+
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);
+    glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
+    glEnable(GL_LIGHT1);
+
+    glLightfv(GL_LIGHT2, GL_DIFFUSE, lightColor2);
+    glLightfv(GL_LIGHT2, GL_POSITION, lightPos2);
+    glEnable(GL_LIGHT2);
+
+    glLightfv(GL_LIGHT3, GL_DIFFUSE, lightColor3);
+    glLightfv(GL_LIGHT3, GL_POSITION, lightPos3);
+    glEnable(GL_LIGHT3);
+
+    glLightfv(GL_LIGHT4, GL_DIFFUSE, lightColor4);
+    glLightfv(GL_LIGHT4, GL_POSITION, lightPos4);
+    glEnable(GL_LIGHT4);
+
+    glLightfv(GL_LIGHT5, GL_DIFFUSE, lightColor5);
+    glLightfv(GL_LIGHT5, GL_POSITION, lightPos5);
+    glEnable(GL_LIGHT5);
+
+    glLightfv(GL_LIGHT0, GL_AMBIENT, LightAmbient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, LightDiffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, LightSpecular);
+    glLightfv(GL_LIGHT0, GL_POSITION, LightDirection);
+    glEnable(GL_LIGHTING);
+    //glEnable(GL_LIGHT0);
+}

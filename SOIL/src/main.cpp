@@ -221,6 +221,7 @@ void renderScene(void)
               cam->posx + cam->dirx, cam->posy + cam->diry, cam->posz + cam->dirz,
               0.0f, 1.0f, 0.0f);
 
+    m->setLight();
     if (display == true) {
         optimus->buildOptimus();
     } else {

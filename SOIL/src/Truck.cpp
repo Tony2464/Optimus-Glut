@@ -493,7 +493,7 @@ void Truck::setMaterial(int mode){
     switch(mode){
 
     case 1 :
-         glColor3f(0.6f,0.0f,0.0f);
+         glColor3f(1.0f,0.0f,0.0f);
          break;
 
     case 2 :
