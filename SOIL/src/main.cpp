@@ -80,13 +80,13 @@ void KeyboardDown(unsigned char key, int xx, int yy)
         exit(0);
         break;
 
-    case 'r' : /* remove */
-        display = false;
-        glutPostRedisplay();
-        break;
+    case 't' : /* transformation */
+        if (optimus->transformation()) {
+            display = false;
+            glutPostRedisplay();
+            break;
+        }
 
-    case 't' : /* transfomation */
-        optimus->transformation();
     }
 }
 
@@ -180,6 +180,7 @@ void renderScene(void)
 
     if (display == true) {
         optimus->buildOptimus();
+    } else {
         truck->buildTruck();
     }
     m->DrawGround();

@@ -69,29 +69,29 @@
 
 1584807855 d:\mes documents\projets git\projet optimus glut\soil\fmod\fmod_memoryinfo.h
 
-1585217369 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\block.cpp
+1588702623 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\block.cpp
 	"Block.h"
 
-1585217369 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\block.h
+1585220969 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\block.h
 	<GL/gl.h>
 	<GL/glu.h>
 	"glut.h"
 	"SOIL.h"
 
-1585217369 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\glut.h
+1585220969 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\glut.h
 	<windows.h>
 	<GL/gl.h>
 	<GL/glu.h>
 
-1585217369 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\soil.h
+1585220969 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\soil.h
 
-1585217369 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\camera.cpp
+1585220969 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\camera.cpp
 	"Camera.h"
 	<math.h>
 
-1585217369 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\camera.h
+1585220969 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\camera.h
 
-1585224154 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\main.cpp
+1588703939 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\main.cpp
 	<stdlib.h>
 	<stdio.h>
 	<GL/gl.h>
@@ -101,26 +101,27 @@
 	"Camera.h"
 	"Map.h"
 	"Robot.h"
+	"Truck.h"
 
-1585217369 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\map.h
+1585220969 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\map.h
 	<GL/gl.h>
 	<GL/glu.h>
 	"glut.h"
 	"SOIL.h"
 	"Camera.h"
 
-1585222221 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\robot.h
+1588702624 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\robot.h
 	<GL/gl.h>
 	<GL/glu.h>
 	"glut.h"
 	"SOIL.h"
 
-1585217369 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\map.cpp
+1588702623 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\map.cpp
 	"Map.h"
 	"Block.h"
 	"Robot.h"
 
-1585223203 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\robot.cpp
+1588703701 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\robot.cpp
 	<stdlib.h>
 	<stdio.h>
 	<math.h>
@@ -128,16 +129,16 @@
 	"Robot.h"
 	"../fmod/fmod.h"
 
-1585217368 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\fmod\fmod.h
+1585220968 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\fmod\fmod.h
 	"fmod_codec.h"
 	"fmod_dsp.h"
 	"fmod_memoryinfo.h"
 
-1585217368 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\fmod\fmod_codec.h
+1585220968 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\fmod\fmod_codec.h
 
-1585217368 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\fmod\fmod_dsp.h
+1585220968 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\fmod\fmod_dsp.h
 
-1585217368 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\fmod\fmod_memoryinfo.h
+1585220968 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\fmod\fmod_memoryinfo.h
 
 1588605731 source:c:\users\anthony\desktop\optimus-glut\soil\src\block.cpp
 	"Block.h"
@@ -215,4 +216,17 @@
 	<GL/glu.h>
 	"glut.h"
 	"SOIL.h"
+
+1588702623 d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\include\truck.h
+	<GL/gl.h>
+	<GL/glu.h>
+	"glut.h"
+	"SOIL.h"
+
+1588702623 source:d:\cours\deuxième année\deuxième semestre\infographie & 3d\optimus-glut\soil\src\truck.cpp
+	<stdlib.h>
+	<stdio.h>
+	<math.h>
+	<windows.h>
+	"Truck.h"
 
