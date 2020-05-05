@@ -9,6 +9,7 @@
 #include "Camera.h"
 #include "Map.h"
 #include "Robot.h"
+#include "Truck.h"
 
 // Objet Camera
 Camera *cam = new Camera();
@@ -18,6 +19,8 @@ Map *m = new Map();
 Robot *optimus = new Robot();
 // Display optimus
 bool display = true;
+//Truck
+Truck *truck = new Truck();
 
 /** GESTION FENETRE **/
 void reshapeWindow(int w, int h)
@@ -177,6 +180,7 @@ void renderScene(void)
 
     if (display == true) {
         optimus->buildOptimus();
+        truck->buildTruck();
     }
     m->DrawGround();
     m->DrawSkybox(cam);

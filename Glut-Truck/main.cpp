@@ -742,8 +742,6 @@ void createJetpack() {
 
 void createPelvis(){
  
-
-
     //Top of the chest
     glPushMatrix();
         glTranslatef(0,-1,0);
