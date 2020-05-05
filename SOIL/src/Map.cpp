@@ -37,13 +37,13 @@ void Map::DrawGround()
 
     glBegin(GL_QUADS);
     glTexCoord2f(0.0f, 0.0f);
-    glVertex3f(-8.0f, 0.0f, -70.0f);
-    glTexCoord2f(0.0f, 70.0f);
-    glVertex3f(-8.0f, 0.0f, 70.0f);
-    glTexCoord2f(8.0f, 70.0f);
-    glVertex3f(8.0f, 0.0f, 70.0f);
+    glVertex3f(-8.0f, 0.0f, -200.0f);
+    glTexCoord2f(0.0f, 200.0f);
+    glVertex3f(-8.0f, 0.0f, 200.0f);
+    glTexCoord2f(8.0f, 200.0f);
+    glVertex3f(8.0f, 0.0f, 200.0f);
     glTexCoord2f(8.0f, 0.0f);
-    glVertex3f(8.0f, 0.0f, -70.0f);
+    glVertex3f(8.0f, 0.0f, -200.0f);
     glEnd();
     glTranslatef(0.0f, 1.0f, 0.0f);
     b->Draw();
@@ -51,6 +51,14 @@ void Map::DrawGround()
 
 void Map::DrawSkybox(Camera *cam)
 {
+
+    GLfloat ambientColor[] = {0.2f, 0.2f, 0.2f, 1.0f};
+    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
+    float LightPos[4]={0,1.5,0,0};
+    glLightfv(GL_LIGHT0,GL_POSITION,LightPos);
+    glMateriali(GL_FRONT_AND_BACK,GL_SHININESS,40);	//d�finit la taille de la tache sp�culaire
+    glEnable(GL_LIGHT0);
+
     //glDisable(GL_LIGHTING);
     glEnable(GL_TEXTURE_2D);
 

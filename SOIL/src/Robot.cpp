@@ -67,7 +67,7 @@ void Robot::buildOptimus(){
 
 void Robot::sound(int mode){
 
-FMOD_SYSTEM * sys;
+  FMOD_SYSTEM * sys;
   FMOD_SOUND * sound;
   FMOD_RESULT resultat;
   FMOD_CHANNEL * channel;
