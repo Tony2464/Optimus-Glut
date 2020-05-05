@@ -46,12 +46,6 @@ void Map::DrawGround()
     glVertex3f(8.0f, 0.0f, -70.0f);
     glEnd();
     glTranslatef(0.0f, 1.0f, 0.0f);
-    b->SetTexture(FRONT, ListeTextures[1]);
-    b->SetTexture(BACK, ListeTextures[7]);
-    b->SetTexture(TOP, ListeTextures[12]);
-    b->SetTexture(BOT, ListeTextures[4]);
-    b->SetTexture(RIGHT, ListeTextures[17]);
-    b->SetTexture(LEFT, ListeTextures[9]);
     b->Draw();
 }
 

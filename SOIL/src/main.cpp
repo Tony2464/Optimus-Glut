@@ -241,7 +241,9 @@ void renderScene(void)
 void LoadTextures()
 {
     m->LoadTextures();
+    truck->LoadTexturesTruck();
 }
+
 
 int main(int argc, char **argv)
 {

@@ -3,6 +3,7 @@
 
 #include "glut.h"
 #include "SOIL.h"
+#include "Block.h"
 
 class Truck
 {
@@ -25,4 +26,7 @@ public:
     void createPelvis();
     void createLegs();
     float gogogo();
+
+    GLuint ListeTexturesTruck[20];
+    void LoadTexturesTruck();
 };

@@ -4,6 +4,7 @@
 #include <windows.h>
 #include "Truck.h"
 
+
 #define M_PI 3.14
 #define M_PI_2 1.57
 
@@ -40,6 +41,12 @@ void Truck::buildTruck(){
 
 }
 
+void Truck::LoadTexturesTruck()
+{
+    // Textures utilisables
+    ListeTexturesTruck[0] = SOIL_load_OGL_texture("img/par-choc.bmp", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+}
+
 float* Truck::vectorProduct(float point1, float point2, float point3, float point4, float point5, float point6, float point7, float point8, float point9) {
     float vector1[3];
     float vector2[3];
@@ -62,48 +69,81 @@ float* Truck::vectorProduct(float point1, float point2, float point3, float poin
 
 void Truck::createCube() {
     glPushMatrix();
-        glBegin(GL_QUADS);
 
+        Block *b = new Block(0.0f, 0.0f, 0.0f);
+        glEnable(GL_TEXTURE_2D);
+        glColor3f(1.0f, 1.0f, 1.0f);
+        glBindTexture(GL_TEXTURE_2D, ListeTexturesTruck[0]);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+        glBegin(GL_QUADS);
         glNormal3f(0, 0, 1);
         //Front
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-0.5f, 0.5f, 0.5f);
+        glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-0.5f, -0.5f, 0.5f);
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(0.5f, -0.5f, 0.5f);
+        glTexCoord2f(0.0f, 1.0f);
         glVertex3f(0.5f, 0.5f, 0.5f);
 
         glNormal3f(1, 0, 0);
         //Right
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(0.5f, 0.5f, 0.5f);
+        glTexCoord2f(0.0f, 0.0f);
         glVertex3f(0.5f, -0.5f, 0.5f);
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(0.5f, -0.5f, -0.5f);
-        glVertex3f(0.5f, 0.5f, -0.5f);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(0.5f, 0.5f, -0.5f);  
 
         glNormal3f(0, 0, -1);
         //Back
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-0.5f, 0.5f, -0.5f);
+        glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-0.5f, -0.5f, -0.5f);
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(0.5f, -0.5f, -0.5f);
+        glTexCoord2f(0.0f, 1.0f);
         glVertex3f(0.5f, 0.5f, -0.5f);
 
         glNormal3f(-1, 0, 0);
         //Left
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-0.5f, 0.5f, 0.5f);
+        glTexCoord2f(0.0f, 0.0f);
         glVertex3f(-0.5f, -0.5f, 0.5f);
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-0.5f, -0.5f, -0.5f);
+        glTexCoord2f(0.0f, 1.0f);
         glVertex3f(-0.5f, 0.5f, -0.5f);
 
         glNormal3f(0, 1, 0);
         //Up
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-0.5f, 0.5f, 0.5f);
+        glTexCoord2f(0.0f, 0.0f);
         glVertex3f(0.5f, 0.5f, 0.5f);
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(0.5f, 0.5f, -0.5f);
+        glTexCoord2f(0.0f, 1.0f);
         glVertex3f(-0.5f, 0.5f, -0.5f);
 
         glNormal3f(0, -1, 0);
         //Down
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(-0.5f, -0.5f, 0.5f);
+        glTexCoord2f(0.0f, 0.0f);
         glVertex3f(0.5f, -0.5f, 0.5f);
+        glTexCoord2f(1.0f, 1.0f);
         glVertex3f(0.5f, -0.5f, -0.5f);
+        glTexCoord2f(0.0f, 1.0f);
         glVertex3f(-0.5f, -0.5f, -0.5f);
 
         glEnd();
