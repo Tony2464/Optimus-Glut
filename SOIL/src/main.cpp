@@ -39,6 +39,7 @@ void task2(){
     status2 = true;
 }
 
+
 /** GESTION FENETRE **/
 void reshapeWindow(int w, int h)
 {
@@ -60,84 +61,76 @@ void KeyboardDown(unsigned char key, int xx, int yy)
 {
     switch (key)
     {
-    case 'e': // Unlock Camera
-        cam->locked = (cam->locked) ? 0 : 1;
-        break;
-    case 'z':
-        cam->deltaForward = 1;
-        break;
-    case 's':
-        cam->deltaForward = -1;
-        break;
-    case 'd':
-        cam->deltaStrafe = -1;
-        break;
-    case 'q':
-        cam->deltaStrafe = 1;
-        break;
+        case 'e': // Unlock Camera
+            cam->locked = (cam->locked) ? 0 : 1;
+            break;
+        case 'z':
+            cam->deltaForward = 1;
+            break;
+        case 's':
+            cam->deltaForward = -1;
+            break;
+        case 'd':
+            cam->deltaStrafe = -1;
+            break;
+        case 'q':
+            cam->deltaStrafe = 1;
+            break;
 
-    case 'b':
-        optimus->dab();
-        break;
+        case 'b':
+            optimus->dab();
+            break;
 
-    case 'n':
-        optimus->getNormalArms();
-        if (display == false) {
-            optimus->reverseTrans();
-            display = true;
-        }
-        break;
+        case 'n':
+            optimus->getNormalArms();
+            if (display == false) {
+                optimus->reverseTrans();
+                display = true;
+            }
+            break;
 
-    case 'a': /* marcher */
-        if (display) {
-            truck->truckZ = optimus->walk();
-            glutPostRedisplay();
-        }
-        break;
+        case 'a': /* marcher */
+            if (display) {
+                truck->truckZ = optimus->walk();
+                glutPostRedisplay();
+            }
+            break;
 
-    case 'j': /* play sound */
-        optimus->sound(1);
-        break;
+        case 'j': /* play sound */
+            optimus->sound(1);
+            break;
 
-    case 'k': /* quit */
-        exit(0);
-        break;
+        case 'k': /* quit */
+            exit(0);
+            break;
 
-    case 't' : {/* transformation */
-        if (optimus->transformation()) {
-            display = false;
-            glutPostRedisplay();
-        }
-        if(status == false){
+        case 't' : /* transformation */
+            if (optimus->transformation()) {
+                display = false;
+                glutPostRedisplay();
+            }
+            if(status == false){
 
-            thread thr{task};
-            thr.join();
+                thread thr{task};
+                thr.join();
 
-        }
+            }
+            break;
 
-        break;
+        case 'r':
+
+            if (!display) {
+                optimus->optiZ = truck->gogogo();
+            }
+
+            if(status2 == false){
+
+                thread thr{task2};
+                thr.join();
+            }
+            break;
     }
 
-
-    case 'r':{
-
-    if (!display) {
-            optimus->optiZ = truck->gogogo();
-        }
-
-
-    }
-
-    if(status2 == false){
-
-            thread thr{task2};
-            thr.join();
-
-        }
-
-        break;
-
-    }
 }
 
 void KeyboardUp(unsigned char key, int xx, int yy)
@@ -233,6 +226,7 @@ void renderScene(void)
     } else {
         truck->buildTruck();
     }
+
     m->DrawGround();
     m->DrawSkybox(cam);
     glutSwapBuffers();

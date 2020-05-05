@@ -51,7 +51,7 @@ void Map::DrawGround()
 
 void Map::DrawSkybox(Camera *cam)
 {
-    glDisable(GL_LIGHTING);
+    //glDisable(GL_LIGHTING);
     glEnable(GL_TEXTURE_2D);
 
     glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
